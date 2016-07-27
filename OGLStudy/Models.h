@@ -14,6 +14,7 @@ namespace Models
 		GLuint vao;
 		std::vector<unsigned int> vbos;
 		Model();
+		Model(const Model &m);
 		~Model();
 	};
 

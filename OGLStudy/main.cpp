@@ -2,13 +2,20 @@
 #include "Dependencies\freeglut\freeglut.h"
 #include <iostream>
 #include "Core\ShaderLoader.h"
+#include "Models.h"
+
+Models::GameModels* gameModel;
 
 void renderScene(void);
 GLuint program;
+const char * TRIANGLE_NAME = "triangle1";
 
 void Init() {
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	Core::ShaderLoader loader;
+
+	gameModel = new Models::GameModels();
+	gameModel->CreateTriangleModel(TRIANGLE_NAME);
 
 	program = loader.CreateProgram("Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -36,12 +43,17 @@ int main(int argc, char **argv)
 
 	glutDisplayFunc(renderScene);
 	glutMainLoop();
+
+	delete gameModel;
 	glDeleteProgram(program);
 	return 0;
 }
 
 void renderScene(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	//
+	glBindVertexArray(gameModel->GetModel(TRIANGLE_NAME));
 
 	//use the created program
 	glUseProgram(program);

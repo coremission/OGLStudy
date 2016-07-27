@@ -1,13 +1,12 @@
 #version 430 core
- 
+
+layout (location = 0) in vec3 in_position;
+layout (location = 1) in vec4 in_color;
+
+out vec4 color;
+
 void main(void)
 {
-   const vec4 vertices[6] = vec4[6](vec4( 0.25, -0.25, 0.5, 1.0),
-                                    vec4(-0.25, -0.25, 0.5, 1.0),
-                                    vec4( 0.25,  0.25, 0.5, 1.0),
-
-									vec4( 0.45, -0.45, 0.5, 1.0),
-                                    vec4(-0.65, -0.75, 0.5, 1.0),
-                                    vec4( 0.65,  0.25, 0.5, 1.0));
-   gl_Position = vertices[gl_VertexID];
+   gl_Position = vec4(in_position, 1.0);
+   color = in_color;
 }

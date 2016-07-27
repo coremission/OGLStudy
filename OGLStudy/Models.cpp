@@ -1,9 +1,18 @@
 #include "Models.h"
-using namespace Models;
+#include "VertexFormat.h"
+
 using namespace std;
+using namespace Models;
+using namespace glm;
+
 // Model
 Model::Model()
 {
+}
+
+Models::Model::Model(const Model & m)
+{
+	cout << "model copy constructor";
 }
 
 Model::~Model() {
@@ -28,15 +37,44 @@ GameModels::~GameModels()
 	_gameModelList.clear();
 }
 
-void GameModels::CreateTriangleModel(const std::string & gameModelName)
+void GameModels::CreateTriangleModel(const std::string &gameModelName)
+{
+	GLuint vao;
+	GLuint vbo;
+
+	glGenVertexArrays(1, &vao);
+	glBindVertexArray(vao);
+
+	vector<VertexFormat> vertices;
+	vertices.push_back(VertexFormat(vec3(0.55, -0.25, 0.0), vec4(0.5, 0.5, 0, 1.0)));
+	vertices.push_back(VertexFormat(vec3(-0.25, -0.25, 0.0), vec4(0, 1, 0, 1.0)));
+	vertices.push_back(VertexFormat(vec3(0.25, 0.25, 0.0), vec4(0, 0, 1, 1)));
+
+	vertices.push_back(VertexFormat(vec3(-0.55, 0.25, 0.0), vec4(1.0, 0, 0, 1.0)));
+	vertices.push_back(VertexFormat(vec3(0.25, -0.75, 0.0), vec4(0, 1.0, 0, 1.0)));
+	vertices.push_back(VertexFormat(vec3(0.75, 0.65, 0.0), vec4(0, 0, 1.0, 1)));
+
+	glGenBuffers(1, &vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexFormat) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void *)0);
+
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), (void *)sizeof(vec3));
+
+	Model myModel;
+	myModel.vao = vao;
+	myModel.vbos.push_back(vbo);
+	
+	_gameModelList[gameModelName] = myModel;
+}
+
+void GameModels::DeleteModel(const std::string &gameModelName)
 {
 }
 
-void GameModels::DeleteModel(const std::string & gameModelName)
+GLuint GameModels::GetModel(const std::string &gameModelName)
 {
-}
-
-GLuint GameModels::GetModel(const std::string & gameModelName)
-{
-	return GLuint();
+	return _gameModelList[gameModelName].vao;
 }

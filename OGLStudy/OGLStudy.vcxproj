@@ -116,7 +116,6 @@
   <ItemGroup>
     <ClCompile Include="Core\ShaderLoader.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Models.cpp" />
     <ClCompile Include="VertexFormat.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -125,8 +124,7 @@
     <ClInclude Include="VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models.cpp" />
-    <None Include="Models.h" />
+    <ClCompile Include="Models.cpp" />
     <None Include="Shaders\Fragment.glsl" />
     <None Include="Shaders\Vertex.glsl" />
   </ItemGroup>
