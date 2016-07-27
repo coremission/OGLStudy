@@ -38,6 +38,12 @@
     <None Include="Shaders\Vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="Models.h">
+      <Filter>Header Files</Filter>
+    </None>
+    <None Include="Models.cpp">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\ShaderLoader.h">
