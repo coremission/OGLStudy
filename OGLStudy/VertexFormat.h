@@ -5,10 +5,10 @@
 
 class VertexFormat
 {
-private:
+public:
 	glm::vec3 _position;
 	glm::vec4 _color;
-public:
+
 	VertexFormat(const glm::vec3 &position, const glm::vec4 &color) {
 		_position = position;
 		_color = color;
