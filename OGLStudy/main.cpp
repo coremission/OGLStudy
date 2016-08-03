@@ -1,8 +1,10 @@
 #include "Dependencies\glew\glew.h"
 #include "Dependencies\freeglut\freeglut.h"
 #include <iostream>
-#include "Core\ShaderLoader.h"
+#include "ShaderLoader.h"
 #include "Models.h"
+#include "Dependencies/glm/glm.hpp"
+#include "Dependencies/glm/gtx/transform.hpp"
 
 Models::GameModels* gameModel;
 
@@ -12,7 +14,7 @@ const char * TRIANGLE_NAME = "triangle1";
 
 void Init() {
 	glClearColor(0.0, 0.0, 0.0, 1.0);
-	Core::ShaderLoader loader;
+	ShaderLoader loader;
 
 	gameModel = new Models::GameModels();
 	gameModel->CreateTriangleModel(TRIANGLE_NAME);
@@ -50,6 +52,9 @@ int main(int argc, char **argv)
 }
 
 void renderScene(void) {
+	static float time = 0.0f;
+	time += 0.001f;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//
@@ -57,9 +62,20 @@ void renderScene(void) {
 
 	//use the created program
 	glUseProgram(program);
+	GLuint timeLocation = glGetUniformLocation(program, "time");
+	GLuint rotationLocation = glGetUniformLocation(program, "rotationMatrix");
 
-	//draw 3 vertices as triangles
+	glUniform1f(timeLocation, time);
+	glm::mat4 rotation;
+	rotation = glm::rotate(time, glm::vec3(0.0f, 0.0f, 1.0f));
+	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &rotation[0][0]);
+
+	//draw 6 vertices as triangles
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
+	glUseProgram(0);
+	glBindVertexArray(0);
+
 	glutSwapBuffers();
+	glutPostRedisplay();
 }

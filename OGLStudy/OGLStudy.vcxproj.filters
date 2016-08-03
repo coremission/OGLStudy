@@ -9,9 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="Core">
-      <UniqueIdentifier>{fe7f9475-9b65-4d34-aec2-4426d4f07da4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{cca2a6a6-7788-4415-abb7-813b638672ff}</UniqueIdentifier>
     </Filter>
@@ -24,13 +21,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Core\ShaderLoader.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="VertexFormat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ShaderLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,13 +43,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\ShaderLoader.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="VertexFormat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ShaderLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -114,12 +114,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\ShaderLoader.cpp" />
+    <ClCompile Include="ShaderLoader.cpp" />
+    <ClCompile Include="Material.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="VertexFormat.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\ShaderLoader.h" />
+    <ClInclude Include="ShaderLoader.h" />
+    <ClInclude Include="Material.h" />
     <ClInclude Include="Models.h" />
     <ClInclude Include="VertexFormat.h" />
   </ItemGroup>
