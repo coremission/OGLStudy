@@ -1,33 +1,22 @@
 #ifndef MODELS_H
 #define MODELS_H
 
-#include "Dependencies\glew\glew.h"
-#include "Dependencies\freeglut\freeglut.h"
 #include <iostream>
-#include <vector>
 #include <map>
+#include "GameObject.h"
 
 namespace Models
 {
-	class Model {
-	public:
-		GLuint vao;
-		std::vector<unsigned int> vbos;
-		Model();
-		Model(const Model &m);
-		~Model();
-	};
-
-	class GameModels
+	class Scene
 	{
 	private:
-		std::map<std::string, Model> _gameModelList;
+		std::map<std::string, GameObject> _gameModelList;
 	public:
-		GameModels();
-		~GameModels();
+		Scene();
+		~Scene();
 		void CreateTriangleModel(const std::string &gameModelName);
 		void DeleteModel(const std::string &gameModelName);
-		GLuint GetModel(const std::string &gameModelName);
+		const GameObject& GetModel(const std::string &gameModelName);
 	};
 }
 

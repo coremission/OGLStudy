@@ -1,7 +1,7 @@
 #ifndef VERTEX_FORMAT_H
 #define VERTEX_FORMAT_H
 
-#include "Dependencies\glm\glm.hpp"
+#include <glm\glm.hpp>
 
 class VertexFormat
 {

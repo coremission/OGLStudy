@@ -68,7 +68,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)Dependencies;$(ProjectDir);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -114,14 +116,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ShaderLoader.cpp" />
-    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Rendering\ShaderLoader.cpp" />
+    <ClCompile Include="Rendering\Material.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="VertexFormat.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ShaderLoader.h" />
-    <ClInclude Include="Material.h" />
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Rendering\ShaderLoader.h" />
+    <ClInclude Include="Rendering\Material.h" />
     <ClInclude Include="Models.h" />
     <ClInclude Include="VertexFormat.h" />
   </ItemGroup>
