@@ -1,6 +1,10 @@
-﻿  Application.cpp
+﻿  Material.cpp
+  BaseRenderer.cpp
+  Scene.cpp
+  Application.cpp
   Generating Code...
   Skipping... (no relevant changes detected)
   main.cpp
+  GameObject.cpp
   OGLStudy.vcxproj -> D:\Projects\OGLStudy\Debug\OGLStudy.exe
   OGLStudy.vcxproj -> D:\Projects\OGLStudy\Debug\OGLStudy.pdb (Partial PDB)

@@ -117,22 +117,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="Model\GameObject.cpp" />
+    <ClCompile Include="Model\Transform.cpp" />
+    <ClCompile Include="Rendering\BaseRenderer.cpp" />
+    <ClCompile Include="Rendering\MaterialManager.cpp" />
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\Material.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="VertexFormat.cpp" />
+    <ClCompile Include="Model\VertexFormat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
-    <ClInclude Include="GameObject.h" />
+    <ClInclude Include="Model\GameObject.h" />
+    <ClInclude Include="Model\Transform.h" />
+    <ClInclude Include="Rendering\BaseRenderer.h" />
+    <ClInclude Include="Rendering\MaterialManager.h" />
     <ClInclude Include="Rendering\ShaderLoader.h" />
     <ClInclude Include="Rendering\Material.h" />
-    <ClInclude Include="Models.h" />
-    <ClInclude Include="VertexFormat.h" />
+    <ClInclude Include="Model\Scene.h" />
+    <ClInclude Include="Model\VertexFormat.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Models.cpp" />
+    <ClCompile Include="Model\Scene.cpp" />
     <None Include="Shaders\Fragment.glsl" />
     <None Include="Shaders\Vertex.glsl" />
   </ItemGroup>

@@ -1,8 +1,8 @@
 #ifndef SHADERLOADER_H
 #define SHADERLOADER_H
 
-#include <iostream>
 #include <glew/glew.h>
+#include <string>
 
 class ShaderLoader
 {
