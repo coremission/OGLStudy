@@ -6,7 +6,10 @@
 class Transform
 {
 public:
+	Transform* parent;
+
 	glm::vec3 position;
+	glm::vec3 rotation;
 	Transform();
 	~Transform();
 };

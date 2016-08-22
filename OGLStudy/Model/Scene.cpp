@@ -59,9 +59,6 @@ void Scene::CreateTriangleModel(const string &gameModelName)
 
 	// create renderer
 	myModel.renderer = BaseRenderer::createBaseRenderer(vao, mat);
-	// create transform
-	Transform transform;
-	myModel.transform = transform;
 
 	myModel.name = gameModelName;
 

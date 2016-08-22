@@ -1,6 +1,7 @@
 ﻿#include "BaseRenderer.h"
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
+#include <glm/gtx/euler_angles.hpp>
 
 BaseRenderer::BaseRenderer(GLuint _vao, std::shared_ptr<Material> _material): 
 	vao(_vao), material(_material)
@@ -20,17 +21,19 @@ void BaseRenderer::render() const
 	glBindVertexArray(vao);
 
 	GLuint program = material->programId();
-	// apply material
-	//use created program
 	glUseProgram(program);
+
 	// set uniform variables
 	GLuint timeLocation = glGetUniformLocation(program, "time");
+	glUniform1f(timeLocation, time);
+
 	GLuint rotationLocation = glGetUniformLocation(program, "rotationMatrix");
 
-	glUniform1f(timeLocation, time);
-	glm::mat4 rotation;
-	rotation = glm::rotate(time, glm::vec3(0.0f, 0.0f, 1.0f));
-	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &rotation[0][0]);
+	glm::mat4 rotation = glm::orientate4(_gameObject->transform.rotation);
+	glm::mat4 translation = glm::translate(_gameObject->transform.position);
+
+	glm::mat4 combined = rotation * translation;
+	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
 
 	//draw 6 vertices as triangles
 	glDrawArrays(GL_TRIANGLES, 0, 6);
