@@ -49,13 +49,13 @@ Application::~Application()
 
 void Application::renderScene() {
 	static float time = 0.0f;
-	time += 0.001f;
+	time += 0.0001f;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//
 	for(auto it = _scene->begin(); it != _scene->end(); ++it)
 	{
-		drawGameObject(it->second, time);
+		drawGameObject(*it->second, time);
 	}
 	
 	glutSwapBuffers();
@@ -64,6 +64,8 @@ void Application::renderScene() {
 
 void Application::drawGameObject(GameObject& gameObject, float time)
 {
+	gameObject.transform.setLocalYawPitchRoll(glm::vec3(0, time, 0));
+	gameObject.transform.setLocalPosition(glm::vec3(0, time, 0));
 	gameObject.renderer->render();
 }
 

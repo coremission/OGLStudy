@@ -10,7 +10,7 @@ namespace Models
 	class Scene
 	{
 	private:
-		std::map<std::string, GameObject> _gameModelList;
+		std::map<std::string, GameObject*> _gameModelList;
 	public:
 		Scene();
 		~Scene();
@@ -18,8 +18,8 @@ namespace Models
 		void DeleteModel(const std::string &gameModelName);
 		const GameObject& GetModel(const std::string &gameModelName);
 		// iterator
-		std::map<std::string, GameObject>::iterator begin();
-		std::map<std::string, GameObject>::iterator end();
+		std::map<std::string, GameObject*>::iterator begin();
+		std::map<std::string, GameObject*>::iterator end();
 	};
 }
 

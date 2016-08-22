@@ -9,17 +9,16 @@ class GameObject;
 class BaseRenderer
 {
 private:
-	const GameObject* _gameObject;
-	const GLuint vao;
+	const GameObject * const _gameObject;
 
-	BaseRenderer(GLuint vao, std::shared_ptr<Material>);
+	BaseRenderer(GameObject* gameObject, std::shared_ptr<Material>);
 public:
 	std::shared_ptr<Material> material;
 	
 	virtual ~BaseRenderer();
 	virtual void render() const;
 
-	static BaseRenderer* createBaseRenderer(GLuint vao, std::shared_ptr<Material> material);
+	static BaseRenderer* createBaseRenderer(GameObject* gameObject, std::shared_ptr<Material> material);
 };
 
 #endif // BASERENDERER_h

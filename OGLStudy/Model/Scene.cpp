@@ -15,9 +15,11 @@ Scene::~Scene()
 {
 	for (auto it = _gameModelList.begin(); it != _gameModelList.end(); ++it) {
 		// delete VAO and VBOs
-		glDeleteVertexArrays(1, &it->second.vao);
-		glDeleteBuffers(it->second.vbos.size(), &it->second.vbos[0]);
-		it->second.vbos.clear();
+		glDeleteVertexArrays(1, &it->second->vao);
+		glDeleteBuffers(it->second->vbos.size(), &it->second->vbos[0]);
+		it->second->vbos.clear();
+
+		delete it->second;
 	}
 	_gameModelList.clear();
 }
@@ -49,19 +51,16 @@ void Scene::CreateTriangleModel(const string &gameModelName)
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), reinterpret_cast<void *>(offsetof(VertexFormat, VertexFormat::_color)));
 
-	GameObject myModel;
-	myModel.vao = vao;
-	myModel.vbos.push_back(vbo);
-	
+	GameObject* myModel = new GameObject;
+	myModel->name = gameModelName;
+	myModel->vao = vao;
+	myModel->vbos.push_back(vbo);
 	
 	// create material
 	auto mat = MaterialManager::getMaterial("simple", "Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
 
 	// create renderer
-	myModel.renderer = BaseRenderer::createBaseRenderer(vao, mat);
-
-	myModel.name = gameModelName;
-
+	myModel->renderer = BaseRenderer::createBaseRenderer(myModel, mat);
 	_gameModelList[gameModelName] = myModel;
 }
 
@@ -71,15 +70,15 @@ void Scene::DeleteModel(const std::string &gameModelName)
 
 const GameObject& Scene::GetModel(const std::string &gameModelName)
 {
-	return _gameModelList[gameModelName];
+	return *_gameModelList[gameModelName];
 }
 
-std::map<std::string, GameObject>::iterator Scene::begin()
+std::map<std::string, GameObject*>::iterator Scene::begin()
 {
 	return _gameModelList.begin();
 }
 
-std::map<std::string, GameObject>::iterator Scene::end()
+std::map<std::string, GameObject*>::iterator Scene::end()
 {
 	return _gameModelList.end();
 }
