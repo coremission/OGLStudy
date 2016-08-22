@@ -1,6 +1,10 @@
 ﻿#include "Transform.h"
 
-Transform::Transform()
+using namespace glm;
+
+Transform::Transform():
+	localPosition(vec3()),
+	localScale(vec3())
 {
 }
 

@@ -1,4 +1,5 @@
 *.vs
 *.opendb
 *.suo
+*.sdf
 OGLStudy/Debug
