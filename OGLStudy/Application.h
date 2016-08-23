@@ -2,11 +2,13 @@
 #define APPLICATION_h
 #include "Model/GameObject.h"
 #include "Model/Scene.h"
+#include <memory>
 
 class Application
 {
 private:
-	static shared_ptr<Models::Scene> _scene;
+	static std::shared_ptr<Models::Scene> _scene;
+
 	static void renderScene();
 	static void processInput(unsigned char, int, int);
 	static void drawGameObject(GameObject&, float);

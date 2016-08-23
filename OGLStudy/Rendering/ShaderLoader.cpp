@@ -35,13 +35,13 @@ GLuint ShaderLoader::CreateShader(GLenum shaderType, std::string &source, const 
 	glGetShaderiv(shader, GL_COMPILE_STATUS, &compileResult);
 
 	//check for errors
-	if(compileResult = GL_FALSE) {
+	if(compileResult == GL_FALSE) {
 		int infoLogLength = 0;
 		glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLogLength);
 		vector<char> shaderLog(infoLogLength);
-		glGetShaderInfoLog(shader, infoLogLength, NULL, &shaderLog[0]);
+		glGetShaderInfoLog(shader, infoLogLength, nullptr, &shaderLog[0]);
 		cout << "ERROR compiling shader: " << shaderName << endl << &shaderLog[0] << endl;
-		return 0;
+		throw std::runtime_error("Can't compile shader");
 	}
 
 	return shader;
