@@ -4,10 +4,12 @@
 #include <iostream>
 #include <freeglut/freeglut.h>
 #include <glew/glew.h>
+#include <memory>
 
-const char * TRIANGLE_NAME = "triangle1";
+using namespace std;
 
-Models::Scene* Application::_scene = nullptr;
+// static field initialization
+shared_ptr<Models::Scene> Application::_scene;
 
 void Application::initialize(int* argc, char ** argv) {
 	glutInit(argc, argv);
@@ -19,9 +21,6 @@ void Application::initialize(int* argc, char ** argv) {
 
 	glutKeyboardFunc(processInput);
 	glewInit();
-
-	_scene = new Models::Scene();
-	_scene->CreateTriangleModel(TRIANGLE_NAME);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -37,15 +36,14 @@ void Application::initialize(int* argc, char ** argv) {
 	glutDisplayFunc(renderScene);
 }
 
+void Application::setUpScene(shared_ptr<Models::Scene> scene) {
+	Application::_scene = scene;
+}
+
 void Application::runMainLoop()
 {
 	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 	glutMainLoop();
-}
-
-Application::~Application()
-{
-	delete _scene;
 }
 
 void Application::renderScene() {
