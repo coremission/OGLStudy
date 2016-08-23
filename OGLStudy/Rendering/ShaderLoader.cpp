@@ -73,8 +73,9 @@ GLuint ShaderLoader::CreateProgram(const char * vertexShaderFilename, const char
 		glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infoLogLength);
 		vector<char> programLog(infoLogLength);
 		glGetProgramInfoLog(program, infoLogLength, nullptr, &programLog[0]);
-		cout << "Shader Loader : LINK ERROR" << endl << &programLog[0] << endl;
-		return 0;
+		cout << "Shader Loader: LINK ERROR" << endl << &programLog[0] << endl;
+		cout << "Vertex shader: " << vertexShaderFilename << ", Fragment shader: " << fragmentShaderFilename << endl;
+		throw std::runtime_error("Can't link shader programs");
 	}
 	return program;
 }

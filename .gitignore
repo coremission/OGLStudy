@@ -3,3 +3,6 @@
 *.suo
 *.sdf
 OGLStudy/Debug
+Debug/OGLStudy.exe
+Debug/OGLStudy.ilk
+Debug/OGLStudy.pdb

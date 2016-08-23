@@ -10,7 +10,9 @@ uniform mat4 Model2World;
 
 void main(void)
 {
-   gl_Position = Model2World * vec4(in_position, 1.0);
-   color = in_color;
-   fragmentPosition = gl_Position.xyz;
+	gl_oshibka = gl_vata;
+	
+	gl_Position = Model2World * vec4(in_position, 1.0);
+	color = in_color;
+	fragmentPosition = gl_Position.xyz;
 }

@@ -39,6 +39,7 @@ void Application::initialize(int* argc, char ** argv) {
 
 void Application::runMainLoop()
 {
+	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
 	glutMainLoop();
 }
 
@@ -79,5 +80,5 @@ void Application::processInput(unsigned char key, int x, int y)
 
 void Application::exit()
 {
-	glutExit();
+	glutLeaveMainLoop();
 }
