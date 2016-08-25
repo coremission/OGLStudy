@@ -1,0 +1,16 @@
+﻿  Scene.cpp
+d:\projects\rudyengine\engine\model\scene.cpp(54): warning C4316: 'GameObject': object allocated on the heap may not be aligned 16
+  VertexFormat.cpp
+  main.cpp
+  Material.cpp
+  ShaderLoader.cpp
+  Mesh.cpp
+  MaterialManager.cpp
+  BaseRenderer.cpp
+  Transform.cpp
+  GameObject.cpp
+  Behaviour.cpp
+  Application.cpp
+  Generating Code...
+  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.exe
+  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.pdb (Partial PDB)
