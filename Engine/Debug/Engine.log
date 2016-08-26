@@ -12,5 +12,4 @@ d:\projects\rudyengine\engine\model\scene.cpp(54): warning C4316: 'GameObject': 
   Behaviour.cpp
   Application.cpp
   Generating Code...
-  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.exe
-  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.pdb (Partial PDB)
+  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.lib

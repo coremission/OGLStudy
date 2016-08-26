@@ -1,5 +1,5 @@
-d:\projects\rudyengine\engine\debug\vc140.pdb
-d:\projects\rudyengine\engine\debug\vc140.idb
+d:\projects\rudyengine\engine\debug\engine.pdb
+d:\projects\rudyengine\engine\debug\engine.idb
 d:\projects\rudyengine\engine\debug\application.obj
 d:\projects\rudyengine\engine\debug\behaviour.obj
 d:\projects\rudyengine\engine\debug\gameobject.obj
@@ -12,12 +12,11 @@ d:\projects\rudyengine\engine\debug\material.obj
 d:\projects\rudyengine\engine\debug\main.obj
 d:\projects\rudyengine\engine\debug\vertexformat.obj
 d:\projects\rudyengine\engine\debug\scene.obj
-d:\projects\rudyengine\debug\engine.ilk
-d:\projects\rudyengine\debug\engine.exe
+d:\projects\rudyengine\debug\engine.lib
 d:\projects\rudyengine\debug\engine.pdb
 d:\projects\rudyengine\engine\debug\engine.tlog\cl.command.1.tlog
 d:\projects\rudyengine\engine\debug\engine.tlog\cl.read.1.tlog
 d:\projects\rudyengine\engine\debug\engine.tlog\cl.write.1.tlog
-d:\projects\rudyengine\engine\debug\engine.tlog\link.command.1.tlog
-d:\projects\rudyengine\engine\debug\engine.tlog\link.read.1.tlog
-d:\projects\rudyengine\engine\debug\engine.tlog\link.write.1.tlog
+d:\projects\rudyengine\engine\debug\engine.tlog\lib-link.read.1.tlog
+d:\projects\rudyengine\engine\debug\engine.tlog\lib-link.write.1.tlog
+d:\projects\rudyengine\engine\debug\engine.tlog\lib.command.1.tlog
