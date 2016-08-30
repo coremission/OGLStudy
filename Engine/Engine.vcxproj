@@ -411,7 +411,10 @@
     <None Include="Dependencies\glm\vec3.hpp" />
     <None Include="Dependencies\glm\vec4.hpp" />
     <None Include="Dependencies\glm\vector_relational.hpp" />
-    <None Include="Shaders\Fragment.glsl" />
+    <Text Include="Shaders\Fragment.glsl">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <FileType>Document</FileType>
+    </Text>
     <None Include="Shaders\Vertex.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

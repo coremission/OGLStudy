@@ -1,5 +1,5 @@
 ﻿  Scene.cpp
-d:\projects\rudyengine\engine\model\scene.cpp(54): warning C4316: 'GameObject': object allocated on the heap may not be aligned 16
+d:\projects\rudyengine\engine\model\scene.cpp(55): warning C4316: 'GameObject': object allocated on the heap may not be aligned 16
   VertexFormat.cpp
   main.cpp
   Material.cpp

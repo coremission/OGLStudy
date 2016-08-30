@@ -56,9 +56,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Fragment.glsl">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Shaders\Vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
@@ -881,5 +878,10 @@
     <ClInclude Include="Rendering\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Shaders\Fragment.glsl">
+      <Filter>Shaders</Filter>
+    </Text>
   </ItemGroup>
 </Project>

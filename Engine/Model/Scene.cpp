@@ -1,6 +1,7 @@
 #include "Scene.h"
 #include "VertexFormat.h"
 #include <Rendering/MaterialManager.h>
+#include <glm/glm.hpp>
 
 using namespace std;
 using namespace Models;
