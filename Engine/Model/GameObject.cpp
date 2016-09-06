@@ -1,17 +1,18 @@
 ﻿#include "GameObject.h"
 #include <iostream>
+#include <memory>
 
+using namespace std;
 // Model
 GameObject::GameObject():
-	vao(0), transform(Transform())
+	transform(make_shared<Transform>())
 {
 }
 
 GameObject::GameObject(const GameObject & m):
-	vao(m.vao),
 	transform(m.transform)
 {
-	std::cout << "model copy constructor";
+	std::cout << "gameObject copy constructor";
 }
 
 GameObject::~GameObject() {

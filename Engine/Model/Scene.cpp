@@ -1,5 +1,5 @@
 #include "Scene.h"
-#include "VertexFormat.h"
+#include "VertexData.h"
 #include <Rendering/MaterialManager.h>
 #include <glm/glm.hpp>
 
@@ -15,11 +15,6 @@ Scene::Scene()
 Scene::~Scene()
 {
 	for (auto it = _gameModelList.begin(); it != _gameModelList.end(); ++it) {
-		// delete VAO and VBOs
-		glDeleteVertexArrays(1, &it->second->vao);
-		glDeleteBuffers(it->second->vbos.size(), &it->second->vbos[0]);
-		it->second->vbos.clear();
-
 		delete it->second;
 	}
 	_gameModelList.clear();
@@ -27,41 +22,25 @@ Scene::~Scene()
 
 void Scene::CreateTriangleModel(const string &gameModelName)
 {
-	GLuint vao;
-	GLuint vbo;
-
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
-
-	vector<VertexFormat> vertices;
-	vertices.push_back(VertexFormat(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexFormat(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexFormat(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f)));
+	vector<VertexData> vertices;
+	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f)));
+	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f)));
+	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f)));
 	
-	vertices.push_back(VertexFormat(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexFormat(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexFormat(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1)));
+	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
+	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
+	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1)));
 
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexFormat) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
-	
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), reinterpret_cast<void *>(offsetof(VertexFormat, VertexFormat::_position)));
-
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexFormat), reinterpret_cast<void *>(offsetof(VertexFormat, VertexFormat::_color)));
+	auto mesh = std::make_shared<Mesh>(vertices);
 
 	GameObject* myModel = new GameObject;
 	myModel->name = gameModelName;
-	myModel->vao = vao;
-	myModel->vbos.push_back(vbo);
 	
 	// create material
 	auto mat = MaterialManager::getMaterial("simple", "Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
 
 	// create renderer
-	myModel->renderer = BaseRenderer::createBaseRenderer(myModel, mat);
+	myModel->renderer = BaseRenderer::createBaseRenderer(myModel, mat, mesh);
 	_gameModelList[gameModelName] = myModel;
 }
 

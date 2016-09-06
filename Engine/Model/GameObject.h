@@ -7,16 +7,15 @@
 #include <glew/glew.h>
 #include "Transform.h"
 #include <string>
+#include <memory>
 
 class BaseRenderer;
 
 class GameObject {
 public:
-	GLuint vao;
 	std::string name;
-	Transform transform;
+	std::shared_ptr<Transform> transform;
 	BaseRenderer* renderer;
-	std::vector<GLuint> vbos;
 
 	GameObject();
 	GameObject(const GameObject& m);

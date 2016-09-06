@@ -3,8 +3,10 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/euler_angles.hpp>
 
-BaseRenderer::BaseRenderer(GameObject* gameObject, std::shared_ptr<Material> _material): 
-	_gameObject(gameObject), material(_material)
+using namespace std;
+
+BaseRenderer::BaseRenderer(GameObject* gameObject, shared_ptr<Material> _material, shared_ptr<Mesh> _mesh): 
+	_gameObject(gameObject), material(_material), mesh(_mesh)
 {
 }
 
@@ -18,7 +20,7 @@ void BaseRenderer::render() const
 	float time = 1.0f;
 
 	// bind VAO
-	glBindVertexArray(_gameObject->vao);
+	glBindVertexArray(mesh->vao);
 
 	GLuint program = material->programId();
 	glUseProgram(program);
@@ -28,7 +30,7 @@ void BaseRenderer::render() const
 	glUniform1f(timeLocation, time);
 
 	GLuint rotationLocation = glGetUniformLocation(program, "Model2World");
-	glm::mat4 combined = _gameObject->transform.getLocalToWorldMatrix();
+	glm::mat4 combined = _gameObject->transform->getLocalToWorldMatrix();
 
 	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
 
@@ -40,7 +42,7 @@ void BaseRenderer::render() const
 	glBindVertexArray(0);
 }
 
-BaseRenderer* BaseRenderer::createBaseRenderer(GameObject* gameObject, std::shared_ptr<Material> material)
+BaseRenderer* BaseRenderer::createBaseRenderer(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh)
 {
-	return new BaseRenderer(gameObject, material);
+	return new BaseRenderer(gameObject, material, mesh);
 }

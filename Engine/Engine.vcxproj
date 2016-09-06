@@ -130,7 +130,7 @@
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\Material.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Model\VertexFormat.cpp" />
+    <ClCompile Include="Model\VertexData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -143,7 +143,7 @@
     <ClInclude Include="Rendering\ShaderLoader.h" />
     <ClInclude Include="Rendering\Material.h" />
     <ClInclude Include="Model\Scene.h" />
-    <ClInclude Include="Model\VertexFormat.h" />
+    <ClInclude Include="Model\VertexData.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Model\Scene.cpp" />

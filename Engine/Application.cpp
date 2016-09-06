@@ -63,8 +63,8 @@ void Application::renderScene() {
 
 void Application::drawGameObject(GameObject& gameObject, float time)
 {
-	gameObject.transform.setLocalYawPitchRoll(glm::vec3(0, time, 0));
-	gameObject.transform.setLocalPosition(glm::vec3(0, time, 0));
+	gameObject.transform->setLocalYawPitchRoll(glm::vec3(0, time, 0));
+	gameObject.transform->setLocalPosition(glm::vec3(0, time, 0));
 	gameObject.renderer->render();
 }
 
