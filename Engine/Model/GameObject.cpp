@@ -24,6 +24,9 @@ GameObject::~GameObject() {
 void GameObject::Update()
 {
 	std::cout << "update " << name << std::endl;
+	for (auto it = components.begin(); it != components.end(); ++it) {
+		(*it)->Update();
+	}
 }
 
 void GameObject::AddComponent(std::unique_ptr<Behaviour> _component)

@@ -1,9 +1,8 @@
-﻿  Behaviour.cpp
+﻿  GameObject.cpp
   Создание кода...
-  Компиляция...
+  Пропуск... (изменения не обнаружены)
   BaseRenderer.cpp
   Scene.cpp
-  GameObject.cpp
+  Behaviour.cpp
   Application.cpp
-  Создание кода...
   Engine.vcxproj -> D:\!Mine\RudyEngine\Debug\Engine.lib
