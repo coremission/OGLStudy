@@ -1,27 +1,65 @@
+#include <Model/VertexData.h>
+#include <Rendering/MaterialManager.h>
+
+#include <glm/glm.hpp>
 #include <Application.h>
 #include <iostream>
 #include <memory>
+#include <vector>
 
-const char * TRIANGLE_NAME = "triangle1";
+using namespace std;
+using namespace glm;
+
+void _do(int, char**);
+shared_ptr<Models::Scene> setUpScene();
 
 int main(int argc, char **argv)
 {
-	auto sceneShared = std::make_shared<Models::Scene>();
-
-	try {
-		Application::initialize(&argc, argv);
-		Application::setUpScene(sceneShared);
-		sceneShared->CreateTriangleModel(TRIANGLE_NAME);
-
-		Application::runMainLoop();
-	}
-	catch (std::exception exc) {
-		Application::exit();
-		std::cout << exc.what();
-	}
-
-	std::cout << std::endl << "Press any key to exit..." << std::endl;
-	std::cin.get();
+	_do(argc, argv);
+	cout << endl << "Press any key to exit..." << endl;
+	cin.get();
 
 	return 0;
+}
+
+// this one exist to see destructors outputs
+void _do(int argc, char **argv) {
+	try {
+		Application::initialize(&argc, argv);
+		Application::setUpScene(setUpScene());
+		Application::runMainLoop();
+		Application::exit();
+	}
+	catch (exception exc) {
+		Application::exit();
+		cout << exc.what();
+	}
+}
+
+shared_ptr<Models::Scene> setUpScene() {
+	auto sceneShared = make_shared<Models::Scene>();
+	
+	vector<VertexData> vertices;
+	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f)));
+	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f)));
+	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f)));
+
+	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
+	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
+	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1)));
+
+	auto mesh = make_shared<Mesh>(vertices);
+
+	GameObject* myModel = new GameObject;
+	myModel->name = "triangle1";
+
+	// create material
+	auto mat = MaterialManager::getMaterial("simple", "Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
+
+	// create renderer
+	myModel->renderer = BaseRenderer::createBaseRenderer(myModel, mat, mesh);
+
+	sceneShared->AddModel(myModel->name, myModel);
+
+	return sceneShared;
 }

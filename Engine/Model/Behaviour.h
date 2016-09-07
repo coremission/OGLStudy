@@ -2,6 +2,8 @@
 #define BEHAVIOUR_h
 #include "GameObject.h"
 
+class GameObject;
+
 class Behaviour
 {
 protected:

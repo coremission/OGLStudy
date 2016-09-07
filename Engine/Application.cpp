@@ -38,6 +38,7 @@ void Application::initialize(int* argc, char ** argv) {
 
 void Application::setUpScene(shared_ptr<Models::Scene> scene) {
 	Application::_scene = scene;
+	std::cout << "scene was set up" << std::endl;
 }
 
 void Application::runMainLoop()
@@ -55,6 +56,7 @@ void Application::renderScene() {
 	for(auto it = _scene->begin(); it != _scene->end(); ++it)
 	{
 		drawGameObject(*it->second, time);
+		it->second->Update();
 	}
 	
 	glutSwapBuffers();

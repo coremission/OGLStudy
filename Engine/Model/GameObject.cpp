@@ -1,4 +1,6 @@
 ﻿#include "GameObject.h"
+#include "Behaviour.h"
+
 #include <iostream>
 #include <memory>
 
@@ -17,4 +19,14 @@ GameObject::GameObject(const GameObject & m):
 
 GameObject::~GameObject() {
 	std::cout << "~ gameObject.destructor";
+}
+
+void GameObject::Update()
+{
+	std::cout << "update " << name << std::endl;
+}
+
+void GameObject::AddComponent(std::unique_ptr<Behaviour> _component)
+{
+
 }

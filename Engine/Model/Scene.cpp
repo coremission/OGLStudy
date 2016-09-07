@@ -1,11 +1,8 @@
 #include "Scene.h"
 #include "VertexData.h"
-#include <Rendering/MaterialManager.h>
-#include <glm/glm.hpp>
 
 using namespace std;
 using namespace Models;
-using namespace glm;
 
 // Scene
 Scene::Scene()
@@ -20,28 +17,9 @@ Scene::~Scene()
 	_gameModelList.clear();
 }
 
-void Scene::CreateTriangleModel(const string &gameModelName)
+void Scene::AddModel(const string &gameModelName, GameObject * gameObject)
 {
-	vector<VertexData> vertices;
-	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f)));
-	
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1)));
-
-	auto mesh = std::make_shared<Mesh>(vertices);
-
-	GameObject* myModel = new GameObject;
-	myModel->name = gameModelName;
-	
-	// create material
-	auto mat = MaterialManager::getMaterial("simple", "Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
-
-	// create renderer
-	myModel->renderer = BaseRenderer::createBaseRenderer(myModel, mat, mesh);
-	_gameModelList[gameModelName] = myModel;
+	_gameModelList[gameModelName] = gameObject;
 }
 
 void Scene::DeleteModel(const std::string &gameModelName)

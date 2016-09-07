@@ -10,11 +10,13 @@ namespace Models
 	class Scene
 	{
 	private:
+		// todo: here must be smart pointer
 		std::map<std::string, GameObject*> _gameModelList;
 	public:
 		Scene();
 		~Scene();
-		void CreateTriangleModel(const std::string &gameModelName);
+		// todo: there must be smart pointer passed
+		void AddModel(const std::string &gameModelName, GameObject * gameObject);
 		void DeleteModel(const std::string &gameModelName);
 		const GameObject& GetModel(const std::string &gameModelName);
 		// iterator
