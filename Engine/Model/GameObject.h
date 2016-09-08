@@ -6,7 +6,6 @@
 #include "Transform.h"
 
 #include <vector>
-#include <glew/glew.h>
 #include <string>
 #include <memory>
 

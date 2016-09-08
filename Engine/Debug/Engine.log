@@ -1,8 +1,16 @@
-﻿  GameObject.cpp
-  Создание кода...
-  Пропуск... (изменения не обнаружены)
+﻿  Scene.cpp
+  Time.cpp
+  Input.cpp
+  VertexData.cpp
+  Material.cpp
+  ShaderLoader.cpp
+  MeshManager.cpp
+  Mesh.cpp
+  MaterialManager.cpp
   BaseRenderer.cpp
-  Scene.cpp
+  Transform.cpp
+  GameObject.cpp
   Behaviour.cpp
   Application.cpp
-  Engine.vcxproj -> D:\!Mine\RudyEngine\Debug\Engine.lib
+  Generating Code...
+  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.lib

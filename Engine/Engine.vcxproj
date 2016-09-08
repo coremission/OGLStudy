@@ -127,10 +127,12 @@
     <ClCompile Include="Rendering\BaseRenderer.cpp" />
     <ClCompile Include="Rendering\MaterialManager.cpp" />
     <ClCompile Include="Rendering\Mesh.cpp" />
+    <ClCompile Include="Rendering\MeshManager.cpp" />
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\Material.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="Model\VertexData.cpp" />
+    <ClCompile Include="System\Input.cpp" />
+    <ClCompile Include="System\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
@@ -140,10 +142,14 @@
     <ClInclude Include="Rendering\BaseRenderer.h" />
     <ClInclude Include="Rendering\MaterialManager.h" />
     <ClInclude Include="Rendering\Mesh.h" />
+    <ClInclude Include="Rendering\MeshManager.h" />
     <ClInclude Include="Rendering\ShaderLoader.h" />
     <ClInclude Include="Rendering\Material.h" />
     <ClInclude Include="Model\Scene.h" />
     <ClInclude Include="Model\VertexData.h" />
+    <ClInclude Include="System\Input.h" />
+    <ClInclude Include="System\system.hpp" />
+    <ClInclude Include="System\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Model\Scene.cpp" />

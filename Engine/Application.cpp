@@ -1,5 +1,6 @@
 ﻿#include "Application.h"
 #include "Model/Scene.h"
+#include "System/system.hpp"
 
 #include <iostream>
 #include <freeglut/freeglut.h>
@@ -48,14 +49,13 @@ void Application::runMainLoop()
 }
 
 void Application::renderScene() {
-	static float time = 0.0f;
-	time += 0.0001f;
+	Time::time += 0.0001f;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//
 	for(auto it = _scene->begin(); it != _scene->end(); ++it)
 	{
-		drawGameObject(*it->second, time);
+		drawGameObject(*it->second, Time::time);
 		it->second->Update();
 	}
 	
@@ -65,8 +65,6 @@ void Application::renderScene() {
 
 void Application::drawGameObject(GameObject& gameObject, float time)
 {
-	gameObject.transform->setLocalYawPitchRoll(glm::vec3(0, time, 0));
-	gameObject.transform->setLocalPosition(glm::vec3(0, time, 0));
 	gameObject.renderer->render();
 }
 

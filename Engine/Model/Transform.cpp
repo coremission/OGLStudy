@@ -7,8 +7,8 @@ using namespace glm;
 
 Transform::Transform():
 	localPosition(vec3()),
-	localRotation(vec3()),
 	localScale(vec3(1, 1, 1)),
+	localRotation(vec3()),
 	parent(nullptr)
 {
 }
@@ -35,6 +35,12 @@ void Transform::setLocalPosition(vec3 value)
 void Transform::setLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 {
 	localRotation = yawPitchRoll;
+	recalculateMatrices();
+}
+
+void Transform::setLocalScale(glm::vec3 value)
+{
+	localScale = value;
 	recalculateMatrices();
 }
 

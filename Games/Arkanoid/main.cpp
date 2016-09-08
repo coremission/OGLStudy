@@ -1,5 +1,6 @@
 #include <Model/VertexData.h>
 #include <Rendering/MaterialManager.h>
+#include "BallBehaviour.h"
 
 #include <glm/glm.hpp>
 #include <Application.h>
@@ -28,7 +29,6 @@ void _do(int argc, char **argv) {
 		Application::initialize(&argc, argv);
 		Application::setUpScene(setUpScene());
 		Application::runMainLoop();
-		Application::exit();
 	}
 	catch (exception exc) {
 		Application::exit();
@@ -51,6 +51,7 @@ shared_ptr<Models::Scene> setUpScene() {
 	auto mesh = make_shared<Mesh>(vertices);
 
 	GameObject* myModel = new GameObject;
+	myModel->AddComponent(make_unique<BallBehaviour>(myModel));
 	myModel->name = "triangle1";
 
 	// create material

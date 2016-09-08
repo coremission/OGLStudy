@@ -10,6 +10,7 @@ protected:
 	GameObject* gameObject;
 public:
 	explicit Behaviour(GameObject*);
+	virtual void Start();
 	virtual void Update();
 	virtual ~Behaviour();
 };

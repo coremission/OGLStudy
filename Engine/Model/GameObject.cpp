@@ -7,12 +7,12 @@
 using namespace std;
 // Model
 GameObject::GameObject():
-	transform(make_shared<Transform>())
+	transform(make_shared<Transform>()), renderer(nullptr)
 {
 }
 
 GameObject::GameObject(const GameObject & m):
-	transform(m.transform)
+	transform(m.transform), renderer(nullptr)
 {
 	std::cout << "gameObject copy constructor";
 }
@@ -23,13 +23,13 @@ GameObject::~GameObject() {
 
 void GameObject::Update()
 {
-	std::cout << "update " << name << std::endl;
 	for (auto it = components.begin(); it != components.end(); ++it) {
 		(*it)->Update();
 	}
 }
 
-void GameObject::AddComponent(std::unique_ptr<Behaviour> _component)
+void GameObject::AddComponent(unique_ptr<Behaviour> _component)
 {
-
+	_component->Start();
+	components.push_back(move(_component));
 }
