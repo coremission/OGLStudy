@@ -4,15 +4,15 @@
 
 class GameObject;
 
-class Behaviour
+class Component
 {
 protected:
 	GameObject* gameObject;
 public:
-	explicit Behaviour(GameObject*);
+	explicit Component(GameObject*);
 	virtual void Start();
 	virtual void Update();
-	virtual ~Behaviour();
+	virtual ~Component();
 };
 
 #endif BEHAVIOUR_h

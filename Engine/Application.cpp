@@ -16,11 +16,17 @@ void Application::initialize(int* argc, char ** argv) {
 	glutInit(argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);//optional
-	glutInitWindowSize(800, 600); //optional
+	Screen::width = 800;
+	Screen::height = 600;
+	glutInitWindowSize(Screen::width, Screen::height);
 	glutCreateWindow("OpenGL First Window");
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
-	glutKeyboardFunc(processInput);
+	glutKeyboardFunc(processKeyboardInput);
+	glutMouseFunc(processMousePress);
+    glutMotionFunc(processMousePressedMove);
+	glutPassiveMotionFunc(processMouseFreeMove);
+
 	glewInit();
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -71,12 +77,26 @@ void Application::drawGameObject(GameObject& gameObject)
 	gameObject.renderer->render();
 }
 
-void Application::processInput(unsigned char key, int x, int y)
+void Application::processKeyboardInput(unsigned char key, int x, int y)
 {
 	std::cout << key;
-
+	std::cout << x << ", " << y;
 	if (key == 27) // ESCAPE
 		exit();
+}
+
+void Application::processMousePress(int button, int state, int x, int y)
+{
+	//std::cout << "button: " << button << " state:" << state << " x: "<<  x << " y: " << y;
+}
+
+void Application::processMouseFreeMove(int x, int y)
+{
+	std::cout << x << ", " << y << std::endl;
+}
+
+void Application::processMousePressedMove(int x, int y)
+{
 }
 
 void Application::exit()

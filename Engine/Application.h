@@ -10,7 +10,10 @@ private:
 	static std::shared_ptr<Models::Scene> _scene;
 
 	static void renderScene();
-	static void processInput(unsigned char, int, int);
+	static void processKeyboardInput(unsigned char, int, int);
+	static void processMousePress(int, int, int, int);
+	static void processMouseFreeMove(int, int);
+	static void processMousePressedMove(int, int);
 	static void drawGameObject(GameObject&);
 	Application();
 	Application(const Application&);

@@ -3,18 +3,18 @@
 #include <System/system.hpp>
 
 BallBehaviour::BallBehaviour(GameObject* _gameObject)
-	:Behaviour(_gameObject)
+	:Component(_gameObject)
 {
 }
 
 void BallBehaviour::Update()
 {
-	Behaviour::Update();
+	Component::Update();
 	float time = Time::time;
 	gameObject->transform->setLocalYawPitchRoll(glm::vec3(0, time, 0));
 	gameObject->transform->setLocalPosition(glm::vec3(0, time, 0));
 	//gameObject->transform->setLocalScale(glm::vec3(time, time, time));
-	std::cout << "ball update" << std::endl;
+	//std::cout << "ball update" << std::endl;
 }
 
 void BallBehaviour::Start()

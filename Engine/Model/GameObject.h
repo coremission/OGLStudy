@@ -2,7 +2,7 @@
 #define GAMEOBJECT_h
 
 #include <Rendering/BaseRenderer.h>
-#include "Behaviour.h"
+#include "Component.h"
 #include "Transform.h"
 
 #include <vector>
@@ -10,11 +10,11 @@
 #include <memory>
 
 class BaseRenderer;
-class Behaviour;
+class Component;
 
 class GameObject {
 private:
-	std::vector<std::unique_ptr<Behaviour>> components;
+	std::vector<std::unique_ptr<Component>> components;
 public:
 	std::string name;
 	std::shared_ptr<Transform> transform;
@@ -24,7 +24,7 @@ public:
 	GameObject(const GameObject& m);
 	~GameObject();
 	void Update();
-	void AddComponent(std::unique_ptr<Behaviour>);
+	void AddComponent(std::unique_ptr<Component>);
 };
 
 #endif // GAMEOBJECT_h

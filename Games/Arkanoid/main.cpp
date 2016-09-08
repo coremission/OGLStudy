@@ -1,4 +1,3 @@
-#include <Model/VertexData.h>
 #include "BallBehaviour.h"
 #include <Rendering/MeshManager.h>
 #include <Rendering/MaterialManager.h>
@@ -7,7 +6,7 @@
 #include <Application.h>
 #include <iostream>
 #include <memory>
-#include <vector>
+#include <Rendering/SpriteRenderer.h>
 
 using namespace std;
 using namespace glm;
@@ -45,13 +44,8 @@ shared_ptr<Models::Scene> setUpScene() {
 	GameObject* myModel = new GameObject;
 	myModel->AddComponent(make_unique<BallBehaviour>(myModel));
 	myModel->name = "triangle1";
-
-	// create material
-	auto mat = MaterialManager::getMaterial("simple", "Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
-
 	// create renderer
-	myModel->renderer = BaseRenderer::createBaseRenderer(myModel, mat, mesh);
-
+	myModel->renderer = SpriteRenderer::create(myModel, "some_sprite_name");
 	sceneShared->AddModel(myModel->name, myModel);
 
 	return sceneShared;

@@ -1,5 +1,5 @@
 ﻿#include "GameObject.h"
-#include "Behaviour.h"
+#include "Component.h"
 
 #include <iostream>
 #include <memory>
@@ -28,7 +28,7 @@ void GameObject::Update()
 	}
 }
 
-void GameObject::AddComponent(unique_ptr<Behaviour> _component)
+void GameObject::AddComponent(unique_ptr<Component> _component)
 {
 	_component->Start();
 	components.push_back(move(_component));

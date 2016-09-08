@@ -1,8 +1,8 @@
 ﻿#ifndef BALLBEHAVIOUR_h
 #define BALLBEHAVIOUR_h
-#include <Model/Behaviour.h>
+#include <Model/Component.h>
 
-class BallBehaviour: public Behaviour
+class BallBehaviour: public Component
 {
 public:
 	explicit BallBehaviour(GameObject*);

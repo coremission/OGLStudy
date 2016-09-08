@@ -1,16 +1,20 @@
 ﻿  Scene.cpp
   Time.cpp
+  Screen.cpp
   Input.cpp
+  SpriteRenderer.cpp
+  Sprite.cpp
   VertexData.cpp
   Material.cpp
   ShaderLoader.cpp
   MeshManager.cpp
   Mesh.cpp
   MaterialManager.cpp
+  Camera.cpp
   BaseRenderer.cpp
   Transform.cpp
   GameObject.cpp
-  Behaviour.cpp
+  Component.cpp
   Application.cpp
-  Создание кода...
-  Engine.vcxproj -> D:\!Mine\RudyEngine\Debug\Engine.lib
+  Generating Code...
+  Engine.vcxproj -> D:\Projects\RudyEngine\Debug\Engine.lib

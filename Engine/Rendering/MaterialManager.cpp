@@ -4,3 +4,8 @@ std::shared_ptr<Material> MaterialManager::getMaterial(const std::string& materi
 {
 	return std::make_shared<Material>(materialName, vertexShaderPath, fragmentShaderPath);
 }
+
+std::shared_ptr<Material> MaterialManager::getDefaultSpriteMaterial()
+{
+	return MaterialManager::getMaterial("simple", "Shaders\\Vertex.glsl", "Shaders\\Fragment.glsl");
+}

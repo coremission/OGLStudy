@@ -42,7 +42,7 @@ void BaseRenderer::render() const
 	glBindVertexArray(0);
 }
 
-BaseRenderer* BaseRenderer::createBaseRenderer(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh)
+BaseRenderer* BaseRenderer::create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh)
 {
 	return new BaseRenderer(gameObject, material, mesh);
 }

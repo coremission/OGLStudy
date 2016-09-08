@@ -3,5 +3,6 @@
 
 #include "Input.h"
 #include "Time.h"
+#include "Screen.h"
 
 #endif // SYSTEM_h
