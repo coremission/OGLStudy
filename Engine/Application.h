@@ -11,7 +11,7 @@ private:
 
 	static void renderScene();
 	static void processInput(unsigned char, int, int);
-	static void drawGameObject(GameObject&, float);
+	static void drawGameObject(GameObject&);
 	Application();
 	Application(const Application&);
 	const Application& operator=(Application&);

@@ -55,7 +55,7 @@ void Application::renderScene() {
 	//
 	for(auto it = _scene->begin(); it != _scene->end(); ++it)
 	{
-		drawGameObject(*it->second, Time::time);
+		drawGameObject(*it->second);
 		it->second->Update();
 	}
 	
@@ -63,8 +63,11 @@ void Application::renderScene() {
 	glutPostRedisplay();
 }
 
-void Application::drawGameObject(GameObject& gameObject, float time)
+void Application::drawGameObject(GameObject& gameObject)
 {
+	if (gameObject.renderer == nullptr)
+		return;
+
 	gameObject.renderer->render();
 }
 

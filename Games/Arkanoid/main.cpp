@@ -1,6 +1,7 @@
 #include <Model/VertexData.h>
-#include <Rendering/MaterialManager.h>
 #include "BallBehaviour.h"
+#include <Rendering/MeshManager.h>
+#include <Rendering/MaterialManager.h>
 
 #include <glm/glm.hpp>
 #include <Application.h>
@@ -39,16 +40,7 @@ void _do(int argc, char **argv) {
 shared_ptr<Models::Scene> setUpScene() {
 	auto sceneShared = make_shared<Models::Scene>();
 	
-	vector<VertexData> vertices;
-	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f)));
-
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1)));
-
-	auto mesh = make_shared<Mesh>(vertices);
+	auto mesh = MeshManager::getQuadMesh();
 
 	GameObject* myModel = new GameObject;
 	myModel->AddComponent(make_unique<BallBehaviour>(myModel));
