@@ -3,6 +3,7 @@
 
 #include <Rendering/MeshManager.h>
 #include <Rendering/MaterialManager.h>
+#include <Rendering/Camera.h>
 
 #include <glm/glm.hpp>
 #include <Application.h>
@@ -48,10 +49,16 @@ shared_ptr<Models::Scene> setUpScene() {
 	// create renderer
 	// ball->renderer = SpriteRenderer::create(ball, "some_sprite_name");
 	sceneShared->AddModel(ball->name, ball);
+
 	// TODO: add controller
 	// CONTROLLER
 	//GameObject* controller = new GameObject;
-	//controller->AddComponent(make_unique<Controller>());
+	//controller->AddComponent<Controller>();
 
+	// TODO: add camera
+	// CAMERA
+	GameObject* camera = new GameObject;
+	camera->name = "camera";
+	camera->AddComponent<Camera>();
 	return sceneShared;
 }

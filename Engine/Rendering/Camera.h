@@ -1,7 +1,9 @@
 ﻿#ifndef CAMERA_h
 #define CAMERA_h
 
-class Camera
+#include <Model/Component.h>
+
+class Camera: public Component
 {
 public:
 };
