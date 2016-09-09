@@ -20,10 +20,15 @@ void Application::initialize(int* argc, char ** argv) {
 	Screen::height = 600;
 	glutInitWindowSize(Screen::width, Screen::height);
 	glutCreateWindow("OpenGL First Window");
+	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
-	glutKeyboardFunc(processKeyboardInput);
+	// key down
+	glutKeyboardFunc(processKeyDown);
+	glutKeyboardUpFunc(processKeyUp);
+	// mouse click
 	glutMouseFunc(processMousePress);
+	// mouse move
     glutMotionFunc(processMousePressedMove);
 	glutPassiveMotionFunc(processMouseFreeMove);
 
@@ -62,6 +67,8 @@ void Application::renderScene() {
 	for(auto it = _scene->begin(); it != _scene->end(); ++it)
 	{
 		drawGameObject(*it->second);
+		// todo: there maybe must be base Update call for Component
+		// Component::Update();
 		it->second->Update();
 	}
 	
@@ -77,12 +84,19 @@ void Application::drawGameObject(GameObject& gameObject)
 	gameObject.renderer->render();
 }
 
-void Application::processKeyboardInput(unsigned char key, int x, int y)
+void Application::processKeyDown(unsigned char key, int x, int y)
 {
-	std::cout << key;
-	std::cout << x << ", " << y;
+	Input::registerKeyPressed(key);
+	std::cout << "down " << key << std::endl;
+	// TODO: move this to game controllers
 	if (key == 27) // ESCAPE
 		exit();
+}
+
+void Application::processKeyUp(unsigned char key, int x, int y)
+{
+	Input::resetKeyPressed(key);
+	std::cout << "up " << key << std::endl;
 }
 
 void Application::processMousePress(int button, int state, int x, int y)
@@ -92,7 +106,10 @@ void Application::processMousePress(int button, int state, int x, int y)
 
 void Application::processMouseFreeMove(int x, int y)
 {
-	std::cout << x << ", " << y << std::endl;
+	Input::mousePosition.x = x;
+	Input::mousePosition.y = y;
+
+	//std::cout << x << ", " << y << std::endl;
 }
 
 void Application::processMousePressedMove(int x, int y)

@@ -9,10 +9,14 @@ BallBehaviour::BallBehaviour(GameObject* _gameObject)
 
 void BallBehaviour::Update()
 {
-	Component::Update();
 	float time = Time::time;
 	gameObject->transform->setLocalYawPitchRoll(glm::vec3(0, time, 0));
-	gameObject->transform->setLocalPosition(glm::vec3(0, time, 0));
+
+	if (Input::checkIfKeyPressed('w')) {
+		std::cout << "w pressed" << std::endl;
+		gameObject->transform->setLocalPosition(glm::vec3(0, 2*time, 0));
+	}
+	
 	//gameObject->transform->setLocalScale(glm::vec3(time, time, time));
 	//std::cout << "ball update" << std::endl;
 }

@@ -24,7 +24,12 @@ public:
 	GameObject(const GameObject& m);
 	~GameObject();
 	void Update();
-	void AddComponent(std::unique_ptr<Component>);
+	template<typename T> void AddComponent();
 };
 
+template<typename T> void GameObject::AddComponent() {
+	auto component = make_unique<T>(this);
+	component->Start();
+	components.push_back(move(component));
+}
 #endif // GAMEOBJECT_h

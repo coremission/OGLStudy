@@ -10,7 +10,10 @@ private:
 	static std::shared_ptr<Models::Scene> _scene;
 
 	static void renderScene();
-	static void processKeyboardInput(unsigned char, int, int);
+	// keyboard (key up/down)
+	static void processKeyDown(unsigned char, int, int);
+	static void processKeyUp(unsigned char, int, int);
+
 	static void processMousePress(int, int, int, int);
 	static void processMouseFreeMove(int, int);
 	static void processMousePressedMove(int, int);

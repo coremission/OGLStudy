@@ -2,11 +2,12 @@
 *.opendb
 *.suo
 *.sdf
-OGLStudy/Debug
+*.db
+Games/Arkanoid/Debug
+Engine/Debug
 Debug/OGLStudy.exe
 Debug/OGLStudy.ilk
 Debug/OGLStudy.pdb
-*.db
 Debug/Engine.exe
 Debug/Engine.ilk
 Debug/Engine.pdb

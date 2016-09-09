@@ -1,4 +1,6 @@
 #include "BallBehaviour.h"
+#include "Controller.h"
+
 #include <Rendering/MeshManager.h>
 #include <Rendering/MaterialManager.h>
 
@@ -39,14 +41,17 @@ void _do(int argc, char **argv) {
 shared_ptr<Models::Scene> setUpScene() {
 	auto sceneShared = make_shared<Models::Scene>();
 	
-	auto mesh = MeshManager::getQuadMesh();
-
-	GameObject* myModel = new GameObject;
-	myModel->AddComponent(make_unique<BallBehaviour>(myModel));
-	myModel->name = "triangle1";
+	// BALL
+	GameObject* ball = new GameObject;
+	ball->AddComponent<BallBehaviour>();
+	ball->name = "ball";
 	// create renderer
-	myModel->renderer = SpriteRenderer::create(myModel, "some_sprite_name");
-	sceneShared->AddModel(myModel->name, myModel);
+	// ball->renderer = SpriteRenderer::create(ball, "some_sprite_name");
+	sceneShared->AddModel(ball->name, ball);
+	// TODO: add controller
+	// CONTROLLER
+	//GameObject* controller = new GameObject;
+	//controller->AddComponent(make_unique<Controller>());
 
 	return sceneShared;
 }

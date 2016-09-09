@@ -28,8 +28,3 @@ void GameObject::Update()
 	}
 }
 
-void GameObject::AddComponent(unique_ptr<Component> _component)
-{
-	_component->Start();
-	components.push_back(move(_component));
-}
