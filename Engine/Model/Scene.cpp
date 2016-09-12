@@ -1,5 +1,4 @@
 #include "Scene.h"
-#include "VertexData.h"
 
 using namespace std;
 using namespace Models;

@@ -5,12 +5,10 @@
 #include <iostream>
 #include <freeglut/freeglut.h>
 #include <glew/glew.h>
-#include <memory>
 
 using namespace std;
 
-// static field initialization
-shared_ptr<Models::Scene> Application::_scene;
+std::unique_ptr<Models::Scene> Application::scene = std::make_unique<Models::Scene>();
 
 void Application::initialize(int* argc, char ** argv) {
 	glutInit(argc, argv);
@@ -36,21 +34,14 @@ void Application::initialize(int* argc, char ** argv) {
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	if (glewIsSupported("GL_VERSION_4_3"))
-	{
+	if (glewIsSupported("GL_VERSION_4_3")) {
 		std::cout << " GLEW Version is 4.3\n ";
 	}
-	else
-	{
+	else {
 		std::cout << "GLEW 4.3 not supported\n ";
 	}
 
 	glutDisplayFunc(renderScene);
-}
-
-void Application::setUpScene(shared_ptr<Models::Scene> scene) {
-	_scene = scene;
-	cout << "scene was set up" << endl;
 }
 
 void Application::runMainLoop()
@@ -64,7 +55,7 @@ void Application::renderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//
-	for(auto it = _scene->begin(); it != _scene->end(); ++it)
+	for(auto it = scene->begin(); it != scene->end(); ++it)
 	{
 		drawGameObject(*it->second);
 		// todo: there maybe must be base Update call for Component
@@ -87,7 +78,6 @@ void Application::drawGameObject(GameObject& gameObject)
 void Application::processKeyDown(unsigned char key, int x, int y)
 {
 	Input::registerKeyPressed(key);
-	std::cout << "down " << key << std::endl;
 	// TODO: move this to game controllers
 	if (key == 27) // ESCAPE
 		leaveMainLoop();
@@ -96,7 +86,6 @@ void Application::processKeyDown(unsigned char key, int x, int y)
 void Application::processKeyUp(unsigned char key, int x, int y)
 {
 	Input::resetKeyPressed(key);
-	std::cout << "up " << key << std::endl;
 }
 
 void Application::processMousePress(int button, int state, int x, int y)
@@ -123,5 +112,10 @@ void Application::leaveMainLoop()
 
 void Application::exit()
 {
-	_scene.reset();
+	// fixme
+	// todo: create destroyable scene api
+	// Good enough will for GameObject to use something like this:
+	// Engine::scene.AddModel();
+	// rename Application to Engine
+	scene.reset();
 }

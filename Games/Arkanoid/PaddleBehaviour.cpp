@@ -1,4 +1,5 @@
 ﻿#include "PaddleBehaviour.h"
+#include <System/Input.h>
 
 PaddleBehaviour::PaddleBehaviour(GameObject* go)
 	:Component(go),
@@ -11,15 +12,32 @@ PaddleBehaviour::PaddleBehaviour(GameObject* go)
 void PaddleBehaviour::Start()
 {
 	halfWidth = 0.2;
-	halfHeight = 0.1f;
+	halfHeight = 0.05f;
 	gameObject->transform->setLocalScale(glm::vec3(halfWidth, halfHeight, 1));
+	gameObject->transform->setLocalPosition(glm::vec3(0, -0.8f, 0));
 }
 
 void PaddleBehaviour::Update()
 {
+	const static glm::vec2 sensitivity = glm::vec2(0.0005f, 0);
+	gameObject->transform->setLocalPosition(position() + glm::vec3(velocity.x, velocity.y, 0));
+	velocity = glm::vec2(0, 0);
+
+	if(Input::checkIfKeyPressed('a') && left() > -1) 	{
+		velocity = glm::vec2(-sensitivity.x, sensitivity.y);
+	}
+	if (Input::checkIfKeyPressed('d') && right() < 1) {
+		velocity = glm::vec2(sensitivity.x, sensitivity.y);
+	}
+
+	// check collision
+	if(ball->bottom() < top() && 
+		(ball->right() > left() && ball->left() < right())) {
+		ball->negateVelocityY();
+	}
 }
 
-void PaddleBehaviour::setUpBall(std::shared_ptr<BallBehaviour> _ball)
+void PaddleBehaviour::setUpBall(BallBehaviour * _ball)
 {
 	ball = _ball;
 }

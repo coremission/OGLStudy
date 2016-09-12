@@ -2,13 +2,11 @@
 #define APPLICATION_h
 #include "Model/GameObject.h"
 #include "Model/Scene.h"
-#include <memory>
 
 class Application
 {
 private:
-	static std::shared_ptr<Models::Scene> _scene;
-
+	static std::unique_ptr<Models::Scene> scene;
 	static void renderScene();
 	// keyboard (key up/down)
 	static void processKeyDown(unsigned char, int, int);
@@ -22,11 +20,12 @@ private:
 	Application(const Application&);
 	const Application& operator=(Application&);
 public:
-	static void setUpScene(std::shared_ptr<Models::Scene>);
 	static void initialize(int* argc, char** argv);
 	static void runMainLoop();
 	static void leaveMainLoop();
 	static void exit();
+
+	friend class GameObject;
 };
 
 #endif // APPLICATION_h

@@ -12,6 +12,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Arkanoid", "Games\Arkanoid\
 		{4488212C-9C42-4F09-8D21-4AC414118AB6} = {4488212C-9C42-4F09-8D21-4AC414118AB6}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{3994829D-284B-4189-9B3C-012BFB84A224}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Particles", "Demo\Particles\Particles.vcxproj", "{942CB335-4BF2-46F9-B315-13F38FFFC770}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4488212C-9C42-4F09-8D21-4AC414118AB6} = {4488212C-9C42-4F09-8D21-4AC414118AB6}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -36,11 +43,20 @@ Global
 		{8D07E041-A1A1-4734-B6B3-0DD9829FBE44}.Release|x64.Build.0 = Release|x64
 		{8D07E041-A1A1-4734-B6B3-0DD9829FBE44}.Release|x86.ActiveCfg = Release|Win32
 		{8D07E041-A1A1-4734-B6B3-0DD9829FBE44}.Release|x86.Build.0 = Release|Win32
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Debug|x64.ActiveCfg = Debug|Win32
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Debug|x64.Build.0 = Debug|Win32
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Debug|x86.ActiveCfg = Debug|Win32
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Debug|x86.Build.0 = Debug|Win32
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Release|x64.ActiveCfg = Release|x64
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Release|x64.Build.0 = Release|x64
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Release|x86.ActiveCfg = Release|Win32
+		{942CB335-4BF2-46F9-B315-13F38FFFC770}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8D07E041-A1A1-4734-B6B3-0DD9829FBE44} = {7A074D20-54E7-4525-87D1-EEF5F8BCD033}
+		{942CB335-4BF2-46F9-B315-13F38FFFC770} = {3994829D-284B-4189-9B3C-012BFB84A224}
 	EndGlobalSection
 EndGlobal

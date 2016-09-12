@@ -16,7 +16,7 @@ using namespace std;
 using namespace glm;
 
 void _do(int, char**);
-shared_ptr<Models::Scene> setUpScene();
+void setUpScene();
 
 int main(int argc, char **argv)
 {
@@ -31,7 +31,9 @@ int main(int argc, char **argv)
 void _do(int argc, char **argv) {
 	try {
 		Application::initialize(&argc, argv);
-		Application::setUpScene(setUpScene());
+		
+		setUpScene();
+
 		Application::runMainLoop();
 		Application::exit();
 	}
@@ -42,9 +44,7 @@ void _do(int argc, char **argv) {
 	}
 }
 
-shared_ptr<Models::Scene> setUpScene() {
-	auto sceneShared = make_shared<Models::Scene>();
-	
+void setUpScene() {
 	// BALL
 	GameObject* ball = new GameObject("ball");
 	BallBehaviour* ballBehaviour = new BallBehaviour(ball);
@@ -52,27 +52,22 @@ shared_ptr<Models::Scene> setUpScene() {
 
 	// create renderer
 	ball->renderer = SpriteRenderer::create(ball, "some_sprite_name");
-	sceneShared->AddModel(ball->name, ball);
 
 	// PADDLE
 	GameObject* paddle = new GameObject("paddle");
-	//auto paddleBehaviour = paddle->AddComponent<PaddleBehaviour>();
-	//paddleBehaviour->setUpBall(ballBehaviour);
+	PaddleBehaviour* paddleBehaviour = new PaddleBehaviour(paddle);
+	paddleBehaviour->setUpBall(ballBehaviour);
+	paddle->AddComponent(paddleBehaviour);
 	paddle->renderer = SpriteRenderer::create(paddle, "some_sprite_name");
-	sceneShared->AddModel(paddle->name, paddle);
 	
 	// TODO: add controller
 	// CONTROLLER
 	GameObject* controller = new GameObject("controller");
-	controller->AddComponent<Controller>();
-	sceneShared->AddModel(controller->name, controller);
+	Controller* controllerBehaviour = new Controller(controller);
+	controller->AddComponent<Controller>(controllerBehaviour);
 
 	// TODO: add camera
 	// CAMERA
-	GameObject* camera = new GameObject;
-	camera->name = "camera";
+	GameObject* camera = new GameObject("camera");
 	camera->AddComponent<Camera>();
-	sceneShared->AddModel(camera->name, camera);
-
-	return sceneShared;
 }

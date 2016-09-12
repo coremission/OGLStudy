@@ -12,8 +12,10 @@ namespace Models
 	private:
 		// todo: here must be smart pointer
 		std::map<std::string, GameObject*> _gameModelList;
+		Scene(const Scene&);
+		void operator=(const Scene&);
 	public:
-		Scene();
+		Scene(); // todo: make it private
 		~Scene();
 		// todo: there must be smart pointer passed
 		void AddModel(const std::string &gameModelName, GameObject * gameObject);
