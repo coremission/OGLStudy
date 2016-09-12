@@ -63,7 +63,7 @@ void setUpScene() {
 	// TODO: add controller
 	// CONTROLLER
 	GameObject* controller = new GameObject("controller");
-	Controller* controllerBehaviour = new Controller(controller);
+	Controller* controllerBehaviour = new Controller(controller, ballBehaviour);
 	controller->AddComponent<Controller>(controllerBehaviour);
 
 	// TODO: add camera

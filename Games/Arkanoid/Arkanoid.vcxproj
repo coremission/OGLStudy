@@ -123,6 +123,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BallBehaviour.cpp" />
+    <ClCompile Include="BrickBehaviour.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PaddleBehaviour.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BallBehaviour.h" />
+    <ClInclude Include="BrickBehaviour.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="PaddleBehaviour.h" />
   </ItemGroup>
