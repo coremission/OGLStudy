@@ -21,14 +21,22 @@ public:
 	BaseRenderer* renderer;
 
 	GameObject();
+	explicit GameObject(const std::string& _name);
 	GameObject(const GameObject& m);
 	~GameObject();
 	void Update();
 	template<typename T> void AddComponent();
+	template<typename T> void AddComponent(const T*);
 };
 
 template<typename T> void GameObject::AddComponent() {
-	auto component = make_unique<T>(this);
+	auto component = std::make_unique<T>(this);
+	component->Start();
+	components.push_back(move(component));
+}
+
+template<typename T> void GameObject::AddComponent(const T* _component) {
+	std::unique_ptr<T> component(_component);
 	component->Start();
 	components.push_back(move(component));
 }

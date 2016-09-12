@@ -123,7 +123,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BallBehaviour.cpp" />
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PaddleBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Engine\Engine.vcxproj">
@@ -132,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BallBehaviour.h" />
+    <ClInclude Include="Controller.h" />
+    <ClInclude Include="PaddleBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -22,10 +22,11 @@ private:
 	Application(const Application&);
 	const Application& operator=(Application&);
 public:
-	static void exit();
 	static void setUpScene(std::shared_ptr<Models::Scene>);
 	static void initialize(int* argc, char** argv);
 	static void runMainLoop();
+	static void leaveMainLoop();
+	static void exit();
 };
 
 #endif // APPLICATION_h

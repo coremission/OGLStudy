@@ -6,6 +6,9 @@
 class Camera: public Component
 {
 public:
+	explicit Camera(GameObject*);
+	virtual void Update() override;
+	virtual void Start() override;
 };
 
 #endif //CAMERA_h

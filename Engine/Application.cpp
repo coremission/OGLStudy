@@ -49,8 +49,8 @@ void Application::initialize(int* argc, char ** argv) {
 }
 
 void Application::setUpScene(shared_ptr<Models::Scene> scene) {
-	Application::_scene = scene;
-	std::cout << "scene was set up" << std::endl;
+	_scene = scene;
+	cout << "scene was set up" << endl;
 }
 
 void Application::runMainLoop()
@@ -90,7 +90,7 @@ void Application::processKeyDown(unsigned char key, int x, int y)
 	std::cout << "down " << key << std::endl;
 	// TODO: move this to game controllers
 	if (key == 27) // ESCAPE
-		exit();
+		leaveMainLoop();
 }
 
 void Application::processKeyUp(unsigned char key, int x, int y)
@@ -116,7 +116,12 @@ void Application::processMousePressedMove(int x, int y)
 {
 }
 
-void Application::exit()
+void Application::leaveMainLoop()
 {
 	glutLeaveMainLoop();
+}
+
+void Application::exit()
+{
+	_scene.reset();
 }

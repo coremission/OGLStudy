@@ -3,25 +3,25 @@
 #include <System/system.hpp>
 
 BallBehaviour::BallBehaviour(GameObject* _gameObject)
-	:Component(_gameObject)
+	:Component(_gameObject),
+	radius(0),
+	velocity({0, 0})
 {
 }
 
 void BallBehaviour::Update()
 {
-	float time = Time::time;
-	gameObject->transform->setLocalYawPitchRoll(glm::vec3(0, time, 0));
+	gameObject->transform->setLocalPosition(position() + glm::vec3(velocity.x, velocity.y, 0));
 
-	if (Input::checkIfKeyPressed('w')) {
-		std::cout << "w pressed" << std::endl;
-		gameObject->transform->setLocalPosition(glm::vec3(0, 2*time, 0));
-	}
-	
-	//gameObject->transform->setLocalScale(glm::vec3(time, time, time));
-	//std::cout << "ball update" << std::endl;
+	if (left() < -1 || right() > 1)
+		velocity.x = -velocity.x;
+	if (top() > 1 || bottom() < -1)
+		velocity.y = -velocity.y;
 }
 
 void BallBehaviour::Start()
 {
-	gameObject->transform->setLocalScale(glm::vec3(0.05f, 0.05f, 1));
+	velocity = { 0.0002f, 0.0003f };
+	radius = 0.05;
+	gameObject->transform->setLocalScale(glm::vec3(radius, radius, 1));
 }

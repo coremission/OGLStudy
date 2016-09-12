@@ -11,6 +11,11 @@ GameObject::GameObject():
 {
 }
 
+GameObject::GameObject(const std::string& _name)
+	: name(_name), transform(make_shared<Transform>()), renderer(nullptr)
+{
+}
+
 GameObject::GameObject(const GameObject & m):
 	transform(m.transform), renderer(nullptr)
 {
@@ -18,7 +23,7 @@ GameObject::GameObject(const GameObject & m):
 }
 
 GameObject::~GameObject() {
-	std::cout << "~ gameObject.destructor";
+	std::cout << "~gameObject.destructor " << name << endl;
 }
 
 void GameObject::Update()

@@ -1,5 +1,6 @@
 ﻿#include "Material.h"
 #include "ShaderLoader.h"
+#include <iostream>
 
 Material::Material(const std::string& materialName, const std::string& vertexShaderPath, const std::string& fragmentShaderPath):
 	_materialName(materialName)
@@ -9,6 +10,7 @@ Material::Material(const std::string& materialName, const std::string& vertexSha
 
 Material::~Material()
 {
+	std::cout << "~material.destructor " << _materialName << std::endl;
 	glDeleteProgram(_programId);
 }
 

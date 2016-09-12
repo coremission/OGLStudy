@@ -5,7 +5,9 @@
 
 class Controller: public Component {
 public:
-	Controller();
+	explicit Controller(GameObject*);
+	virtual void Update() override;
+	virtual void Start() override;
 	virtual ~Controller() override;
 };
 #endif //CONTROLLER_h
