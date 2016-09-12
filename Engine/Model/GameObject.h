@@ -26,7 +26,7 @@ public:
 	~GameObject();
 	void Update();
 	template<typename T> void AddComponent();
-	template<typename T> void AddComponent(const T*);
+	template<typename T> void AddComponent(T*);
 };
 
 template<typename T> void GameObject::AddComponent() {
@@ -35,7 +35,7 @@ template<typename T> void GameObject::AddComponent() {
 	components.push_back(move(component));
 }
 
-template<typename T> void GameObject::AddComponent(const T* _component) {
+template<typename T> void GameObject::AddComponent(T* _component) {
 	std::unique_ptr<T> component(_component);
 	component->Start();
 	components.push_back(move(component));

@@ -47,7 +47,7 @@ shared_ptr<Models::Scene> setUpScene() {
 	
 	// BALL
 	GameObject* ball = new GameObject("ball");
-	const BallBehaviour* ballBehaviour = new BallBehaviour(ball);
+	BallBehaviour* ballBehaviour = new BallBehaviour(ball);
 	ball->AddComponent<BallBehaviour>(ballBehaviour);
 
 	// create renderer
