@@ -7,7 +7,9 @@ BrickBehaviour::BrickBehaviour(GameObject* game_object)
 
 void BrickBehaviour::Start()
 {
-	gameObject->transform->setLocalScale(glm::vec3(0.05f, 0.05f, 1));
+	halfWidth = 0.1;
+	halfHeight = 0.1f;
+	gameObject->transform->setLocalScale(glm::vec3(halfWidth, halfHeight, 1));
 }
 
 void BrickBehaviour::Update()

@@ -5,7 +5,7 @@
 using namespace std;
 using namespace glm;
 
-const char * const QUAD_MESH_ID = "rudy_quad";
+constexpr char * const QUAD_MESH_ID = "rudy_quad";
 
 std::map<std::string, std::shared_ptr<Mesh>> MeshManager::meshMap;
 

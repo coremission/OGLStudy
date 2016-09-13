@@ -14,8 +14,8 @@ void Application::initialize(int* argc, char ** argv) {
 	glutInit(argc, argv);
 	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
 	glutInitWindowPosition(0, 0);//optional
-	Screen::width = 800;
-	Screen::height = 600;
+	Screen::width = 640;
+	Screen::height = 480;
 	glutInitWindowSize(Screen::width, Screen::height);
 	glutCreateWindow("OpenGL First Window");
 	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);

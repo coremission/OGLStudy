@@ -30,6 +30,7 @@ GameObject::GameObject(const GameObject & m):
 GameObject::~GameObject() {
 	// must be deleted from scene here
 	std::cout << "~gameObject.destructor " << name << endl;
+	delete renderer;
 }
 
 void GameObject::Update()

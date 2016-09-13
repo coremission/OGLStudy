@@ -54,12 +54,15 @@ void setUpScene() {
 	ball->renderer = SpriteRenderer::create(ball, "some_sprite_name");
 
 	// PADDLE
+	/*
+	// todo: temp
 	GameObject* paddle = new GameObject("paddle");
 	PaddleBehaviour* paddleBehaviour = new PaddleBehaviour(paddle);
 	paddleBehaviour->setUpBall(ballBehaviour);
 	paddle->AddComponent(paddleBehaviour);
 	paddle->renderer = SpriteRenderer::create(paddle, "some_sprite_name");
-	
+	*/
+
 	// TODO: add controller
 	// CONTROLLER
 	GameObject* controller = new GameObject("controller");
