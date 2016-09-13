@@ -18,7 +18,7 @@ private:
 public:
 	std::string name;
 	std::shared_ptr<Transform> transform;
-	BaseRenderer* renderer;
+	std::unique_ptr<BaseRenderer> renderer;
 
 	GameObject();
 	explicit GameObject(const std::string& _name);

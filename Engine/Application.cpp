@@ -69,7 +69,7 @@ void Application::renderScene() {
 
 void Application::drawGameObject(GameObject& gameObject)
 {
-	if (gameObject.renderer == nullptr)
+	if (!gameObject.renderer)
 		return;
 
 	gameObject.renderer->render();
