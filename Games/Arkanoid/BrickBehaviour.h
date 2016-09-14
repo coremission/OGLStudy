@@ -13,6 +13,7 @@ public:
 	void Update() override;
 	~BrickBehaviour() override;
 
+	void setHalfSize(float, float);
 	glm::vec3 position() const { return gameObject->transform->getLocalPosition(); }
 	float top() const { return position().y + halfHeight; }
 	float bottom() const { return position().y - halfHeight; }

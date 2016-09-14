@@ -6,10 +6,10 @@
 class BallBehaviour: public Component
 {
 private:
-	float radius;
 	glm::vec2 velocity;
-	glm::vec3 position() const { return gameObject->transform->getLocalPosition(); }
 public:
+	float radius;
+	glm::vec3 position() const { return gameObject->transform->getLocalPosition(); }
 	float top() const { return position().y + radius; }
 	float bottom() const { return position().y - radius; }
 	float left() const { return position().x - radius; }
