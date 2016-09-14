@@ -139,6 +139,10 @@
     <ClInclude Include="Controller.h" />
     <ClInclude Include="PaddleBehaviour.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Fragment.glsl" />
+    <None Include="Shaders\Vertex.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

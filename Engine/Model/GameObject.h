@@ -17,7 +17,7 @@ private:
 	std::vector<std::unique_ptr<Component>> components;
 public:
 	std::string name;
-	std::shared_ptr<Transform> transform;
+	std::unique_ptr<Transform> transform;
 	std::unique_ptr<BaseRenderer> renderer;
 
 	GameObject();
@@ -27,6 +27,8 @@ public:
 	void Update();
 	template<typename T> void AddComponent();
 	template<typename T> void AddComponent(T*);
+private:
+	void operator=(const GameObject&);
 };
 
 template<typename T> void GameObject::AddComponent() {

@@ -27,6 +27,7 @@ void Controller::Update()
 			(ball->top() > brick->top() || ball->bottom() < brick->bottom())
 				)) {
 			ball->negateVelocityY();
+			std::cout << "Y" << std::endl;
 			continue;
 		}
 		// from side
@@ -43,15 +44,20 @@ void Controller::Update()
 void Controller::Start()
 {
 	glm::vec3 start(-0.8f, 0.7f, 0);
-	glm::vec3 offset(0.3f, -0.6f, 0);
-	float halfWidth = 0.1f;
-	float halfHeight = 0.1f;
+	glm::vec3 offset(0.2f, -0.3f, 0);
+	float halfWidth = 0.05f;
+	float halfHeight = 0.05f;
 
-	for(int i = 0; i < 2; ++i) {
-		for (int j = 0; j < 6; ++j) {
+	GameObject* tempRoot = new GameObject("tempRoot");
+	tempRoot->transform->setLocalPosition(glm::vec3(0, 0, 0));
+	ball->gameObject->transform->setParent(tempRoot->transform.get());
+
+	for(int i = 0; i < 1; ++i) {
+		for (int j = 0; j < 8; ++j) {
 			GameObject* brick = new GameObject("brick" + std::to_string(i) + std::to_string(j));
 			BrickBehaviour* brickBehaviour = new BrickBehaviour(brick);
 			brickBehaviour->setHalfSize(halfWidth, halfHeight);
+			brick->transform->setParent(tempRoot->transform.get());
 			brick->transform->setLocalPosition(start + glm::vec3(offset.x * j, offset.y * i, start.z));
 			brick->AddComponent(brickBehaviour);
 			brick->renderer = SpriteRenderer::create(brick, "some_sprite_name");

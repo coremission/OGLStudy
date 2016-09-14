@@ -9,20 +9,21 @@
 using namespace std;
 // Model
 GameObject::GameObject():
-	transform(make_shared<Transform>()), renderer(nullptr)
+	transform(make_unique<Transform>()), renderer(nullptr)
 {
 	// fixme name
 	Application::scene->AddModel("newGameObject", this);
 }
 
 GameObject::GameObject(const std::string& _name)
-	: name(_name), transform(make_shared<Transform>()), renderer(nullptr)
+	: name(_name), transform(make_unique<Transform>()), renderer(nullptr)
 {
 	Application::scene->AddModel(name, this);
 }
 
 GameObject::GameObject(const GameObject & m):
-	transform(m.transform), renderer(nullptr)
+	// todo: ensure this performs deep copy for unique_ptr
+	transform(new Transform(*m.transform)), renderer(nullptr)
 {
 	std::cout << "gameObject copy constructor";
 }
@@ -38,4 +39,3 @@ void GameObject::Update()
 		(*it)->Update();
 	}
 }
-

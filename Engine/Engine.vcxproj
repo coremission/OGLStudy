@@ -124,6 +124,8 @@
     <ClCompile Include="Model\Component.cpp" />
     <ClCompile Include="Model\GameObject.cpp" />
     <ClCompile Include="Model\Transform.cpp" />
+    <ClCompile Include="ParticleSystem\Particle.cpp" />
+    <ClCompile Include="ParticleSystem\ParticleSystem.cpp" />
     <ClCompile Include="Rendering\BaseRenderer.cpp" />
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\MaterialManager.cpp" />
@@ -143,6 +145,8 @@
     <ClInclude Include="Model\Component.h" />
     <ClInclude Include="Model\GameObject.h" />
     <ClInclude Include="Model\Transform.h" />
+    <ClInclude Include="ParticleSystem\Particle.h" />
+    <ClInclude Include="ParticleSystem\ParticleSystem.h" />
     <ClInclude Include="Rendering\BaseRenderer.h" />
     <ClInclude Include="Rendering\Camera.h" />
     <ClInclude Include="Rendering\MaterialManager.h" />
