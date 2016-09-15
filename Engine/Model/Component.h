@@ -1,8 +1,8 @@
 ﻿#ifndef BEHAVIOUR_h
 #define BEHAVIOUR_h
-#include "GameObject.h"
 
 class GameObject;
+class Transform;
 
 class Component
 {

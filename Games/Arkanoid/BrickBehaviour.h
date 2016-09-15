@@ -1,6 +1,9 @@
 ﻿#ifndef BRICKBEHAVIOUR_h
 #define BRICKBEHAVIOUR_h
 #include <Model/Component.h>
+#include <Model/GameObject.h>
+
+#include <glm/glm.hpp>
 
 class BrickBehaviour: public Component
 {

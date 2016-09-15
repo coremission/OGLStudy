@@ -1,7 +1,9 @@
 ﻿#ifndef BALLBEHAVIOUR_h
 #define BALLBEHAVIOUR_h
 #include <Model/Component.h>
-#include <glm/vec2.hpp>
+#include <Model/GameObject.h>
+
+#include <glm/glm.hpp>
 
 class BallBehaviour: public Component
 {
