@@ -26,12 +26,26 @@ void BallBehaviour::Start()
 	gameObject->transform->setLocalScale(glm::vec3(radius, radius, 1));
 }
 
-void BallBehaviour::negateVelocityY()
+void BallBehaviour::negativeVelocityY()
 {
-	velocity.y = -velocity.y;
+	if(velocity.y > 0)
+		velocity.y = -velocity.y;
 }
 
-void BallBehaviour::negateVelocityX()
+void BallBehaviour::positiveVelocityY()
 {
-	velocity.x = -velocity.x;
+	if (velocity.y < 0)
+		velocity.y = -velocity.y;
+}
+
+void BallBehaviour::negativeVelocityX()
+{
+	if(velocity.x > 0)
+		velocity.x = -velocity.x;
+}
+
+void BallBehaviour::positiveVelocityX()
+{
+	if (velocity.x < 0)
+		velocity.x = -velocity.x;
 }

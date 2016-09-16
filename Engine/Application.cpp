@@ -52,8 +52,6 @@ void Application::runMainLoop()
 
 void Application::renderScene() {
 	Time::updateClock();
-
-	std::cout << 1.0f / Time::deltaTime << std::endl;
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//

@@ -33,7 +33,7 @@ void PaddleBehaviour::Update()
 	// check collision
 	if(ball->bottom() < top() && 
 		(ball->right() > left() && ball->left() < right())) {
-		ball->negateVelocityY();
+		ball->positiveVelocityY();
 	}
 }
 

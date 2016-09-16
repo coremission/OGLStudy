@@ -21,8 +21,11 @@ public:
 	virtual void Update() override;
 	virtual void Start() override;
 
-	void negateVelocityY();
-	void negateVelocityX();
+	void negativeVelocityY();
+	void positiveVelocityY();
+
+	void negativeVelocityX();
+	void positiveVelocityX();
 };
 
 #endif // BALLBEHAVIOUR_h

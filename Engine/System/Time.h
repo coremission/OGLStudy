@@ -1,17 +1,16 @@
 ﻿#ifndef TIME_h
 #define TIME_h
 
-#include <ctime>
 #include <Application.h>
 
 class Time
 {
+private:
+	static void updateClock();
 public:
 	static float time;
 	static float realTimeSinceStartup;
 	static float deltaTime;
-
-	static void updateClock();
 	friend class Application;
 };
 

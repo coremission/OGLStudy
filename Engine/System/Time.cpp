@@ -1,4 +1,5 @@
 ﻿#include "Time.h"
+#include <ctime>
 
 float Time::time = 0;
 float Time::deltaTime = 0;

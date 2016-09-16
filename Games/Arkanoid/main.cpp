@@ -45,7 +45,6 @@ void _do(int argc, char **argv) {
 }
 
 void setUpScene() {
-	return;
 	// BALL
 	GameObject* ball = new GameObject("ball");
 	BallBehaviour* ballBehaviour = new BallBehaviour(ball);

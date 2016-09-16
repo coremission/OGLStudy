@@ -136,6 +136,8 @@
     <ClCompile Include="Model\VertexData.cpp" />
     <ClCompile Include="Rendering\Sprite.cpp" />
     <ClCompile Include="Rendering\SpriteRenderer.cpp" />
+    <ClCompile Include="Rendering\Texture.cpp" />
+    <ClCompile Include="Rendering\TextureManager.cpp" />
     <ClCompile Include="System\Input.cpp" />
     <ClCompile Include="System\Screen.cpp" />
     <ClCompile Include="System\Time.cpp" />
@@ -158,6 +160,8 @@
     <ClInclude Include="Model\VertexData.h" />
     <ClInclude Include="Rendering\Sprite.h" />
     <ClInclude Include="Rendering\SpriteRenderer.h" />
+    <ClInclude Include="Rendering\Texture.h" />
+    <ClInclude Include="Rendering\TextureManager.h" />
     <ClInclude Include="System\Input.h" />
     <ClInclude Include="System\Screen.h" />
     <ClInclude Include="System\system.hpp" />
