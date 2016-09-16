@@ -84,6 +84,12 @@
     <ClCompile Include="Rendering\TextureManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Dependencies\lodepng\picopng.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="System\IOManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Vertex.glsl">
@@ -942,6 +948,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\TextureManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dependencies\lodepng\picopng.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="System\IOManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -61,7 +61,6 @@ void setUpScene() {
 	paddle->AddComponent(paddleBehaviour);
 	paddle->renderer = SpriteRenderer::create(paddle, "some_sprite_name");
 	
-
 	// TODO: add controller
 	// CONTROLLER
 	GameObject* controller = new GameObject("controller");

@@ -16,7 +16,7 @@ string ShaderLoader::ReadShader(const char * filename)
 	}
 
 	file.seekg(0, ios::end);
-	shaderCode.resize((unsigned int)file.tellg());
+	shaderCode.resize(static_cast<unsigned int>(file.tellg()));
 	file.seekg(0, ios::beg);
 	file.read(&shaderCode[0], shaderCode.size());
 	file.close();
