@@ -437,12 +437,12 @@
     <None Include="Dependencies\glm\vec3.hpp" />
     <None Include="Dependencies\glm\vec4.hpp" />
     <None Include="Dependencies\glm\vector_relational.hpp" />
-    <Text Include="Shaders\Fragment.glsl">
+    <Text Include="BasicShaders\Fragment.glsl">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <FileType>Text</FileType>
       <DeploymentContent>true</DeploymentContent>
     </Text>
-    <None Include="Shaders\Vertex.glsl">
+    <None Include="BasicShaders\Vertex.glsl">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>

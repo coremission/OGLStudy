@@ -143,6 +143,9 @@
     <None Include="Shaders\Fragment.glsl" />
     <None Include="Shaders\Vertex.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\ball.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

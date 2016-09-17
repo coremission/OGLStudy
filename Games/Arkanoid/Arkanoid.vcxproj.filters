@@ -49,4 +49,9 @@
     <None Include="Shaders\Fragment.glsl" />
     <None Include="Shaders\Vertex.glsl" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Sprites\ball.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

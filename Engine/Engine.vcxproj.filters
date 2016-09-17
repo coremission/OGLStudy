@@ -92,9 +92,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\Vertex.glsl">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="Dependencies\glm\detail\_features.hpp">
       <Filter>Header Files</Filter>
     </None>
@@ -879,6 +876,9 @@
     </None>
     <None Include="Dependencies\freeglut\freeglut.dll" />
     <None Include="Dependencies\freeglut\freeglut.lib" />
+    <None Include="BasicShaders\Vertex.glsl">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Material.h">
@@ -958,7 +958,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Shaders\Fragment.glsl">
+    <Text Include="BasicShaders\Fragment.glsl">
       <Filter>Shaders</Filter>
     </Text>
   </ItemGroup>

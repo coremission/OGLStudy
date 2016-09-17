@@ -23,13 +23,13 @@ shared_ptr<Mesh> MeshManager::getQuadMesh()
 		return meshMap[QUAD_MESH_ID];
 
 	vector<VertexData> vertices;
-	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f)));
+	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0, 0)));
+	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0, 1)));
+	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1, 0)));
 
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1)));
+	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0), vec2(0, 1)));
+	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0), vec2(1, 1)));
+	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1), vec2(1, 0)));
 
 	return registerMesh(QUAD_MESH_ID, vertices);
 }

@@ -24,6 +24,10 @@ Mesh::Mesh(std::vector<VertexData> _vertices)
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData), reinterpret_cast<void *>(offsetof(VertexData, VertexData::_position)));
 
 	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexData), reinterpret_cast<void *>(offsetof(VertexData, VertexData::_color)));
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexData), reinterpret_cast<void *>(offsetof(VertexData, VertexData::_color)));	
+	
+	glEnableVertexAttribArray(2);
+	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData), reinterpret_cast<void *>(offsetof(VertexData, VertexData::_uv)));
+
 	vbos.push_back(vbo);
 }

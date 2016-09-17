@@ -51,8 +51,8 @@ void setUpScene() {
 	ball->AddComponent<BallBehaviour>(ballBehaviour);
 
 	// create renderer
-	ball->renderer = SpriteRenderer::create(ball, "some_sprite_name");
-
+	ball->renderer = SpriteRenderer::create(ball, "Sprites\\ball.png");
+	return;
 	// PADDLE
 	// todo: temp
 	GameObject* paddle = new GameObject("paddle");

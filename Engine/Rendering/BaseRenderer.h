@@ -10,9 +10,8 @@ class GameObject;
 
 class BaseRenderer
 {
-private:
-	const GameObject * const _gameObject;
 protected:
+	const GameObject * const _gameObject;
 	BaseRenderer(GameObject* gameObject, std::shared_ptr<Material>, std::shared_ptr<Mesh> mesh);
 public:
 	std::shared_ptr<Mesh> mesh;
