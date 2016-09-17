@@ -22,14 +22,19 @@ shared_ptr<Mesh> MeshManager::getQuadMesh()
 	if (quadMeshCreated)
 		return meshMap[QUAD_MESH_ID];
 
-	vector<VertexData> vertices;
-	vertices.push_back(VertexData(vec3(-1, -1, 0.0), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0, 0)));
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0, 1)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1, 0)));
+	auto lb = VertexData(vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f));
+	auto lt = VertexData(vec3(-1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f));
+	auto br = VertexData(vec3( 1.0f, -1.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1.0f, 0.0f));
+	auto tr = VertexData(vec3( 1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(1.0f, 1.0f));
 
-	vertices.push_back(VertexData(vec3(-1, 1, 0.0), vec4(1.0, 0, 0, 1.0), vec2(0, 1)));
-	vertices.push_back(VertexData(vec3(1, 1, 0.0), vec4(1.0, 0, 0, 1.0), vec2(1, 1)));
-	vertices.push_back(VertexData(vec3(1, -1, 0.0), vec4(0, 0, 1.0, 1), vec2(1, 0)));
+	vector<VertexData> vertices;
+	vertices.push_back(lb);
+	vertices.push_back(lt);
+	vertices.push_back(br);
+
+	vertices.push_back(lt);
+	vertices.push_back(tr);
+	vertices.push_back(br);
 
 	return registerMesh(QUAD_MESH_ID, vertices);
 }

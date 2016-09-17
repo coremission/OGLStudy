@@ -33,9 +33,9 @@ void SpriteRenderer::render() const
 	glm::mat4 combined = _gameObject->transform->getLocalToWorldMatrix();
 	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
 
-	GLuint textureLocation = glGetUniformLocation(material->programId(), "mySampler");
-	glUniform1f(textureLocation, 0);// sprite->getTextureId());
-	glBindTexture(GL_TEXTURE_2D, sprite->getTextureId());
+	//GLuint textureLocation = glGetUniformLocation(material->programId(), "mySampler");
+	//glUniform1f(textureLocation, 0);// sprite->getTextureId());
+	//glBindTexture(GL_TEXTURE_2D, sprite->getTextureId());
 	// use texture
 	glActiveTexture(GL_TEXTURE0);
 
