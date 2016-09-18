@@ -11,7 +11,7 @@ PaddleBehaviour::PaddleBehaviour(GameObject* go)
 
 void PaddleBehaviour::Start()
 {
-	halfWidth = 0.2;
+	halfWidth = 0.2f;
 	halfHeight = 0.05f;
 	gameObject->transform->setLocalScale(glm::vec3(halfWidth, halfHeight, 1));
 	gameObject->transform->setLocalPosition(glm::vec3(0, -0.8f, 0));

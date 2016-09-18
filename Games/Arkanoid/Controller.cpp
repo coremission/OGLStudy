@@ -63,24 +63,24 @@ void Controller::Update()
 
 void Controller::Start()
 {
-	glm::vec3 start(-0.2f, 0.2f, 0);
-	glm::vec3 offset(0.2f, -0.3f, 0);
-	float halfWidth = 0.2f;
-	float halfHeight = 0.2f;
+	glm::vec3 start(-0.8f, 0.8f, 0);
+	glm::vec3 offset(0.15f, -0.3f, 0);
+	float halfWidth = 0.1f;
+	float halfHeight = 0.06f;
 
 	GameObject* tempRoot = new GameObject("tempRoot");
 	tempRoot->transform->setLocalPosition(glm::vec3(0, 0, 0));
 	ball->gameObject->transform->setParent(tempRoot->transform.get());
 
 	for(int i = 0; i < 1; ++i) {
-		for (int j = 0; j < 1; ++j) {
+		for (int j = 0; j < 6; ++j) {
 			GameObject* brick = new GameObject("brick" + std::to_string(i) + std::to_string(j));
 			BrickBehaviour* brickBehaviour = new BrickBehaviour(brick);
 			brickBehaviour->setHalfSize(halfWidth, halfHeight);
 			brick->transform->setParent(tempRoot->transform.get());
 			brick->transform->setLocalPosition(start + glm::vec3(offset.x * j, offset.y * i, start.z));
 			brick->AddComponent(brickBehaviour);
-			brick->renderer = SpriteRenderer::create(brick, "some_sprite_name");
+			brick->renderer = SpriteRenderer::create(brick, "Sprites\\brick.png");
 			bricks.push_back(brickBehaviour);
 		}
 	}

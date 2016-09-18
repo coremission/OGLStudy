@@ -23,21 +23,13 @@ void SpriteRenderer::render() const
 	GLuint program = material->programId();
 	glUseProgram(program);
 
-	glBindTexture(GL_TEXTURE_2D, sprite->getTextureId());
 
-	// set uniform variables
-	//GLuint timeLocation = glGetUniformLocation(program, "time");
-	//glUniform1f(timeLocation, time);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, sprite->getTextureId());
 
 	GLuint rotationLocation = glGetUniformLocation(program, "Model2World");
 	glm::mat4 combined = _gameObject->transform->getLocalToWorldMatrix();
 	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
-
-	//GLuint textureLocation = glGetUniformLocation(material->programId(), "mySampler");
-	//glUniform1f(textureLocation, 0);// sprite->getTextureId());
-	//glBindTexture(GL_TEXTURE_2D, sprite->getTextureId());
-	// use texture
-	glActiveTexture(GL_TEXTURE0);
 
 	//draw 6 vertices as triangles
 	glDrawArrays(GL_TRIANGLES, 0, 6);

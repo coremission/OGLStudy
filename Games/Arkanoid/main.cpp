@@ -1,19 +1,15 @@
 #include "BallBehaviour.h"
 #include "Controller.h"
+#include "PaddleBehaviour.h"
 
-#include <Rendering/MeshManager.h>
-#include <Rendering/MaterialManager.h>
+#include <Rendering/SpriteRenderer.h>
 #include <Rendering/Camera.h>
 
-#include <glm/glm.hpp>
 #include <Application.h>
 #include <iostream>
 #include <memory>
-#include <Rendering/SpriteRenderer.h>
-#include "PaddleBehaviour.h"
 
 using namespace std;
-using namespace glm;
 
 void _do(int, char**);
 void setUpScene();
@@ -52,16 +48,14 @@ void setUpScene() {
 
 	// create renderer
 	ball->renderer = SpriteRenderer::create(ball, "Sprites\\ball.png");
-	return;
+	
 	// PADDLE
-	// todo: temp
 	GameObject* paddle = new GameObject("paddle");
 	PaddleBehaviour* paddleBehaviour = new PaddleBehaviour(paddle);
 	paddleBehaviour->setUpBall(ballBehaviour);
 	paddle->AddComponent(paddleBehaviour);
-	paddle->renderer = SpriteRenderer::create(paddle, "some_sprite_name");
+	paddle->renderer = SpriteRenderer::create(paddle, "Sprites\\paddle.png");
 	
-	// TODO: add controller
 	// CONTROLLER
 	GameObject* controller = new GameObject("controller");
 	Controller* controllerBehaviour = new Controller(controller, ballBehaviour);

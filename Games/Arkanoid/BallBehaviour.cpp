@@ -11,7 +11,6 @@ BallBehaviour::BallBehaviour(GameObject* _gameObject)
 
 void BallBehaviour::Update()
 {
-	return;
 	gameObject->transform->setLocalPosition(position() + glm::vec3(velocity.x, velocity.y, 0));
 
 	if (left() < -1 || right() > 1)
@@ -23,7 +22,7 @@ void BallBehaviour::Update()
 void BallBehaviour::Start()
 {
 	velocity = { 0.0004f, 0.0006f };
-	radius = 0.2;
+	radius = 0.02f;
 	gameObject->transform->setLocalScale(glm::vec3(radius, radius, 1));
 }
 

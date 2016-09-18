@@ -53,5 +53,11 @@
     <Image Include="Sprites\ball.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Sprites\brick.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Sprites\paddle.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
