@@ -7,8 +7,8 @@ std::map<std::string, std::shared_ptr<Material> > MaterialManager::materials;
 
 std::shared_ptr<Material> MaterialManager::getMaterial(const std::string& materialName, const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
 {
-	bool quadMeshCreated = materials.find(materialName) != materials.end();
-	if (quadMeshCreated)
+	bool alreadyExist = materials.find(materialName) != materials.end();
+	if (alreadyExist)
 		return materials[materialName];
 
 	auto sharedMaterial = std::make_shared<Material>(materialName, vertexShaderPath, fragmentShaderPath);

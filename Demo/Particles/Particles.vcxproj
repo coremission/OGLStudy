@@ -124,6 +124,10 @@
       <Project>{4488212c-9c42-4f09-8d21-4ac414118ab6}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\ParticleBillboard_Fragment.glsl" />
+    <None Include="Shaders\ParticleBIllboard_Vertex.glsl" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -12,7 +12,7 @@ string ShaderLoader::ReadShader(const char * filename)
 
 	if (!file.good()) {
 		cout << "Can't read file " << filename << endl;
-		terminate();
+		throw std::runtime_error("can't load shader source");
 	}
 
 	file.seekg(0, ios::end);
