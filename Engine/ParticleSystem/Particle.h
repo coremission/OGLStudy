@@ -1,6 +1,14 @@
-﻿#pragma once
+﻿#ifndef PARTICLE_h
+#define PARTICLE_h
 
-class Particle
+#include <glm/glm.hpp>
+
+struct Particle
 {
-public:
+	glm::vec3 position;
+
+	Particle() = default;
+	~Particle();
 };
+
+#endif //PARTICLE_h

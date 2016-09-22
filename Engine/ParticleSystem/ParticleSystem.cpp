@@ -1,6 +1,17 @@
 #include "ParticleSystem.h"
-#include "glew/glew.h"
 #include <Rendering/MaterialManager.h>
+
+#include <glm/glm.hpp>
+#include <glew/glew.h>
+
+
+ParticleSystem::ParticleSystem(GameObject* game_object) :
+	Component(game_object),
+	vao(0),
+	instaceBuffer(0),
+	MaxParticlesCount(4)
+{
+}
 
 void ParticleSystem::createBaseQuad()
 {
@@ -11,7 +22,6 @@ void ParticleSystem::createBaseQuad()
 		0.5f, 0.5f, 0.0f,
 	};
 
-	static const GLfloat offsets[] = { 0.1f, 0.2f, 0.9f };
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 
@@ -25,37 +35,32 @@ void ParticleSystem::createBaseQuad()
 	glEnableVertexAttribArray(0);
 
 	// instance data
-	GLuint instaceBuffer;
 	glGenBuffers(1, &instaceBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, instaceBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(offsets), offsets, GL_STATIC_DRAW);
-	glVertexAttribPointer(1, 1, GL_FLOAT, GL_FALSE, sizeof(float), reinterpret_cast<void*>(0));
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Particle) * particles.size(), &particles[0], GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(Particle), reinterpret_cast<void*>(0));
 	glEnableVertexAttribArray(1);
 	glVertexAttribDivisor(1, 1);
-	// The VBO containing the positions and sizes of the particles
-	//GLuint particles_position_buffer;
-	//glGenBuffers(1, &particles_position_buffer);
-	//glBindBuffer(GL_ARRAY_BUFFER, particles_position_buffer);
-	//// Initialize with empty (NULL) buffer : it will be updated later, each frame.
-	//glBufferData(GL_ARRAY_BUFFER, MaxParticlesCount * 4 * sizeof(GLfloat), nullptr, GL_STREAM_DRAW);
-
-	//// The VBO containing the colors of the particles
-	//GLuint particles_color_buffer;
-	//glGenBuffers(1, &particles_color_buffer);
-	//glBindBuffer(GL_ARRAY_BUFFER, particles_color_buffer);
-	//// Initialize with empty (NULL) buffer : it will be updated later, each frame.
-	//glBufferData(GL_ARRAY_BUFFER, MaxParticlesCount * 4 * sizeof(GLubyte), nullptr, GL_STREAM_DRAW);
-
+	
 	material = MaterialManager::getMaterial("ParticlesBillboard", "Shaders\\ParticleBillboard_Vertex.glsl", "Shaders\\ParticleBillboard_Fragment.glsl");
 }
 
-ParticleSystem::ParticleSystem(GameObject* game_object):
-	Component(game_object), MaxParticlesCount(10), vao(0)
+void ParticleSystem::updateParticles()
 {
+	for (int i = 0; i < particles.size(); ++i) {
+		particles[i].position += glm::vec3(i * 0.0001f, 0.0f, 0.0f);
+	}
+	glBindBuffer(GL_ARRAY_BUFFER, instaceBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(Particle) * particles.size(), &particles[0], GL_STATIC_DRAW);
 }
 
 void ParticleSystem::Start()
 {
+	// create particles
+	for(int i = 0; i < MaxParticlesCount; ++i)
+	{
+		particles.push_back(Particle{glm::vec3(i * 0.02f, i * 0.02f, 1.0f)});
+	}
 	createBaseQuad();
 }
 
@@ -65,7 +70,11 @@ void ParticleSystem::Update()
 	glUseProgram(material->programId());
 	glBindVertexArray(vao);
 
-	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, 3);
+	// update particles
+	updateParticles();
+
+	// draw
+	glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, MaxParticlesCount);
 	glBindVertexArray(0);
 	glUseProgram(0);
 }
