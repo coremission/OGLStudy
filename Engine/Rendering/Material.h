@@ -1,15 +1,16 @@
 ﻿#ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include <string>
 #include <glew/glew.h>
+#include <string>
+#include <map>
 
 class Material
 {
 private:
 	GLuint _programId;
 	std::string _materialName;
-	
+	std::map<std::string, GLuint> _uniformsMap;
 public:
 	~Material();
 	GLuint programId() const;
