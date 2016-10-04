@@ -1,5 +1,4 @@
 #include <Application.h>
-#include <Rendering/SpriteRenderer.h>
 #include <ParticleSystem/ParticleSystem.h>
 
 #include <iostream>
@@ -22,7 +21,7 @@ int main(int argc, char **argv)
 void _do(int argc, char **argv) {
 	try {
 		Application::initialize(&argc, argv);
-		setUpScene();
+		// todo: get this back setUpScene();
 		Application::runMainLoop();
 		Application::exit();
 	}

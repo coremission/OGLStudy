@@ -3,34 +3,53 @@
 #include "System/system.hpp"
 
 #include <iostream>
-#include <freeglut/freeglut.h>
+#define GLEW_STATIC
 #include <glew/glew.h>
+#include <glfw/glfw3.h>
 
 using namespace std;
 
 std::unique_ptr<Models::Scene> Application::scene = std::make_unique<Models::Scene>();
 
 void Application::initialize(int* argc, char ** argv) {
-	glutInit(argc, argv);
-	glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-	glutInitWindowPosition(0, 0);//optional
+	glfwInit();
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+
 	Screen::width = 640;
 	Screen::height = 480;
-	glutInitWindowSize(Screen::width, Screen::height);
-	glutCreateWindow("OpenGL First Window");
-	glutSetKeyRepeat(GLUT_KEY_REPEAT_OFF);
+
+	GLFWwindow* window = glfwCreateWindow(Screen::width, Screen::height, "Rudy", nullptr, nullptr);
+	if (window == nullptr) {
+		cout << "Failed to create GLFW window" << endl;
+		glfwTerminate();
+		return;
+	}
+	glfwMakeContextCurrent(window);
+
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 
 	// key down
-	glutKeyboardFunc(processKeyDown);
-	glutKeyboardUpFunc(processKeyUp);
+	//glutKeyboardFunc(processKeyDown);
+	//glutKeyboardUpFunc(processKeyUp);
+	
 	// mouse click
-	glutMouseFunc(processMousePress);
+	//glutMouseFunc(processMousePress);
+	
 	// mouse move
-    glutMotionFunc(processMousePressedMove);
-	glutPassiveMotionFunc(processMouseFreeMove);
+	//glutMotionFunc(processMousePressedMove);
+	//glutPassiveMotionFunc(processMouseFreeMove);
 
-	glewInit();
+	glewExperimental = GL_TRUE;
+	if (glewInit() != GLEW_OK) {
+		cout << "Failed to initialize GLEW" << endl;
+		return;
+	}
+
+	glfwGetFramebufferSize(window, &Screen::width, &Screen::height);
+	glViewport(0, 0, Screen::width, Screen::height);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
@@ -41,13 +60,20 @@ void Application::initialize(int* argc, char ** argv) {
 		std::cout << "GLEW 4.3 not supported\n ";
 	}
 
-	glutDisplayFunc(renderScene);
+	while (!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
+		glfwSwapBuffers(window);
+	}
+
+	glfwTerminate();
+	//glutDisplayFunc(renderScene);
 }
 
 void Application::runMainLoop()
 {
-	glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-	glutMainLoop();
+	//glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
+	//glutMainLoop();
 }
 
 void Application::renderScene() {
@@ -63,8 +89,8 @@ void Application::renderScene() {
 		it->second->Update();
 	}
 	
-	glutSwapBuffers();
-	glutPostRedisplay();
+	//glutSwapBuffers();
+	//glutPostRedisplay();
 }
 
 void Application::drawGameObject(GameObject& gameObject)
@@ -107,7 +133,7 @@ void Application::processMousePressedMove(int x, int y)
 
 void Application::leaveMainLoop()
 {
-	glutLeaveMainLoop();
+	//glutLeaveMainLoop();
 }
 
 void Application::exit()

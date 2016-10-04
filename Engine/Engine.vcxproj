@@ -146,6 +146,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Dependencies\glfw\glfw3.h" />
+    <ClInclude Include="Dependencies\glfw\glfw3native.h" />
     <ClInclude Include="Dependencies\lodepng\picopng.h" />
     <ClInclude Include="Model\Component.h" />
     <ClInclude Include="Model\GameObject.h" />
@@ -173,12 +175,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Model\Scene.cpp" />
-    <None Include="Dependencies\freeglut\freeglut.dll" />
-    <None Include="Dependencies\freeglut\freeglut.h" />
-    <None Include="Dependencies\freeglut\freeglut.lib" />
-    <None Include="Dependencies\freeglut\freeglut_ext.h" />
-    <None Include="Dependencies\freeglut\freeglut_std.h" />
-    <None Include="Dependencies\freeglut\glut.h" />
     <None Include="Dependencies\glew\glew.h" />
     <None Include="Dependencies\glew\glew32.lib" />
     <None Include="Dependencies\glew\glxew.h" />
@@ -445,6 +441,9 @@
     <None Include="BasicShaders\Vertex.glsl">
       <DeploymentContent>true</DeploymentContent>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Dependencies\glfw\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

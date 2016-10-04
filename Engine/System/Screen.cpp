@@ -1,4 +1,4 @@
 ﻿#include "Screen.h"
 
-unsigned int Screen::width;
-unsigned int Screen::height;
+int Screen::width;
+int Screen::height;

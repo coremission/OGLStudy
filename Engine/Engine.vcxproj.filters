@@ -862,20 +862,6 @@
       <Filter>Header Files</Filter>
     </None>
     <None Include="Dependencies\glew\glew32.lib" />
-    <None Include="Dependencies\freeglut\freeglut.h">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="Dependencies\freeglut\freeglut_ext.h">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="Dependencies\freeglut\freeglut_std.h">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="Dependencies\freeglut\glut.h">
-      <Filter>Header Files</Filter>
-    </None>
-    <None Include="Dependencies\freeglut\freeglut.dll" />
-    <None Include="Dependencies\freeglut\freeglut.lib" />
     <None Include="BasicShaders\Vertex.glsl">
       <Filter>Shaders</Filter>
     </None>
@@ -956,10 +942,19 @@
     <ClInclude Include="System\IOManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Dependencies\glfw\glfw3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dependencies\glfw\glfw3native.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="BasicShaders\Fragment.glsl">
       <Filter>Shaders</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Dependencies\glfw\glfw3.lib" />
   </ItemGroup>
 </Project>

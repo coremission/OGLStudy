@@ -4,8 +4,8 @@
 class Screen
 {
 public:
-	static unsigned int width;
-	static unsigned int height;
+	static int width;
+	static int height;
 };
 
 #endif //SCREEN_h
