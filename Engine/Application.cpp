@@ -9,7 +9,9 @@
 
 using namespace std;
 
+// static fields
 std::unique_ptr<Models::Scene> Application::scene = std::make_unique<Models::Scene>();
+GLFWwindow* Application::window = nullptr;
 
 void Application::initialize(int* argc, char ** argv) {
 	glfwInit();
@@ -21,7 +23,7 @@ void Application::initialize(int* argc, char ** argv) {
 	Screen::width = 640;
 	Screen::height = 480;
 
-	GLFWwindow* window = glfwCreateWindow(Screen::width, Screen::height, "Rudy", nullptr, nullptr);
+	window = glfwCreateWindow(Screen::width, Screen::height, "Rudy", nullptr, nullptr);
 	if (window == nullptr) {
 		cout << "Failed to create GLFW window" << endl;
 		glfwTerminate();
@@ -29,19 +31,8 @@ void Application::initialize(int* argc, char ** argv) {
 	}
 	glfwMakeContextCurrent(window);
 
-	glClearColor(0.0, 0.0, 0.0, 1.0);
-
-	// key down
-	//glutKeyboardFunc(processKeyDown);
-	//glutKeyboardUpFunc(processKeyUp);
+	glClearColor(0.0, 0.3, 0.0, 1.0);
 	
-	// mouse click
-	//glutMouseFunc(processMousePress);
-	
-	// mouse move
-	//glutMotionFunc(processMousePressedMove);
-	//glutPassiveMotionFunc(processMouseFreeMove);
-
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK) {
 		cout << "Failed to initialize GLEW" << endl;
@@ -60,20 +51,19 @@ void Application::initialize(int* argc, char ** argv) {
 		std::cout << "GLEW 4.3 not supported\n ";
 	}
 
-	while (!glfwWindowShouldClose(window))
-	{
-		glfwPollEvents();
-		glfwSwapBuffers(window);
-	}
-
-	glfwTerminate();
-	//glutDisplayFunc(renderScene);
+	glfwSetKeyCallback(window, key_callback);
 }
 
 void Application::runMainLoop()
 {
-	//glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE, GLUT_ACTION_GLUTMAINLOOP_RETURNS);
-	//glutMainLoop();
+	while (!glfwWindowShouldClose(window))
+	{
+		glfwPollEvents();
+		glfwSwapBuffers(window);
+		renderScene();
+	}
+
+	glfwTerminate();
 }
 
 void Application::renderScene() {
@@ -101,17 +91,19 @@ void Application::drawGameObject(GameObject& gameObject)
 	gameObject.renderer->render();
 }
 
-void Application::processKeyDown(unsigned char key, int x, int y)
+void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
-	Input::registerKeyPressed(key);
-	// TODO: move this to game controllers
-	if (key == 27) // ESCAPE
-		leaveMainLoop();
-}
+	cout << key << " scancode: " << scancode << " action: " << " " << action << " mode: " << mode << endl;
 
-void Application::processKeyUp(unsigned char key, int x, int y)
-{
-	Input::resetKeyPressed(key);
+	if(action == GLFW_PRESS)
+		Input::registerKeyPressed(key);
+	if (action == GLFW_RELEASE)
+		Input::resetKeyPressed(key);
+
+	// When a user presses the escape key, we set the WindowShouldClose property to true, 
+	// closing the application
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
 void Application::processMousePress(int button, int state, int x, int y)
@@ -133,7 +125,7 @@ void Application::processMousePressedMove(int x, int y)
 
 void Application::leaveMainLoop()
 {
-	//glutLeaveMainLoop();
+	glfwSetWindowShouldClose(window, GL_TRUE);
 }
 
 void Application::exit()

@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 void _do(int argc, char **argv) {
 	try {
 		Application::initialize(&argc, argv);
-		// todo: get this back setUpScene();
+		setUpScene();
 		Application::runMainLoop();
 		Application::exit();
 	}

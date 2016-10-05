@@ -5,7 +5,8 @@
 Material::Material(const std::string& materialName, const std::string& vertexShaderPath, const std::string& fragmentShaderPath):
 	_materialName(materialName), _programId(ShaderLoader::CreateProgram(vertexShaderPath.c_str(), fragmentShaderPath.c_str()))
 {
-	int count = 0;
+	// TODO: attempt to create universal class for material
+	/*int count = 0;
 	int bufSize = 0;
 	int length = 100;
 	int size = 100;
@@ -22,7 +23,7 @@ Material::Material(const std::string& materialName, const std::string& vertexSha
 		_uniformsMap.insert(std::make_pair(std::string(name), uniformLocation));
 		
 		printf("Uniform #%d Type: %u Name: %s\n", i, type, name);
-	}
+	}*/
 }
 
 Material::~Material()
