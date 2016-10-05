@@ -23,10 +23,10 @@ void PaddleBehaviour::Update()
 	gameObject->transform->setLocalPosition(position() + glm::vec3(velocity.x, velocity.y, 0));
 	velocity = glm::vec2(0, 0);
 
-	if(Input::checkIfKeyPressed('a') && left() > -1) 	{
+	if(Input::checkIfKeyPressed(KeyCodes::A) && left() > -1) 	{
 		velocity = glm::vec2(-sensitivity.x, sensitivity.y);
 	}
-	if (Input::checkIfKeyPressed('d') && right() < 1) {
+	if (Input::checkIfKeyPressed(KeyCodes::D) && right() < 1) {
 		velocity = glm::vec2(sensitivity.x, sensitivity.y);
 	}
 

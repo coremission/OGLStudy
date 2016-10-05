@@ -9,15 +9,27 @@
 typedef unsigned char uchar;
 class Input
 {
+	typedef int KeyCodeType;
 private:
 	static glm::vec2 mousePosition;
-	static std::set<uchar> keysPressed;
-	static void registerKeyPressed(uchar);
-	static void resetKeyPressed(uchar);
+	static std::set<KeyCodeType> keysPressed;
+	static void registerKeyPressed(KeyCodeType);
+	static void resetKeyPressed(KeyCodeType);
 public:
-	inline static const glm::vec2 getMousePosition() { return mousePosition; }
-	static bool const checkIfKeyPressed(uchar key);
+	inline static glm::vec2 getMousePosition() { return mousePosition; }
+	static bool checkIfKeyPressed(KeyCodeType key);
 	friend class Application;
 };
 
+class KeyCodes
+{
+public:
+	enum
+	{
+		A = GLFW_KEY_A,
+		W = GLFW_KEY_W,
+		S = GLFW_KEY_S,
+		D = GLFW_KEY_D
+	};
+};
 #endif //INPUT_h

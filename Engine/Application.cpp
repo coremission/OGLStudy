@@ -93,7 +93,7 @@ void Application::drawGameObject(GameObject& gameObject)
 
 void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
-	cout << key << " scancode: " << scancode << " action: " << " " << action << " mode: " << mode << endl;
+	//cout << key << " scancode: " << scancode << " action: " << " " << action << " mode: " << mode << endl;
 
 	if(action == GLFW_PRESS)
 		Input::registerKeyPressed(key);

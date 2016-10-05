@@ -5,26 +5,25 @@ using namespace std;
 
 // static fields
 glm::vec2 Input::mousePosition;
-set<uchar> Input::keysPressed;
+set<Input::KeyCodeType> Input::keysPressed;
 
-void Input::registerKeyPressed(uchar key)
+void Input::registerKeyPressed(KeyCodeType key)
 {
 	keysPressed.insert(key);
 }
 
-void Input::resetKeyPressed(uchar key)
+void Input::resetKeyPressed(KeyCodeType key)
 {
 	for (auto it = keysPressed.begin(); it != keysPressed.end();) {
 		if (*it == key) {
 			keysPressed.erase(it);
 			return;
 		}
-		else
-			++it;
+		++it;
 	}
 }
 
-bool const Input::checkIfKeyPressed(uchar key)
+bool Input::checkIfKeyPressed(KeyCodeType key)
 {
 	return find(keysPressed.begin(), keysPressed.end(), key) != keysPressed.end();
 }
