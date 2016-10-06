@@ -889,7 +889,9 @@
     <None Include="Dependencies\assimp\vector3.inl">
       <Filter>Header Files</Filter>
     </None>
-    <None Include="Dependencies\assimp\assimp.dll" />
+    <None Include="Dependencies\_dlls\assimp.dll" />
+    <None Include="Dependencies\_dlls\assimp.exp" />
+    <None Include="Dependencies\_dlls\glfw3.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Material.h">
@@ -1094,7 +1096,9 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Dependencies\glfw\glfw3.lib" />
-    <Library Include="Dependencies\assimp\assimp.lib" />
+    <Library Include="Dependencies\_libs\assimp.lib" />
+    <Library Include="Dependencies\_libs\glew32.lib" />
+    <Library Include="Dependencies\_libs\glfw3.lib" />
+    <Library Include="Dependencies\_libs\glfw3dll.lib" />
   </ItemGroup>
 </Project>

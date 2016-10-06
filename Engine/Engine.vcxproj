@@ -214,7 +214,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Model\Scene.cpp" />
-    <None Include="Dependencies\assimp\assimp.dll" />
     <None Include="Dependencies\assimp\color4.inl" />
     <None Include="Dependencies\assimp\material.inl" />
     <None Include="Dependencies\assimp\matrix3x3.inl" />
@@ -480,6 +479,9 @@
     <None Include="Dependencies\glm\vec3.hpp" />
     <None Include="Dependencies\glm\vec4.hpp" />
     <None Include="Dependencies\glm\vector_relational.hpp" />
+    <None Include="Dependencies\_dlls\assimp.dll" />
+    <None Include="Dependencies\_dlls\assimp.exp" />
+    <None Include="Dependencies\_dlls\glfw3.dll" />
     <Text Include="BasicShaders\Fragment.glsl">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <FileType>Text</FileType>
@@ -490,8 +492,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="Dependencies\assimp\assimp.lib" />
-    <Library Include="Dependencies\glfw\glfw3.lib" />
+    <Library Include="Dependencies\_libs\assimp.lib" />
+    <Library Include="Dependencies\_libs\glew32.lib" />
+    <Library Include="Dependencies\_libs\glfw3.lib" />
+    <Library Include="Dependencies\_libs\glfw3dll.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
