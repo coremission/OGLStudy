@@ -1,4 +1,5 @@
 #include <Application.h>
+#include <Model/ModelLoader.h>
 #include <ParticleSystem/ParticleSystem.h>
 
 #include <iostream>
@@ -37,4 +38,6 @@ void setUpScene()
 	GameObject* go = new GameObject("particleSystem");
 	ParticleSystem * particleSystem = new ParticleSystem(go);
 	go->AddComponent<ParticleSystem>(particleSystem);
+
+	auto someModel = ModelLoader::loadModel("some_model.fbx");
 }

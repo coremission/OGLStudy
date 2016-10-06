@@ -124,6 +124,7 @@
     <ClCompile Include="Dependencies\lodepng\picopng.cpp" />
     <ClCompile Include="Model\Component.cpp" />
     <ClCompile Include="Model\GameObject.cpp" />
+    <ClCompile Include="Model\ModelLoader.cpp" />
     <ClCompile Include="Model\Transform.cpp" />
     <ClCompile Include="ParticleSystem\Particle.cpp" />
     <ClCompile Include="ParticleSystem\ParticleSystem.cpp" />
@@ -146,11 +147,49 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Dependencies\assimp\ai_assert.h" />
+    <ClInclude Include="Dependencies\assimp\anim.h" />
+    <ClInclude Include="Dependencies\assimp\camera.h" />
+    <ClInclude Include="Dependencies\assimp\cexport.h" />
+    <ClInclude Include="Dependencies\assimp\cfileio.h" />
+    <ClInclude Include="Dependencies\assimp\cimport.h" />
+    <ClInclude Include="Dependencies\assimp\color4.h" />
+    <ClInclude Include="Dependencies\assimp\Compiler\poppack1.h" />
+    <ClInclude Include="Dependencies\assimp\Compiler\pstdint.h" />
+    <ClInclude Include="Dependencies\assimp\Compiler\pushpack1.h" />
+    <ClInclude Include="Dependencies\assimp\config.h" />
+    <ClInclude Include="Dependencies\assimp\DefaultLogger.hpp" />
+    <ClInclude Include="Dependencies\assimp\defs.h" />
+    <ClInclude Include="Dependencies\assimp\Exporter.hpp" />
+    <ClInclude Include="Dependencies\assimp\Importer.hpp" />
+    <ClInclude Include="Dependencies\assimp\importerdesc.h" />
+    <ClInclude Include="Dependencies\assimp\IOStream.hpp" />
+    <ClInclude Include="Dependencies\assimp\IOSystem.hpp" />
+    <ClInclude Include="Dependencies\assimp\light.h" />
+    <ClInclude Include="Dependencies\assimp\Logger.hpp" />
+    <ClInclude Include="Dependencies\assimp\LogStream.hpp" />
+    <ClInclude Include="Dependencies\assimp\material.h" />
+    <ClInclude Include="Dependencies\assimp\matrix3x3.h" />
+    <ClInclude Include="Dependencies\assimp\matrix4x4.h" />
+    <ClInclude Include="Dependencies\assimp\mesh.h" />
+    <ClInclude Include="Dependencies\assimp\metadata.h" />
+    <ClInclude Include="Dependencies\assimp\NullLogger.hpp" />
+    <ClInclude Include="Dependencies\assimp\port\AndroidJNI\AndroidJNIIOSystem.h" />
+    <ClInclude Include="Dependencies\assimp\postprocess.h" />
+    <ClInclude Include="Dependencies\assimp\ProgressHandler.hpp" />
+    <ClInclude Include="Dependencies\assimp\quaternion.h" />
+    <ClInclude Include="Dependencies\assimp\scene.h" />
+    <ClInclude Include="Dependencies\assimp\texture.h" />
+    <ClInclude Include="Dependencies\assimp\types.h" />
+    <ClInclude Include="Dependencies\assimp\vector2.h" />
+    <ClInclude Include="Dependencies\assimp\vector3.h" />
+    <ClInclude Include="Dependencies\assimp\version.h" />
     <ClInclude Include="Dependencies\glfw\glfw3.h" />
     <ClInclude Include="Dependencies\glfw\glfw3native.h" />
     <ClInclude Include="Dependencies\lodepng\picopng.h" />
     <ClInclude Include="Model\Component.h" />
     <ClInclude Include="Model\GameObject.h" />
+    <ClInclude Include="Model\ModelLoader.h" />
     <ClInclude Include="Model\Transform.h" />
     <ClInclude Include="ParticleSystem\Particle.h" />
     <ClInclude Include="ParticleSystem\ParticleSystem.h" />
@@ -175,6 +214,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Model\Scene.cpp" />
+    <None Include="Dependencies\assimp\assimp.dll" />
+    <None Include="Dependencies\assimp\color4.inl" />
+    <None Include="Dependencies\assimp\material.inl" />
+    <None Include="Dependencies\assimp\matrix3x3.inl" />
+    <None Include="Dependencies\assimp\matrix4x4.inl" />
+    <None Include="Dependencies\assimp\quaternion.inl" />
+    <None Include="Dependencies\assimp\vector2.inl" />
+    <None Include="Dependencies\assimp\vector3.inl" />
     <None Include="Dependencies\glew\glew.h" />
     <None Include="Dependencies\glew\glew32.lib" />
     <None Include="Dependencies\glew\glxew.h" />
@@ -443,6 +490,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Library Include="Dependencies\assimp\assimp.lib" />
     <Library Include="Dependencies\glfw\glfw3.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
