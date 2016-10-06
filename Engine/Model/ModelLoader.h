@@ -2,17 +2,18 @@
 #define MODELLOADER_h
 
 #include "GameObject.h"
-
-#include <assimp/Importer.hpp>
 #include <assimp/scene.h>
-#include <assimp/postprocess.h>
+
+#include <memory>
 
 class ModelLoader
 {
 private:
-	static void processNode(aiNode* node, const aiScene* scene);
+	static void processNode(GameObject*, aiNode* node, const aiScene* scene);
+	static std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene);
+	static std::shared_ptr<Material> processMaterial();
 public:
-	static GameObject* loadModel(const std::string&);
+	static GameObject* LoadModel(const std::string&, const std::string&);
 };
 
 #endif //MODELLOADER_h

@@ -9,7 +9,7 @@ constexpr char * const QUAD_MESH_ID = "rudy_quad";
 
 std::map<std::string, std::shared_ptr<Mesh>> MeshManager::meshMap;
 
-shared_ptr<Mesh> MeshManager::registerMesh(std::string id, std::vector<VertexData> vertices)
+shared_ptr<Mesh> MeshManager::registerMesh(std::string id, vector<VertexData> vertices)
 {
 	auto mesh = make_shared<Mesh>(vertices);
 	meshMap[id] = mesh;
@@ -22,10 +22,10 @@ shared_ptr<Mesh> MeshManager::getQuadMesh()
 	if (quadMeshCreated)
 		return meshMap[QUAD_MESH_ID];
 
-	auto lb = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f) };
-	auto lt = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f) };
-	auto br = VertexData{ vec3( 1.0f, -1.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(1.0f, 0.0f) };
-	auto tr = VertexData{ vec3( 1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(1.0f, 1.0f) };
+	auto lb = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f) };
+	auto lt = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f) };
+	auto br = VertexData{ vec3( 1.0f, -1.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1.0f, 0.0f) };
+	auto tr = VertexData{ vec3( 1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(1.0f, 1.0f) };
 
 	vector<VertexData> vertices;
 	vertices.push_back(lb);

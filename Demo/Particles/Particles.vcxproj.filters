@@ -22,5 +22,6 @@
   <ItemGroup>
     <None Include="Shaders\ParticleBillboard_Fragment.glsl" />
     <None Include="Shaders\ParticleBIllboard_Vertex.glsl" />
+    <None Include="Assets\crate.obj" />
   </ItemGroup>
 </Project>

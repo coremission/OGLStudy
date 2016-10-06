@@ -481,7 +481,6 @@
     <None Include="Dependencies\glm\vector_relational.hpp" />
     <None Include="Dependencies\_dlls\assimp.dll" />
     <None Include="Dependencies\_dlls\assimp.exp" />
-    <None Include="Dependencies\_dlls\glfw3.dll" />
     <Text Include="BasicShaders\Fragment.glsl">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <FileType>Text</FileType>

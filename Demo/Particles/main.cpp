@@ -39,5 +39,5 @@ void setUpScene()
 	ParticleSystem * particleSystem = new ParticleSystem(go);
 	go->AddComponent<ParticleSystem>(particleSystem);
 
-	auto someModel = ModelLoader::loadModel("some_model.fbx");
+	auto someModel = ModelLoader::LoadModel("crate", "Assets\\crate.obj");
 }

@@ -14,7 +14,7 @@ void BaseRenderer::render() const
 {
 }
 
-BaseRenderer* BaseRenderer::create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh)
+std::unique_ptr<BaseRenderer> BaseRenderer::create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh)
 {
-	return new BaseRenderer(gameObject, material, mesh);
+	return std::make_unique<BaseRenderer>(gameObject, material, mesh);
 }

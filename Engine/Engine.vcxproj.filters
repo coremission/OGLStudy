@@ -891,7 +891,6 @@
     </None>
     <None Include="Dependencies\_dlls\assimp.dll" />
     <None Include="Dependencies\_dlls\assimp.exp" />
-    <None Include="Dependencies\_dlls\glfw3.dll" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Rendering\Material.h">
