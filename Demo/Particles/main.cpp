@@ -35,9 +35,10 @@ void _do(int argc, char **argv) {
 
 void setUpScene()
 {
+	/*
 	GameObject* go = new GameObject("particleSystem");
 	ParticleSystem * particleSystem = new ParticleSystem(go);
 	go->AddComponent<ParticleSystem>(particleSystem);
-
+	*/
 	auto someModel = ModelLoader::LoadModel("crate", "Assets\\crate.obj");
 }

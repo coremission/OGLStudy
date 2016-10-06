@@ -13,6 +13,7 @@ public:
 	GLuint vao;
 	Mesh(std::vector<VertexData>);
 	~Mesh();
+	int verticesCount() const { return vertices.size(); }
 };
 
 #endif MESH_h
