@@ -41,4 +41,6 @@ void setUpScene()
 	go->AddComponent<ParticleSystem>(particleSystem);
 	*/
 	auto someModel = ModelLoader::LoadModel("crate", "Assets\\crate.obj");
+	someModel->transform->setLocalPosition(glm::vec3(0.0f, -0.5f, 0.0f));
+	someModel->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 }

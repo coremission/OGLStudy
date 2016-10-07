@@ -65,7 +65,7 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 			// colour
 			glm::vec4{1.0f, 0.0f, 0.0f, 1.0f},
 			// texture coordinates (uvs)
-			glm::vec2{0.0f, 0.0f}
+			glm::vec2{aiMesh_->mTextureCoords[i][0].x, aiMesh_->mTextureCoords[i][0].y}
 		};
 		vertices.push_back(vertex);
 	}
