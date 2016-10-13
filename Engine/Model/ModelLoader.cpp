@@ -58,6 +58,7 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 	vector<GLuint> indices;
 	vector<Texture> textures;
 
+	// Process vertex data
 	for (GLuint i = 0; i < aiMesh_->mNumVertices; ++i) {
 		VertexData vertex{
 			// position
@@ -65,15 +66,19 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 			// colour
 			glm::vec4{1.0f, 0.0f, 0.0f, 1.0f},
 			// texture coordinates (uvs)
-			glm::vec2{aiMesh_->mTextureCoords[i][0].x, aiMesh_->mTextureCoords[i][0].y}
+			//glm::vec2{aiMesh_->mTextureCoords[i][0].x, aiMesh_->mTextureCoords[i][0].y}
 		};
 		vertices.push_back(vertex);
 	}
 	// Process indices
-	
+	for (GLuint i = 0; i < aiMesh_->mNumFaces; ++i) {
+		aiFace face = aiMesh_->mFaces[i];
+		for (GLuint j = 0; j < face.mNumIndices; j++)
+			indices.push_back(face.mIndices[j]);
+	}
 	// Process material
 	if (aiMesh_->mMaterialIndex >= 0) {
 	}
 
-	return MeshManager::registerMesh("rand888", vertices);
+	return MeshManager::registerMesh("rand888", vertices, indices);
 }

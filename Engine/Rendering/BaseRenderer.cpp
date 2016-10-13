@@ -21,9 +21,11 @@ void BaseRenderer::render() const
 	glm::mat4 combined = _gameObject->transform->getLocalToWorldMatrix();
 	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
 
-	//draw 6 vertices as triangles
-	glDrawArrays(GL_TRIANGLES, 0, mesh->verticesCount());
 
+	if (mesh->isIndexed())
+		glDrawElements(GL_TRIANGLES, mesh->verticesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));
+	else
+		glDrawArrays(GL_TRIANGLES, 0, mesh->verticesCount());
 }
 
 std::unique_ptr<BaseRenderer> BaseRenderer::create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh)

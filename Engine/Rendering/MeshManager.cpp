@@ -16,6 +16,13 @@ shared_ptr<Mesh> MeshManager::registerMesh(std::string id, vector<VertexData> ve
 	return mesh;
 }
 
+std::shared_ptr<Mesh> MeshManager::registerMesh(std::string id, std::vector<VertexData> vertices, std::vector<GLuint> indices)
+{
+	auto mesh = make_shared<Mesh>(vertices, indices);
+	meshMap[id] = mesh;
+	return mesh;
+}
+
 shared_ptr<Mesh> MeshManager::getQuadMesh()
 {
 	bool quadMeshCreated = meshMap.find(QUAD_MESH_ID) != meshMap.end();
