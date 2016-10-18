@@ -53,21 +53,17 @@ std::shared_ptr<Mesh> MeshManager::getCubeMesh()
 	if (meshCreated)
 		return meshMap[INDEXED_CUBE_MESH_ID];
 
-	auto lb = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f) };
-	auto lt = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f) };
-	auto br = VertexData{ vec3( 1.0f, -1.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1.0f, 0.0f) };
-	auto tr = VertexData{ vec3( 1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(1.0f, 1.0f) };
+	auto v0 = VertexData{ vec3( 1.0f, -1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f) };
+	auto v1 = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	auto v2 = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	auto v3 = VertexData{ vec3( 1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	auto v4 = VertexData{ vec3( 1.0f,  1.0f, 2.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) };
+	auto v5 = VertexData{ vec3(-1.0f, -1.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
 
-	auto lb1 = VertexData{ vec3(-1.0f, -1.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f) };
-	auto lt1 = VertexData{ vec3(-1.0f,  1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f) };
-	auto br1 = VertexData{ vec3( 1.0f, -1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1.0f, 0.0f) };
-	auto tr1 = VertexData{ vec3( 1.0f,  1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(1.0f, 1.0f) };
-
-	vector<VertexData> vertices {lb, lt, br, tr, lb1, lt1, br1, tr1};
+	vector<VertexData> vertices {v0, v1, v2, v3, v4, v5};
 	
-	vector<GLuint> indices{ 2, 1, 0,
-							1, 4, 3,
-							5, 6, 7
+	vector<GLuint> indices{ 0, 1, 2,
+							3, 4, 5,
 						  };
 	
 	return registerMesh(QUAD_MESH_ID, vertices, indices);

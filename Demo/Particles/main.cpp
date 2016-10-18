@@ -44,8 +44,8 @@ void setUpScene()
 	go->AddComponent<ParticleSystem>(particleSystem);
 	*/
 
-	/* TEMP INDEXED
-	GameObject* tempGo = new GameObject("indexedGameObject");
+	/* TEMP INDEXED */
+	/*GameObject* tempGo = new GameObject("indexedGameObject");
 	tempGo->renderer = BaseRenderer::create(tempGo,
 		// material
 		MaterialManager::getMaterial("tempIndexed", 
@@ -56,8 +56,7 @@ void setUpScene()
 
 	tempGo->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 	RotationBehaviour* rotation = new RotationBehaviour(tempGo);
-	tempGo->AddComponent<RotationBehaviour>(rotation);
-	*/
+	tempGo->AddComponent<RotationBehaviour>(rotation);*/
 
 	auto someModel = ModelLoader::LoadModel("crate", "Assets\\lowpolytree.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);

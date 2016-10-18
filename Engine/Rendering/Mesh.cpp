@@ -24,6 +24,10 @@ void Mesh::fillVertexBuffer()
 	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData),
 		reinterpret_cast<void *>(offsetof(VertexData, VertexData::_uv)));
 	glEnableVertexAttribArray(2);
+
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_TRUE, sizeof(VertexData),
+		reinterpret_cast<void *>(offsetof(VertexData, VertexData::_normal)));
+	glEnableVertexAttribArray(3);
 }
 
 void Mesh::fillIndicesBuffer()

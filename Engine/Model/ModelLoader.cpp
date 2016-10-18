@@ -68,6 +68,8 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 			// texture coordinates (uvs)
 			//glm::vec2{aiMesh_->mTextureCoords[i][0].x, aiMesh_->mTextureCoords[i][0].y}
 		};
+		// normal
+		vertex._normal = glm::vec3{ aiMesh_->mNormals[i].x, aiMesh_->mNormals[i].y, aiMesh_->mNormals[i].z };
 		vertices.push_back(vertex);
 	}
 	// Process indices

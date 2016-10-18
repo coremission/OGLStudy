@@ -19,6 +19,7 @@ void Application::initialize(int* argc, char ** argv) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+	glfwWindowHint(GLFW_DEPTH_BITS, 32);
 
 	Screen::width = 640;
 	Screen::height = 480;
@@ -31,8 +32,9 @@ void Application::initialize(int* argc, char ** argv) {
 	}
 	glfwMakeContextCurrent(window);
 
-	glClearColor(0.0, 0.3, 0.0, 1.0);
-	
+	glClearColor(0.1, 0.1, 0.1, 1.0);
+	glEnable(GL_DEPTH_TEST);
+
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK) {
 		cout << "Failed to initialize GLEW" << endl;
@@ -42,7 +44,7 @@ void Application::initialize(int* argc, char ** argv) {
 	glfwGetFramebufferSize(window, &Screen::width, &Screen::height);
 	glViewport(0, 0, Screen::width, Screen::height);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT, GL_FILL);
 
 	if (glewIsSupported("GL_VERSION_4_3")) {
 		std::cout << " GLEW Version is 4.3\n ";
