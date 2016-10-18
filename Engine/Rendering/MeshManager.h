@@ -15,6 +15,7 @@ public:
 	static std::shared_ptr<Mesh> registerMesh(std::string id, std::vector<VertexData> vertices);
 	static std::shared_ptr<Mesh> registerMesh(std::string id, std::vector<VertexData> vertices, std::vector<GLuint> indices);
 	static std::shared_ptr<Mesh> getQuadMesh();
+	static std::shared_ptr<Mesh> getCubeMesh();
 };
 
 #endif //MESHMANAGER_h

@@ -80,5 +80,6 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 	if (aiMesh_->mMaterialIndex >= 0) {
 	}
 
-	return MeshManager::registerMesh("rand888", vertices, indices);
+	return MeshManager::registerMesh("rand888", vertices);
+	//return MeshManager::registerMesh("rand888", vertices, indices);
 }
