@@ -49,9 +49,9 @@ shared_ptr<Mesh> MeshManager::getQuadMesh()
 
 std::shared_ptr<Mesh> MeshManager::getCubeMesh()
 {
-	bool quadMeshCreated = meshMap.find(QUAD_MESH_ID) != meshMap.end();
-	if (quadMeshCreated)
-		return meshMap[QUAD_MESH_ID];
+	bool meshCreated = meshMap.find(INDEXED_CUBE_MESH_ID) != meshMap.end();
+	if (meshCreated)
+		return meshMap[INDEXED_CUBE_MESH_ID];
 
 	auto lb = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f) };
 	auto lt = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f) };
@@ -65,9 +65,10 @@ std::shared_ptr<Mesh> MeshManager::getCubeMesh()
 
 	vector<VertexData> vertices {lb, lt, br, tr, lb1, lt1, br1, tr1};
 	
-	/*vector<GLuint> indices{ 0, 1, 2,
-							
+	vector<GLuint> indices{ 2, 1, 0,
+							1, 4, 3,
+							5, 6, 7
 						  };
-	*/
-	return registerMesh(QUAD_MESH_ID, vertices);
+	
+	return registerMesh(QUAD_MESH_ID, vertices, indices);
 }

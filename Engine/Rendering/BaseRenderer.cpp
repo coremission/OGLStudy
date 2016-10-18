@@ -21,9 +21,8 @@ void BaseRenderer::render() const
 	glm::mat4 combined = _gameObject->transform->getLocalToWorldMatrix();
 	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
 
-
 	if (mesh->isIndexed())
-		glDrawElements(GL_TRIANGLES, mesh->verticesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));
+		glDrawElements(GL_TRIANGLES, mesh->indicesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));
 	else
 		glDrawArrays(GL_TRIANGLES, 0, mesh->verticesCount());
 }

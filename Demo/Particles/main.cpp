@@ -44,20 +44,25 @@ void setUpScene()
 	go->AddComponent<ParticleSystem>(particleSystem);
 	*/
 
-	//GameObject* indexedGo = new GameObject("indexedGameObject");
-	//indexedGo->renderer = BaseRenderer::create(indexedGo,
-	//	// material
-	//	MaterialManager::getMaterial("tempIndexed", "Shaders\\Diffuse_Vertex.glsl", 
-	//		"Shaders\\Diffuse_Fragment.glsl"),
-	//	// mesh
-	//	MeshManager::getQuadMesh());
+	/* TEMP INDEXED
+	GameObject* tempGo = new GameObject("indexedGameObject");
+	tempGo->renderer = BaseRenderer::create(tempGo,
+		// material
+		MaterialManager::getMaterial("tempIndexed", 
+			"Shaders\\Diffuse_Vertex.glsl", 
+			"Shaders\\Diffuse_Fragment.glsl"),
+		// mesh
+		MeshManager::getCubeMesh());
 
-	//indexedGo->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
+	tempGo->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
+	RotationBehaviour* rotation = new RotationBehaviour(tempGo);
+	tempGo->AddComponent<RotationBehaviour>(rotation);
+	*/
 
 	auto someModel = ModelLoader::LoadModel("crate", "Assets\\lowpolytree.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);
 	someModel->AddComponent<RotationBehaviour>(rotation);
 
-	someModel->transform->setLocalPosition(glm::vec3(0.0f, -0.5f, 0.0f));
-	someModel->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
+	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+	someModel->transform->setLocalScale(glm::vec3(0.3f, 0.3f, 0.3f));
 }
