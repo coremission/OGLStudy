@@ -15,6 +15,8 @@ private:
 
 	void fillVertexBuffer();
 	void fillIndicesBuffer();
+	
+	static void bindAttribute(GLuint location, size_t size, void* offset);
 public:
 	GLuint vao;
 	Mesh(std::vector<VertexData>);

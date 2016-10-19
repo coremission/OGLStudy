@@ -47,7 +47,7 @@ void ParticleSystem::createBaseQuad()
 
 void ParticleSystem::updateParticles()
 {
-	for (int i = 0; i < particles.size(); ++i) {
+	for (size_t i = 0; i < particles.size(); ++i) {
 		particles[i].position += glm::vec3(i * 0.0001f, 0.0f, 0.0f);
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, instaceBuffer);
