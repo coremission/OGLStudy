@@ -10,6 +10,7 @@ out vec3 fragmentPosition;
 out vec2 uv;
 
 uniform mat4 Model2World;
+uniform mat4 Model2Projection;
 
 void main(void)
 {	
