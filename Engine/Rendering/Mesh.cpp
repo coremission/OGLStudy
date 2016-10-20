@@ -12,9 +12,9 @@ Mesh::~Mesh() {
 		glDeleteBuffers(1, &indicesVbo);
 }
 
-void Mesh::bindAttribute(GLuint location, size_t size, void* offset)
+void Mesh::bindAttribute(GLuint location, size_t size, int type, bool doNormalize, void* offset)
 {
-	glVertexAttribPointer(location, size, GL_FLOAT, GL_FALSE, sizeof(VertexData), offset);
+	glVertexAttribPointer(location, size, type, doNormalize ? GL_TRUE : GL_FALSE, sizeof(VertexData), offset);
 	glEnableVertexAttribArray(location);
 }
 
@@ -24,23 +24,10 @@ void Mesh::fillVertexBuffer()
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(VertexData) * vertices.size(), &vertices[0], GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(VertexData),
-		reinterpret_cast<void *>(offsetof(VertexData, _position)));
-	glEnableVertexAttribArray(0);
-
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(VertexData),
-		reinterpret_cast<void *>(offsetof(VertexData, VertexData::_color)));
-	glEnableVertexAttribArray(1);
-
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(VertexData),
-		reinterpret_cast<void *>(offsetof(VertexData, VertexData::_uv)));
-	glEnableVertexAttribArray(2);
-
-	glVertexAttribPointer(3, 3, GL_FLOAT, GL_TRUE, sizeof(VertexData),
-		reinterpret_cast<void *>(offsetof(VertexData, VertexData::_normal)));
-	glEnableVertexAttribArray(3);
-
-	bindAttribute(4, 3, attribOffset(_normal));
+	bindAttribute(0, 3, GL_FLOAT, false, attribOffset(_position));
+	bindAttribute(1, 4, GL_FLOAT, false, attribOffset(_color));
+	bindAttribute(2, 2, GL_FLOAT, false, attribOffset(_uv));
+	bindAttribute(3, 3, GL_FLOAT, true, attribOffset(_normal));
 }
 
 void Mesh::fillIndicesBuffer()
