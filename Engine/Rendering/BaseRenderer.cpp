@@ -1,4 +1,6 @@
 ﻿#include "BaseRenderer.h"
+#include "Camera.h"
+#include <iostream>
 using namespace std;
 
 BaseRenderer::BaseRenderer(GameObject* gameObject, shared_ptr<Material> _material, shared_ptr<Mesh> _mesh): 
@@ -17,9 +19,19 @@ void BaseRenderer::render() const
 	GLuint program = material->programId();
 	glUseProgram(program);
 
-	GLuint rotationLocation = glGetUniformLocation(program, "Model2World");
-	glm::mat4 combined = _gameObject->transform->getLocalToWorldMatrix();
-	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
+	GLuint m2wLocation = glGetUniformLocation(program, "Model2World");
+	glm::mat4 m2wMatrix = _gameObject->transform->getLocalToWorldMatrix();
+	glUniformMatrix4fv(m2wLocation, 1, GL_FALSE, &m2wMatrix[0][0]);
+
+	GLuint mvpLocation = glGetUniformLocation(program, "Model2Projection");
+	glm::mat4 vpMatrix = Camera::getMainCamera()->getViewProjectionMatrix();
+	glm::mat4 mvpMatrix = Camera::getMainCamera()->getViewProjectionMatrix() * m2wMatrix;
+	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
+
+	auto pos = _gameObject->transform->getLocalPosition();
+	auto result = vpMatrix * glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);// mvpMatrix * glm::vec4(pos.x, pos.y, pos.z, 1.0f);
+
+	std::cout << result.x << " " << result.y << " " << result.z << " " << result.w << std::endl;
 
 	if (mesh->isIndexed())
 		glDrawElements(GL_TRIANGLES, mesh->indicesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));

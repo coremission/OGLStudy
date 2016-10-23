@@ -6,6 +6,8 @@
 
 class Camera: public Component
 {
+	static Camera * main;
+
 private:
 	float horizontalFov;
 	float ratio; // width/height;
@@ -23,6 +25,8 @@ public:
 	float getRatio() const { return ratio; }
 	glm::mat4 getViewMatrix() const { return viewMatrix; }
 	glm::mat4 getProjectionMatrix() const { return projectionMatrix; }
+
+	static const Camera * getMainCamera() { return main; }
 };
 
 #endif //CAMERA_h

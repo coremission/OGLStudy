@@ -38,6 +38,10 @@ void _do(int argc, char **argv) {
 
 void setUpScene()
 {
+	GameObject* cameraGo = new GameObject("camera");
+	Camera* camera = new Camera(cameraGo);
+	cameraGo->AddComponent(camera);
+	camera->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
 	/*
 	GameObject* go = new GameObject("particleSystem");
 	ParticleSystem * particleSystem = new ParticleSystem(go);
@@ -62,6 +66,7 @@ void setUpScene()
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);
 	someModel->AddComponent<RotationBehaviour>(rotation);
 
-	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-	someModel->transform->setLocalScale(glm::vec3(0.3f, 0.3f, 0.3f));
+	// here is ndc, so z > 1 will be culled
+	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.5f));
+	someModel->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 }
