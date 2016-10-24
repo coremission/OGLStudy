@@ -63,11 +63,11 @@ void setUpScene()
 	RotationBehaviour* rotation = new RotationBehaviour(tempGo);
 	tempGo->AddComponent<RotationBehaviour>(rotation);*/
 
-	auto someModel = ModelLoader::LoadModel("crate", "Assets\\lowpolytree.obj");
-	RotationBehaviour* rotation = new RotationBehaviour(someModel);
-	someModel->AddComponent<RotationBehaviour>(rotation);
+	auto someModel = ModelLoader::LoadModel("tree", "Assets\\lowpolytree.obj");
+	//RotationBehaviour* rotation = new RotationBehaviour(someModel);
+	//someModel->AddComponent<RotationBehaviour>(rotation);
 
 	// here is ndc, so z > 1 will be culled
-	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 1.5f));
+	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, -0.5f));
 	someModel->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 }

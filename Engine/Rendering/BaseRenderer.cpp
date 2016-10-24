@@ -28,8 +28,10 @@ void BaseRenderer::render() const
 	glm::mat4 mvpMatrix = vpMatrix * m2wMatrix;
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
 
-	auto pos = _gameObject->transform->getLocalPosition();
-	auto result = vpMatrix * glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);// mvpMatrix * glm::vec4(pos.x, pos.y, pos.z, 1.0f);
+	auto lpos = _gameObject->transform->getLocalPosition();
+	auto pos = m2wMatrix * glm::vec4(lpos.x, lpos.y, lpos.z, 1.0f);
+
+	auto result = vpMatrix * glm::vec4(pos.x, pos.y, pos.z, 1.0f);
 
 	std::cout << result.x << " " << result.y << " " << result.z << " " << result.w << std::endl;
 
