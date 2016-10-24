@@ -15,6 +15,7 @@ void setUpScene();
 int main(int argc, char **argv)
 {
 	_do(argc, argv);
+
 	cout << endl << "Press any key to exit..." << endl;
 	cin.get();
 

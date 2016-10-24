@@ -32,7 +32,7 @@ void Application::initialize(int* argc, char ** argv) {
 	}
 	glfwMakeContextCurrent(window);
 
-	glClearColor(0.1, 0.1, 0.1, 1.0);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glEnable(GL_DEPTH_TEST);
 
 	glewExperimental = GL_TRUE;

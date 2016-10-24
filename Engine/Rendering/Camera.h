@@ -11,12 +11,15 @@ class Camera: public Component
 private:
 	float horizontalFov;
 	float ratio; // width/height;
+	float nearClippingPlane;
+	float farClippingPlane;
 	mutable glm::mat4 viewMatrix;
 	mutable glm::mat4 projectionMatrix;
 
 	void recalculateMatrices() const;
 public:
 	explicit Camera(GameObject*);
+	Camera(GameObject*, float, float, float, float);
 	virtual void Update() override;
 	virtual void Start() override;
 	glm::mat4 getViewProjectionMatrix() const;

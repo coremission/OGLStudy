@@ -7,15 +7,20 @@ Camera* Camera::main = nullptr;
 
 void Camera::recalculateMatrices() const
 {
-	projectionMatrix = glm::perspective(glm::radians(horizontalFov), ratio, 0.1f, 100.0f);
+	projectionMatrix = glm::perspective(glm::radians(horizontalFov), ratio, nearClippingPlane, farClippingPlane);
 	viewMatrix = glm::inverse(transform->getLocalToWorldMatrix());
 }
 
 Camera::Camera(GameObject* go)
-	:Component(go), horizontalFov(45), ratio(4.0f/3.0f)
+	:Component(go), horizontalFov(45), ratio(4.0f/3.0f), nearClippingPlane(1.0f), farClippingPlane(100.0f)
 {
 	Camera::main = this;
 	recalculateMatrices();
+}
+
+Camera::Camera(GameObject * _gameObject, float _fov, float _ratio, float _near, float _far)
+	:Component(_gameObject), horizontalFov(_fov), ratio(_ratio), nearClippingPlane(_near), farClippingPlane(_far)
+{
 }
 
 void Camera::Update()
