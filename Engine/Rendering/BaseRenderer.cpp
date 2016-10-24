@@ -25,7 +25,7 @@ void BaseRenderer::render() const
 
 	GLuint mvpLocation = glGetUniformLocation(program, "Model2Projection");
 	glm::mat4 vpMatrix = Camera::getMainCamera()->getViewProjectionMatrix();
-	glm::mat4 mvpMatrix = Camera::getMainCamera()->getViewProjectionMatrix() * m2wMatrix;
+	glm::mat4 mvpMatrix = vpMatrix * m2wMatrix;
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
 
 	auto pos = _gameObject->transform->getLocalPosition();

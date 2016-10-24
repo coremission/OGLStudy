@@ -16,6 +16,15 @@ std::ostream& operator <<(std::ostream& stream, const vec3& vec) {
 	return stream;
 }
 
+std::ostream& operator <<(std::ostream& stream, const mat4& matrix) {
+
+	stream << matrix[0] << endl;
+	stream << matrix[1] << endl;
+	stream << matrix[2] << endl;
+	stream << matrix[3] << endl;
+	return stream;
+}
+
 int main(int argc, char** argv)
 {
 	cout << "Test Runner" << endl;
@@ -23,13 +32,19 @@ int main(int argc, char** argv)
 	GameObject* cameraGo = new GameObject("camera");
 	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f/3.0f, 1.0f, 100.0f);
 	cameraGo->AddComponent(camera);
-	camera->transform->setLocalPosition(vec3(0.0f, 0.0f, 10.0f));
+	camera->transform->setLocalPosition(vec3(0.0f, 0.0f, 0.0f));
 
-	vec4 point = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+	vec4 point = vec4(0.0f, 0.0f, -1.0f, 1.0f);
 
+	cout << "initial point: " << point << endl;
 	mat4 mvp = camera->getViewProjectionMatrix();
+
+	cout << "mvp: " << endl;
+	cout << mvp << endl;
+
 	vec4 result = mvp * point;
-	auto divided = vec3(point.x / point.w, point.y / point.w, point.z / point.w);
+
+	auto divided = vec3(result.x / result.w, result.y / result.w, result.z / result.w);
 
 	cout << "result: " << result << endl;
 	cout << "after division: " << divided << endl;

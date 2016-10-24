@@ -68,6 +68,6 @@ void setUpScene()
 	someModel->AddComponent<RotationBehaviour>(rotation);
 
 	// here is ndc, so z > 1 will be culled
-	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.5f));
+	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 1.5f));
 	someModel->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
 }
