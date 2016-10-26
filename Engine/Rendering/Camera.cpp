@@ -31,8 +31,20 @@ glm::mat4 Camera::getViewProjectionMatrix() const
 	return projectionMatrix * viewMatrix;
 }
 
+glm::mat4 Camera::getViewMatrix() const
+{
+	recalculateMatrices();
+	return viewMatrix;
+}
+
+glm::mat4 Camera::getProjectionMatrix() const
+{
+	recalculateMatrices();
+	return projectionMatrix;
+}
+
 void Camera::recalculateMatrices() const
 {
 	projectionMatrix = glm::perspective(glm::radians(horizontalFov), ratio, nearClippingPlane, farClippingPlane);
-	viewMatrix = glm::inverse(transform->getLocalToWorldMatrix());
+	viewMatrix = transform->getWorldToLocalMatrix();
 }

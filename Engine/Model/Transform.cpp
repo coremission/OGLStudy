@@ -24,6 +24,7 @@ void Transform::recalculateMatrices() const
 		result = parent->localToWorldMatrix * result;
 
 	localToWorldMatrix = result;
+	worldToLocalMatrix = glm::inverse(localToWorldMatrix);
 }
 
 void Transform::setLocalPosition(vec3 value)
@@ -48,4 +49,20 @@ const mat4& Transform::getLocalToWorldMatrix() const
 {
 	recalculateMatrices();
 	return localToWorldMatrix;
+}
+
+const glm::mat4& Transform::getWorldToLocalMatrix() const
+{
+	recalculateMatrices();
+	return worldToLocalMatrix;
+}
+
+const glm::vec3 Transform::transformPoint(const glm::vec3& p)
+{
+	return vec3(getLocalToWorldMatrix() * vec4(p, 1.0f));
+}
+
+const glm::vec3 Transform::inverseTransformPoint(const glm::vec3& p)
+{
+	return vec3(getWorldToLocalMatrix() * vec4(p, 1.0f));
 }

@@ -29,6 +29,10 @@ public:
 	void setParent(const Transform* _parent) { parent = _parent; };
 
 	const glm::mat4& getLocalToWorldMatrix() const;
+	const glm::mat4& getWorldToLocalMatrix() const;
+
+	const glm::vec3 transformPoint(const glm::vec3&);
+	const glm::vec3 inverseTransformPoint(const glm::vec3&);
 
 	glm::vec3 position;
 	glm::vec3 rotation;

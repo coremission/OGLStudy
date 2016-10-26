@@ -125,6 +125,11 @@
       <Project>{4488212c-9c42-4f09-8d21-4ac414118ab6}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="projection_matrix_tests.h" />
+    <ClInclude Include="testfixture.hpp" />
+    <ClInclude Include="transform_tests.hpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

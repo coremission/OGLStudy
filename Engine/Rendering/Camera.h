@@ -26,8 +26,8 @@ public:
 
 	float getHorizontalFov() const { return horizontalFov; }
 	float getRatio() const { return ratio; }
-	glm::mat4 getViewMatrix() const { return viewMatrix; }
-	glm::mat4 getProjectionMatrix() const { return projectionMatrix; }
+	glm::mat4 getViewMatrix() const;
+	glm::mat4 getProjectionMatrix() const;
 
 	static const Camera * getMainCamera() { return main; }
 };
