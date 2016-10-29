@@ -20,20 +20,20 @@ void BaseRenderer::render() const
 	glUseProgram(program);
 
 	GLuint m2wLocation = glGetUniformLocation(program, "Model2World");
-	glm::mat4 m2wMatrix = _gameObject->transform->getLocalToWorldMatrix();
-	glUniformMatrix4fv(m2wLocation, 1, GL_FALSE, &m2wMatrix[0][0]);
+	glm::mat4 modelingMatrix = _gameObject->transform->getLocalToWorldMatrix();
+	glUniformMatrix4fv(m2wLocation, 1, GL_FALSE, &modelingMatrix[0][0]);
 
 	GLuint mvpLocation = glGetUniformLocation(program, "Model2Projection");
-	glm::mat4 vpMatrix = Camera::getMainCamera()->getViewProjectionMatrix();
-	glm::mat4 mvpMatrix = vpMatrix * m2wMatrix;
+	glm::mat4 viewProjectionMatrix = Camera::getMainCamera()->getViewProjectionMatrix();
+	glm::mat4 viewMatrix = Camera::getMainCamera()->getViewMatrix();
+
+	glm::mat4 mvpMatrix = viewProjectionMatrix * modelingMatrix;
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
-
-	auto lpos = _gameObject->transform->getLocalPosition();
-	auto pos = m2wMatrix * glm::vec4(lpos.x, lpos.y, lpos.z, 1.0f);
-
-	auto result = vpMatrix * glm::vec4(pos.x, pos.y, pos.z, 1.0f);
-
-	std::cout << result.x << " " << result.y << " " << result.z << " " << result.w << std::endl;
+	
+	/*
+	auto result = mvpMatrix * glm::vec4(0, 0, 0, 1.0f);
+	cout << result.x << " " << result.y << " " << result.z << " " << result.w << endl;
+	*/
 
 	if (mesh->isIndexed())
 		glDrawElements(GL_TRIANGLES, mesh->indicesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));

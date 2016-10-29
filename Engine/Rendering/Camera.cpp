@@ -15,6 +15,8 @@ Camera::Camera(GameObject* go)
 Camera::Camera(GameObject * _gameObject, float _fov, float _ratio, float _near, float _far)
 	:Component(_gameObject), horizontalFov(_fov), ratio(_ratio), nearClippingPlane(_near), farClippingPlane(_far)
 {
+	Camera::main = this;
+	recalculateMatrices();
 }
 
 void Camera::Update()

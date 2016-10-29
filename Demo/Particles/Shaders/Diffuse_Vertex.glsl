@@ -14,7 +14,7 @@ uniform mat4 Model2Projection;
 
 void main(void)
 {	
-	gl_Position = Model2World * vec4(in_position, 1.0);
+	gl_Position = Model2Projection * vec4(in_position, 1.0);
 
 	color = in_color * dot(in_normal, vec3(0, -1, 1));
 	uv = in_uv;
