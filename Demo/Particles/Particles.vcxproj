@@ -117,6 +117,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="RotationBehaviour.cpp" />
   </ItemGroup>
@@ -132,12 +133,7 @@
     <None Include="Shaders\ParticleBIllboard_Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\crate.obj">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
-      <FileType>Document</FileType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="CameraController.h" />
     <ClInclude Include="RotationBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -14,15 +14,11 @@ SpriteRenderer::SpriteRenderer(GameObject* _gameObject, std::shared_ptr<Texture>
 
 void SpriteRenderer::render() const
 {
-	// TODO: introduce time
-	float time = 1.0f;
-
 	// bind VAO
 	glBindVertexArray(mesh->vao);
 
 	GLuint program = material->programId();
 	glUseProgram(program);
-
 
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, sprite->getTextureId());

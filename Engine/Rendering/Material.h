@@ -14,6 +14,6 @@ private:
 public:
 	~Material();
 	GLuint programId() const;
-	explicit Material(const std::string &materialName, const std::string &vertexShaderPath, const std::string &fragmentShaderPath);
+	Material(const std::string &materialName, const std::string &vertexShaderPath, const std::string &fragmentShaderPath);
 };
 #endif // MATERIAL_H

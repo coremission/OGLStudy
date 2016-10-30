@@ -21,16 +21,21 @@
     <ClCompile Include="RotationBehaviour.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CameraController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\ParticleBillboard_Fragment.glsl" />
     <None Include="Shaders\ParticleBIllboard_Vertex.glsl" />
-    <None Include="Assets\crate.obj" />
     <None Include="Shaders\Diffuse_Fragment.glsl" />
     <None Include="Shaders\Diffuse_Vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RotationBehaviour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

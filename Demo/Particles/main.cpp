@@ -6,6 +6,7 @@
 #include "RotationBehaviour.h"
 #include <Rendering/MaterialManager.h>
 #include <Rendering/MeshManager.h>
+#include "CameraController.h"
 
 using namespace std;
 
@@ -42,18 +43,21 @@ void setUpScene()
 	GameObject* cameraGo = new GameObject("camera");
 	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 100.0f);
 	cameraGo->AddComponent(camera);
-	camera->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+	camera->transform->setLocalPosition(glm::vec3(0.0f, 5.0f, 0.0f));
+	CameraController* cameraController = new CameraController(cameraGo);
+	cameraGo->AddComponent(cameraController);
+
 	/*
 	GameObject* go = new GameObject("particleSystem");
 	ParticleSystem * particleSystem = new ParticleSystem(go);
 	go->AddComponent<ParticleSystem>(particleSystem);
 	*/
 
-	auto someModel = ModelLoader::LoadModel("tree", "Assets\\lowpolytree.obj");
+	auto someModel = ModelLoader::LoadModel("tree", "Assets\\space_cruiser_4.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);
 	someModel->AddComponent<RotationBehaviour>(rotation);
 
 	// here is ndc, so z > 1 will be culled
-	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, -2.0f));
-	someModel->transform->setLocalScale(glm::vec3(0.2f, 0.2f, 0.2f));
+	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, -50.0f));
+	someModel->transform->setLocalScale(glm::vec3(1.0f, 1.0f, 1.0f));
 }

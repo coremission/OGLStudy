@@ -15,8 +15,9 @@ uniform mat4 Model2Projection;
 void main(void)
 {	
 	gl_Position = Model2Projection * vec4(in_position, 1.0);
+	vec3 transformedNormal = vec3(Model2World * vec4(in_normal, 0.0));
 
-	color = in_color * dot(in_normal, vec3(0, -1, 1));
+	color = in_color * dot(transformedNormal, vec3(1, 1, 1));
 	uv = in_uv;
 	fragmentPosition = gl_Position.xyz;
 }

@@ -64,12 +64,14 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 			// position
 			glm::vec3{aiMesh_->mVertices[i].x, aiMesh_->mVertices[i].y, aiMesh_->mVertices[i].z},
 			// colour
-			glm::vec4{1.0f, 0.0f, 0.0f, 1.0f},
+			glm::vec4{1.0f, 1.0f, 1.0f, 1.0f},
 			// texture coordinates (uvs)
 			//glm::vec2{aiMesh_->mTextureCoords[i][0].x, aiMesh_->mTextureCoords[i][0].y}
 		};
 		// normal
-		vertex._normal = glm::vec3{ aiMesh_->mNormals[i].x, aiMesh_->mNormals[i].y, aiMesh_->mNormals[i].z };
+		if(aiMesh_->mNormals != nullptr)
+			vertex._normal = glm::vec3{ aiMesh_->mNormals[i].x, aiMesh_->mNormals[i].y, aiMesh_->mNormals[i].z };
+		
 		vertices.push_back(vertex);
 	}
 	// Process indices
