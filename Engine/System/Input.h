@@ -17,6 +17,7 @@ private:
 	static void resetKeyPressed(KeyCodeType);
 public:
 	inline static glm::vec2 getMousePosition() { return mousePosition; }
+	static void setMouseToCenter();
 	static bool checkIfKeyPressed(KeyCodeType key);
 	friend class Application;
 };

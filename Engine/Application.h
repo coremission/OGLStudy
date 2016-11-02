@@ -15,7 +15,6 @@ private:
 	static void renderScene();
 
 	static void processMousePress(int, int, int, int);
-	static void processMouseFreeMove(int, int);
 	static void processMousePressedMove(int, int);
 	static void drawGameObject(GameObject&);
 	Application() = delete;
@@ -23,13 +22,16 @@ private:
 	const Application& operator=(Application&) = delete;
 
 	// glfw callbacks
-	static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	static void processKeyboard(GLFWwindow* window, int key, int scancode, int action, int mode);
+	static void processMouseFreeMove(GLFWwindow*, double, double);
+
 public:
 	static void setCamera(Camera * _camera) { camera = _camera; }
 
 	static void initialize(int* argc, char** argv);
 	static void runMainLoop();
 	static void leaveMainLoop();
+	static void setMouseCursorToCenter();
 	static void exit();
 
 	friend class GameObject;

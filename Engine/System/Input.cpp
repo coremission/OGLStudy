@@ -1,4 +1,5 @@
 ﻿#include "Input.h"
+#include "Screen.h"
 #include <set>
 
 using namespace std;
@@ -21,6 +22,11 @@ void Input::resetKeyPressed(KeyCodeType key)
 		}
 		++it;
 	}
+}
+
+void Input::setMouseToCenter()
+{
+	Application::setMouseCursorToCenter();
 }
 
 bool Input::checkIfKeyPressed(KeyCodeType key)

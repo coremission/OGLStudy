@@ -21,6 +21,7 @@ public:
 
 	glm::vec3 getLocalYawPitchRoll() const { return localRotation; }
 	void setLocalYawPitchRoll(glm::vec3);
+	void addLocalYawPitchRoll(glm::vec3);
 
 	glm::vec3 getLocalScale() const { return localScale; };
 	void setLocalScale(glm::vec3);

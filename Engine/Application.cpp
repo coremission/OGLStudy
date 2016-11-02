@@ -53,7 +53,14 @@ void Application::initialize(int* argc, char ** argv) {
 		std::cout << "GLEW 4.3 not supported\n ";
 	}
 
-	glfwSetKeyCallback(window, key_callback);
+	// keyboard callback
+	glfwSetKeyCallback(window, processKeyboard);
+	// mouse move callback
+	glfwSetCursorPosCallback(window, processMouseFreeMove);
+	// hide cursor
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	// hide cursor and lock to window
+	// glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
 void Application::runMainLoop()
@@ -93,7 +100,7 @@ void Application::drawGameObject(GameObject& gameObject)
 	gameObject.renderer->render();
 }
 
-void Application::key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+void Application::processKeyboard(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	//cout << key << " scancode: " << scancode << " action: " << " " << action << " mode: " << mode << endl;
 
@@ -113,7 +120,7 @@ void Application::processMousePress(int button, int state, int x, int y)
 	//std::cout << "button: " << button << " state:" << state << " x: "<<  x << " y: " << y;
 }
 
-void Application::processMouseFreeMove(int x, int y)
+void Application::processMouseFreeMove(GLFWwindow* window, double x, double y)
 {
 	Input::mousePosition.x = x;
 	Input::mousePosition.y = y;
@@ -128,6 +135,11 @@ void Application::processMousePressedMove(int x, int y)
 void Application::leaveMainLoop()
 {
 	glfwSetWindowShouldClose(window, GL_TRUE);
+}
+
+void Application::setMouseCursorToCenter()
+{
+	glfwSetCursorPos(window, Screen::width / 2, Screen::height / 2);
 }
 
 void Application::exit()

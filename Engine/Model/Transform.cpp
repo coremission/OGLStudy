@@ -39,6 +39,12 @@ void Transform::setLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 	recalculateMatrices();
 }
 
+void Transform::addLocalYawPitchRoll(glm::vec3 yawPitchRoll)
+{
+	localRotation = localRotation + yawPitchRoll;
+	recalculateMatrices();
+}
+
 void Transform::setLocalScale(glm::vec3 value)
 {
 	localScale = value;

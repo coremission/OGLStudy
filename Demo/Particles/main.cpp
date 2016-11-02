@@ -47,17 +47,11 @@ void setUpScene()
 	CameraController* cameraController = new CameraController(cameraGo);
 	cameraGo->AddComponent(cameraController);
 
-	/*
-	GameObject* go = new GameObject("particleSystem");
-	ParticleSystem * particleSystem = new ParticleSystem(go);
-	go->AddComponent<ParticleSystem>(particleSystem);
-	*/
-
-	auto someModel = ModelLoader::LoadModel("tree", "Assets\\space_cruiser_4.obj");
+	auto someModel = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);
 	someModel->AddComponent<RotationBehaviour>(rotation);
 
-	// here is ndc, so z > 1 will be culled
+	// negative z because glm::perspective flips z
 	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, -50.0f));
 	someModel->transform->setLocalScale(glm::vec3(1.0f, 1.0f, 1.0f));
 }
