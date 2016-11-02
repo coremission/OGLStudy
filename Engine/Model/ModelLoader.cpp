@@ -38,7 +38,7 @@ void ModelLoader::processNode(GameObject* parent, aiNode* node, const aiScene* s
 		aiMesh* mesh_ = scene->mMeshes[node->mMeshes[i]];
 		auto mesh = processMesh(mesh_, scene);
 
-		auto gameObject = new GameObject(parent->name + "_temp");
+		auto gameObject = new GameObject(std::string(node->mName.C_Str()));
 		gameObject->transform->setParent(parent->transform.get());
 
 		auto material = processMaterial();
@@ -84,6 +84,5 @@ shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 	if (aiMesh_->mMaterialIndex >= 0) {
 	}
 
-	//return MeshManager::registerMesh("rand888", vertices);
 	return MeshManager::registerMesh("rand888", vertices, indices);
 }
