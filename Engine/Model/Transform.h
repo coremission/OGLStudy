@@ -20,6 +20,8 @@ public:
 	void setLocalPosition(glm::vec3);
 
 	glm::vec3 getLocalYawPitchRoll() const { return localRotation; }
+
+	// YawPitchRoll is rotation Y * X * Z
 	void setLocalYawPitchRoll(glm::vec3);
 	void addLocalYawPitchRoll(glm::vec3);
 
