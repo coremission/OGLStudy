@@ -11,6 +11,6 @@ void RotationBehaviour::Update()
 {
 	transform->setLocalYawPitchRoll(
 		transform->getLocalYawPitchRoll() + 
-		glm::vec3(0.0f, 0.0f, 0.0001f * Time::deltaTime)
+		glm::vec3(0.0f, 0.0f, 0.1f * Time::deltaTime)
 	);
 }

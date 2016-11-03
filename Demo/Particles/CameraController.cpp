@@ -16,8 +16,8 @@ void CameraController::Start()
 
 void CameraController::Update()
 {
-	constexpr float mouseSensX = 0.00001f;
-	constexpr float mouseSensY = 0.00002f;
+	constexpr float mouseSensX = 0.0001f;
+	constexpr float mouseSensY = 0.0001f;
 
 	if (Input::checkIfKeyPressed(KeyCodes::W)) {
 		transform->setLocalPosition(transform->getLocalPosition() + vec3(0.0, 0.01f, 0.0));
@@ -30,7 +30,7 @@ void CameraController::Update()
 
 	Input::setMouseToCenter();
 
-	cout << mousePos.x << ", " << mousePos.y << endl;
+	//cout << mousePos.x << ", " << mousePos.y << endl;
 
-	this->transform->addLocalYawPitchRoll(glm::vec3(mousePos.x * mouseSensX, mousePos.y * mouseSensY, 0.0f));
+	this->transform->addLocalYawPitchRoll(vec3(mousePos.y * mouseSensY, 0.0f, mousePos.x * mouseSensX));
 }

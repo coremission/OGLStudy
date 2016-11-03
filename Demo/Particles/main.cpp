@@ -41,7 +41,7 @@ void _do(int argc, char **argv) {
 void setUpScene()
 {
 	GameObject* cameraGo = new GameObject("camera");
-	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 100.0f);
+	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
 	cameraGo->AddComponent(camera);
 	camera->transform->setLocalPosition(glm::vec3(0.0f, 5.0f, 0.0f));
 	CameraController* cameraController = new CameraController(cameraGo);

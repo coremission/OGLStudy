@@ -28,7 +28,7 @@ public:
 	template<typename T> void AddComponent();
 	template<typename T> void AddComponent(T*);
 private:
-	void operator=(const GameObject&);
+	void operator=(const GameObject&) = delete;
 };
 
 template<typename T> void GameObject::AddComponent() {
