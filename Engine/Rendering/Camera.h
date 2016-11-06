@@ -3,6 +3,9 @@
 
 #include <Model/Component.h>
 #include <glm/glm.hpp>
+#include <glew/glew.h>
+#include <string>
+#include <vector>
 
 class Camera: public Component
 {
@@ -13,6 +16,7 @@ private:
 	float ratio; // width/height;
 	float nearClippingPlane;
 	float farClippingPlane;
+	GLuint skyBoxTextureId;
 	mutable glm::mat4 viewMatrix;
 	mutable glm::mat4 projectionMatrix;
 
@@ -23,7 +27,8 @@ public:
 	virtual void Update() override;
 	virtual void Start() override;
 	glm::mat4 getViewProjectionMatrix() const;
-
+	void initializeSkybox(std::vector<std::string>);
+	void clearWithSkybox();
 	float getHorizontalFov() const { return horizontalFov; }
 	float getRatio() const { return ratio; }
 	glm::mat4 getViewMatrix() const;

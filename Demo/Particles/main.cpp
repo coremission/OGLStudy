@@ -46,7 +46,15 @@ void setUpScene()
 	camera->transform->setLocalPosition(glm::vec3(0.0f, 5.0f, 0.0f));
 	CameraController* cameraController = new CameraController(cameraGo);
 	cameraGo->AddComponent(cameraController);
-
+	camera->initializeSkybox(std::vector<string>{
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_bk.png",
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_dn.png", 
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_ft.png", 
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_lf.png", 
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_rt.png", 
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_up.png",
+	});
+	
 	auto someModel = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);
 	someModel->AddComponent<RotationBehaviour>(rotation);

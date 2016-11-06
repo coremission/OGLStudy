@@ -30,3 +30,14 @@ std::shared_ptr<Texture> TextureManager::getTexture(std::string fileName)
 	glBindTexture(GL_TEXTURE_2D, 0);
 	return result;
 }
+
+void TextureManager::loadPng(const std::string& filename, std::vector<unsigned char>& outBuffer, unsigned long& width, unsigned long& height)
+{
+	// read png to buffer
+	std::vector<unsigned char> inBufferVector;
+	bool fileReadStatus = IOManager::readBinaryFileToBuffer(filename, inBufferVector);
+	if (!fileReadStatus)
+		throw std::runtime_error("Can't read png file: " + filename);
+
+	decodePNG(outBuffer, width, height, &inBufferVector[0], inBufferVector.size());
+}
