@@ -6,7 +6,8 @@ using namespace std;
 using namespace glm;
 
 constexpr char * const QUAD_MESH_ID = "rudy_quad";
-constexpr char * const INDEXED_CUBE_MESH_ID = "indexed_qube_mesh";
+constexpr char * const INDEXED_QUAD_MESH_ID = "indexed_qube_mesh";
+constexpr char * const SKYBOX_CUBE_MESH_ID = "indexed_skybox_mesh";
 
 std::map<std::string, std::shared_ptr<Mesh>> MeshManager::meshMap;
 
@@ -47,17 +48,17 @@ shared_ptr<Mesh> MeshManager::getQuadMesh()
 	return registerMesh(QUAD_MESH_ID, vertices);
 }
 
-std::shared_ptr<Mesh> MeshManager::getCubeMesh()
+std::shared_ptr<Mesh> MeshManager::getIndexedQuadMesh()
 {
-	bool meshCreated = meshMap.find(INDEXED_CUBE_MESH_ID) != meshMap.end();
+	bool meshCreated = meshMap.find(INDEXED_QUAD_MESH_ID) != meshMap.end();
 	if (meshCreated)
-		return meshMap[INDEXED_CUBE_MESH_ID];
+		return meshMap[INDEXED_QUAD_MESH_ID];
 
 	auto v0 = VertexData{ vec3( 1.0f, -1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f) };
 	auto v1 = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
 	auto v2 = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
 	auto v3 = VertexData{ vec3( 1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
-	auto v4 = VertexData{ vec3( 1.0f,  1.0f, 2.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) };
+	auto v4 = VertexData{ vec3( 1.0f,  1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) };
 	auto v5 = VertexData{ vec3(-1.0f, -1.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
 
 	vector<VertexData> vertices {v0, v1, v2, v3, v4, v5};
@@ -66,5 +67,27 @@ std::shared_ptr<Mesh> MeshManager::getCubeMesh()
 							3, 4, 5,
 						  };
 	
-	return registerMesh(QUAD_MESH_ID, vertices, indices);
+	return registerMesh(INDEXED_QUAD_MESH_ID, vertices, indices);
+}
+
+std::shared_ptr<Mesh> MeshManager::getSkyboxMesh()
+{
+	bool meshCreated = meshMap.find(SKYBOX_CUBE_MESH_ID) != meshMap.end();
+	if (meshCreated)
+		return meshMap[SKYBOX_CUBE_MESH_ID];
+
+	auto v0 = VertexData{ vec3(1.0f, -1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f) };
+	auto v1 = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	auto v2 = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	auto v3 = VertexData{ vec3(1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	auto v4 = VertexData{ vec3(1.0f,  1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) };
+	auto v5 = VertexData{ vec3(-1.0f, -1.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+
+	vector<VertexData> vertices{ v0, v1, v2, v3, v4, v5 };
+
+	vector<GLuint> indices{ 0, 1, 2,
+		3, 4, 5,
+	};
+
+	return registerMesh(SKYBOX_CUBE_MESH_ID, vertices, indices);
 }

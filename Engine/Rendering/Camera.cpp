@@ -3,6 +3,8 @@
 #include "TextureManager.h"
 #include <vector>
 #include <glm/gtx/transform.hpp>
+#include "ShaderLoader.h"
+#include "MeshManager.h"
 
 // static fields
 Camera* Camera::main = nullptr;
@@ -59,9 +61,37 @@ void Camera::initializeSkybox(std::vector<std::string> filenames)
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 }
 
-void Camera::clearWithSkybox()
+void Camera::initializeSkyboxProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
 {
+	skyboxProgram = ShaderLoader::CreateProgram(vertexShaderPath.c_str(), fragmentShaderPath.c_str());
+}
 
+void Camera::clearWithSkybox() const
+{
+	// 0. reset depth mask
+	glDepthMask(GL_FALSE);
+
+	// 1. bind skybox vao
+	auto mesh = MeshManager::getSkyboxMesh();
+	glBindVertexArray(mesh->vao);
+
+	// 2. use skybox program
+	glUseProgram(skyboxProgram);
+
+	// 3. bind uniforms
+	//// 3.1 cubemap
+	glBindTexture(GL_TEXTURE_CUBE_MAP, skyBoxTextureId);
+
+	//// 3.2 view projection matrix
+	GLuint vpLocation = glGetUniformLocation(skyboxProgram, "VPMatrix");
+	glm::mat4 viewProjectionMatrix = getViewProjectionMatrix();
+	glUniformMatrix4fv(vpLocation, 1, GL_FALSE, &viewProjectionMatrix[0][0]);
+
+	// 4. draw skybox
+	glDrawElements(GL_TRIANGLES, mesh->indicesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));
+
+	// 5. set depth mask back
+	glDepthMask(GL_TRUE);
 }
 
 glm::mat4 Camera::getViewMatrix() const

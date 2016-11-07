@@ -16,7 +16,11 @@ private:
 	float ratio; // width/height;
 	float nearClippingPlane;
 	float farClippingPlane;
+	
+	// skybox
 	GLuint skyBoxTextureId;
+	GLuint skyboxProgram;
+
 	mutable glm::mat4 viewMatrix;
 	mutable glm::mat4 projectionMatrix;
 
@@ -28,7 +32,8 @@ public:
 	virtual void Start() override;
 	glm::mat4 getViewProjectionMatrix() const;
 	void initializeSkybox(std::vector<std::string>);
-	void clearWithSkybox();
+	void initializeSkyboxProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath);
+	void clearWithSkybox() const;
 	float getHorizontalFov() const { return horizontalFov; }
 	float getRatio() const { return ratio; }
 	glm::mat4 getViewMatrix() const;

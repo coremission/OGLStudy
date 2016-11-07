@@ -30,6 +30,8 @@
     <None Include="Shaders\ParticleBIllboard_Vertex.glsl" />
     <None Include="Shaders\Diffuse_Fragment.glsl" />
     <None Include="Shaders\Diffuse_Vertex.glsl" />
+    <None Include="Shaders\Skybox_Vertex.glsl" />
+    <None Include="Shaders\Skybox_Fragment.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RotationBehaviour.h">
