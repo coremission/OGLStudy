@@ -16,8 +16,8 @@ struct Mesh {
 
 template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
-	Mesh<typename Traits::VertexDataType> mesh;
-	typename Traits::UniformDataType uniformData;
+	Mesh<typename Traits::PerVertexData> mesh;
+	typename Traits::UniformData uniformData;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
 public:
@@ -54,9 +54,6 @@ struct CubeMaterialTraits {
 		int IT_MVPMatrix;
 		// ... etc
 	};
-
-	typedef UniformData	UniformDataType;
-	typedef PerVertexData VertexDataType;
 };
 
 class CubeRenderer : public Renderer<CubeRenderer, CubeMaterialTraits> {
