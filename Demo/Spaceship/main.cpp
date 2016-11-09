@@ -46,14 +46,14 @@ void setUpScene()
 	camera->transform->setLocalPosition(glm::vec3(0.0f, 5.0f, 0.0f));
 	CameraController* cameraController = new CameraController(cameraGo);
 	cameraGo->AddComponent(cameraController);
-	camera->initializeSkybox(std::vector<string>{
+	/*camera->initializeSkybox(std::vector<string>{
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_bk.png",
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_dn.png", 
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_ft.png", 
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_lf.png", 
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_rt.png", 
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_up.png",
-	});
+	});*/
 
 	camera->initializeSkyboxProgram("Shaders\\Skybox_Vertex.glsl", "Shaders\\Skybox_Fragment.glsl");
 

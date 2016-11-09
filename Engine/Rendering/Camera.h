@@ -20,6 +20,7 @@ private:
 	// skybox
 	GLuint skyBoxTextureId;
 	GLuint skyboxProgram;
+	GLuint skyboxVao;
 
 	mutable glm::mat4 viewMatrix;
 	mutable glm::mat4 projectionMatrix;

@@ -9,14 +9,23 @@ public:
 	virtual ~IRenderer() = default;
 };
 
-template<typename VertexData>
-struct Mesh {
-	std::vector<VertexData> data;
-};
+/*template<typename VertexData, template <class T> class Container = std::vector>
+class Mesh {
+public:
+	typedef Container<VertexData> Data;
+private:
+	Data data;
+	GLuint vao;
+
+public:
+	Mesh(Data&&);
+
+};*/
 
 template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
-	Mesh<typename Traits::PerVertexData> mesh;
+	// todo: get mesh back
+	//Mesh<typename Traits::PerVertexData, std::vector> mesh;
 	typename Traits::UniformData uniformData;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }

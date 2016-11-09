@@ -70,24 +70,68 @@ std::shared_ptr<Mesh> MeshManager::getIndexedQuadMesh()
 	return registerMesh(INDEXED_QUAD_MESH_ID, vertices, indices);
 }
 
-std::shared_ptr<Mesh> MeshManager::getSkyboxMesh()
+GLuint MeshManager::getSkyboxMesh()
 {
-	bool meshCreated = meshMap.find(SKYBOX_CUBE_MESH_ID) != meshMap.end();
-	if (meshCreated)
-		return meshMap[SKYBOX_CUBE_MESH_ID];
+	GLuint meshVbo;
+	GLuint meshVao;
 
-	auto v0 = VertexData{ vec3(1.0f, -1.0f, 1.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f) };
-	auto v1 = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
-	auto v2 = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
-	auto v3 = VertexData{ vec3(1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
-	auto v4 = VertexData{ vec3(1.0f,  1.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f) };
-	auto v5 = VertexData{ vec3(-1.0f, -1.0f, 1.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f) };
+	GLfloat skyboxVertices[] = {
+		// Positions          
+		-1.0f,  1.0f, -1.0f,
+		-1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
 
-	vector<VertexData> vertices{ v0, v1, v2, v3, v4, v5 };
+		-1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f, -1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
 
-	vector<GLuint> indices{ 0, 1, 2,
-		3, 4, 5,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+
+		-1.0f, -1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f,
+		-1.0f, -1.0f,  1.0f,
+
+		-1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f, -1.0f,
+		1.0f,  1.0f,  1.0f,
+		1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f,  1.0f,
+		-1.0f,  1.0f, -1.0f,
+
+		-1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f,
+		-1.0f, -1.0f,  1.0f,
+		1.0f, -1.0f,  1.0f
 	};
 
-	return registerMesh(SKYBOX_CUBE_MESH_ID, vertices, indices);
+	glGenVertexArrays(1, &meshVao);
+	glBindVertexArray(meshVao);
+
+	glGenBuffers(1, &meshVbo);
+	glBindBuffer(GL_ARRAY_BUFFER, meshVbo);
+
+	int bufferSize = sizeof(skyboxVertices);
+
+	glBufferData(GL_ARRAY_BUFFER, bufferSize, skyboxVertices, GL_STATIC_DRAW);
+
+	glVertexAttribPointer(0, bufferSize, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, 0);
+	glEnableVertexAttribArray(0);
+
+	return meshVao;
 }

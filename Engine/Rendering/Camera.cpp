@@ -63,6 +63,7 @@ void Camera::initializeSkybox(std::vector<std::string> filenames)
 
 void Camera::initializeSkyboxProgram(const std::string& vertexShaderPath, const std::string& fragmentShaderPath)
 {
+	skyboxVao = MeshManager::getSkyboxMesh();
 	skyboxProgram = ShaderLoader::CreateProgram(vertexShaderPath.c_str(), fragmentShaderPath.c_str());
 }
 
@@ -72,8 +73,7 @@ void Camera::clearWithSkybox() const
 	glDepthMask(GL_FALSE);
 
 	// 1. bind skybox vao
-	auto mesh = MeshManager::getSkyboxMesh();
-	glBindVertexArray(mesh->vao);
+	glBindVertexArray(skyboxVao);
 
 	// 2. use skybox program
 	glUseProgram(skyboxProgram);
@@ -88,7 +88,7 @@ void Camera::clearWithSkybox() const
 	glUniformMatrix4fv(vpLocation, 1, GL_FALSE, &viewProjectionMatrix[0][0]);
 
 	// 4. draw skybox
-	glDrawElements(GL_TRIANGLES, mesh->indicesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));
+	glDrawArrays(GL_TRIANGLES, 0, 36);
 
 	// 5. set depth mask back
 	glDepthMask(GL_TRUE);
