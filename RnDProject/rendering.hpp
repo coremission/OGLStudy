@@ -10,16 +10,26 @@ public:
 };
 
 template<typename VertexData>
-struct Mesh {
+class Mesh {
+	int vao;
 	std::vector<VertexData> data;
 };
 
 template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
+protected:
 	Mesh<typename Traits::PerVertexData> mesh;
 	typename Traits::UniformData uniformData;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
+	// constructor
+	Renderer() {
+		// 1. Load mesh
+
+		// 2. Load shader program
+
+		// 3. Validate shader program (IF DEBUG)
+	}
 public:
 	virtual void render() override {
 		// 1. bind mesh to context (bind VAO)
@@ -38,11 +48,21 @@ public:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct CubeMaterialTraits {
-	class PerVertexData {
+	const char * VertexShaderPath = "";
+	const char * FragmentShaderPath = "";
+
+	struct PerVertexData {
 		int position;
 		int normal;
 		int color;
 		int uv;
+	};
+	typedef std::vector<PerVertexData> MeshDataContainer;
+
+	class MeshAllocator {
+	public:
+		static void allocate(MeshDataContainer&& dataContainer) {};
+		static void deallocate() {};
 	};
 
 	struct UniformData {
