@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <memory>
 
 // Basic interface to Use in GameObject
 class IRenderer {
@@ -19,7 +20,7 @@ template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
 protected:
 	typename Traits::MeshData meshData;
-	typename Traits::Mesh mesh;
+	std::shared_ptr<typename Traits::Mesh> mesh;
 	typename Traits::UniformData uniformData;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
@@ -63,7 +64,7 @@ struct CubeMaterialTraits {
 
 	class MeshAllocator {
 	public:
-		static void allocate(MeshData&& dataContainer) {};
+		static std::shared_ptr<Mesh> allocate(MeshData&& dataContainer) {};
 		static void deallocate() {};
 	};
 
