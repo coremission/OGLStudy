@@ -1,5 +1,4 @@
 ﻿#include <iostream>
-#include <vector>
 #include <memory>
 
 #include "rendering.hpp"
@@ -19,5 +18,6 @@ int main(int argc, char** argv)
 
 void _do() {
 	unique_ptr<IRenderer> renderer = std::make_unique<CubeRenderer>();
+	unique_ptr<IRenderer> skyboxRenderer = std::make_unique<SkyboxRenderer>();
 	renderer->render();
 }

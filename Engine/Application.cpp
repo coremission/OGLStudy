@@ -123,8 +123,8 @@ void Application::processMousePress(int button, int state, int x, int y)
 
 void Application::processMouseFreeMove(GLFWwindow* window, double x, double y)
 {
-	Input::mousePosition.x = x;
-	Input::mousePosition.y = y;
+	Input::mousePosition.x = static_cast<float>(x);
+	Input::mousePosition.y = static_cast<float>(y);
 
 	//std::cout << x << ", " << y << std::endl;
 }

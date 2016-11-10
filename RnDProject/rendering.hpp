@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream>
+#include <memory>
 
 // Basic interface to Use in GameObject
 class IRenderer {
@@ -9,26 +10,28 @@ public:
 	virtual ~IRenderer() = default;
 };
 
-/*template<typename VertexData, template <class T> class Container = std::vector>
+template<typename VertexData>
 class Mesh {
-public:
-	typedef Container<VertexData> Data;
-private:
-	Data data;
-	GLuint vao;
-
-public:
-	Mesh(Data&&);
-
-};*/
+	int vao;
+	std::vector<VertexData> data;
+};
 
 template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
-	// todo: get mesh back
-	//Mesh<typename Traits::PerVertexData, std::vector> mesh;
+protected:
+	typename Traits::MeshData meshData;
+	std::shared_ptr<typename Traits::Mesh> mesh;
 	typename Traits::UniformData uniformData;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
+	// constructor
+	Renderer() {
+		// 1. Load mesh
+
+		// 2. Load shader program
+
+		// 3. Validate shader program (IF DEBUG)
+	}
 public:
 	virtual void render() override {
 		// 1. bind mesh to context (bind VAO)
@@ -47,11 +50,22 @@ public:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct CubeMaterialTraits {
-	class PerVertexData {
+	const char * VertexShaderPath = "";
+	const char * FragmentShaderPath = "";
+
+	struct PerVertexData {
 		int position;
 		int normal;
 		int color;
 		int uv;
+	};
+	typedef std::vector<PerVertexData> MeshData;
+	typedef Mesh<PerVertexData> Mesh;
+
+	class MeshAllocator {
+	public:
+		static std::shared_ptr<Mesh> allocate(MeshData&& dataContainer) {};
+		static void deallocate() {};
 	};
 
 	struct UniformData {
@@ -70,4 +84,40 @@ class CubeRenderer : public Renderer<CubeRenderer, CubeMaterialTraits> {
 public:
 	virtual void render() override { std::cout << "render cube perfectly"; };
 	virtual ~CubeRenderer() override { std::cout << std::endl << "~CubeRenderer" << std::endl; };
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SKYBOX RENDERER IMPLEMENTATION ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+struct SkyboxMaterialTraits {
+	const char * VertexShaderPath = "";
+	const char * FragmentShaderPath = "";
+	// skybox is simple positions-only mesh (here must be glm::vec3);
+	typedef float PerVertexData;
+	typedef std::vector<PerVertexData> MeshData;
+	typedef Mesh<PerVertexData> Mesh;
+
+	class MeshAllocator {
+	public:
+		static void allocate(MeshData&& dataContainer) {};
+		static void deallocate() {};
+	};
+	
+	struct UniformData {
+		int top;
+		int bottom;
+		int front;
+		int back;
+		int left;
+		int right;
+		// ... etc
+	};
+};
+
+class SkyboxRenderer : public Renderer<SkyboxRenderer, SkyboxMaterialTraits> {
+	friend class Renderer<SkyboxRenderer, SkyboxMaterialTraits>;
+public:
+	virtual void render() override { std::cout << "render skybox perfectly"; };
+	virtual ~SkyboxRenderer() override { std::cout << std::endl << "~SkyboxRenderer" << std::endl; };
 };
