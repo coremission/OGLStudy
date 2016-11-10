@@ -5,23 +5,24 @@
 #include "Mesh.h"
 
 #include <memory>
+#include "rendering.hpp"
 
 class GameObject;
 
-class BaseRenderer
+class BaseRenderer: public IRenderer
 {
 protected:
 	const GameObject* const _gameObject;
 
 public:
-	std::shared_ptr<Mesh> mesh;
+	std::shared_ptr<LegacyMesh> mesh;
 	std::shared_ptr<Material> material;
 	
-	BaseRenderer(GameObject* gameObject, std::shared_ptr<Material>, std::shared_ptr<Mesh> mesh);
+	BaseRenderer(GameObject* gameObject, std::shared_ptr<Material>, std::shared_ptr<LegacyMesh> mesh);
 	virtual ~BaseRenderer();
-	virtual void render() const;
+	virtual void render() const override;
 
-	static std::unique_ptr<BaseRenderer> create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<Mesh> mesh);
+	static std::unique_ptr<BaseRenderer> create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<LegacyMesh> mesh);
 };
 
 #endif // BASERENDERER_h

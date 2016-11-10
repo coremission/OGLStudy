@@ -4,7 +4,7 @@
 #include <Model/VertexData.h>
 #include <glew/glew.h>
 
-class Mesh
+class LegacyMesh
 {
 private:
 	bool indexedMesh;
@@ -19,9 +19,9 @@ private:
 	static void bindAttribute(GLuint location, size_t size, int type, bool doNormalize, void* offset);
 public:
 	GLuint vao;
-	Mesh(std::vector<VertexData>);
-	Mesh(std::vector<VertexData>, std::vector<GLuint>);
-	~Mesh();
+	LegacyMesh(std::vector<VertexData>);
+	LegacyMesh(std::vector<VertexData>, std::vector<GLuint>);
+	~LegacyMesh();
 	int verticesCount() const { return vertices.size(); }
 	int indicesCount() const { return indices.size(); }
 	bool isIndexed() const { return indexedMesh; }

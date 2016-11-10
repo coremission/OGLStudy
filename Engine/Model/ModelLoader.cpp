@@ -52,7 +52,7 @@ void ModelLoader::processNode(GameObject* parent, aiNode* node, const aiScene* s
 	}
 }
 
-shared_ptr<Mesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
+shared_ptr<LegacyMesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
 {
 	vector<VertexData> vertices;
 	vector<GLuint> indices;

@@ -1,14 +1,11 @@
 ﻿#include <iostream>
-#include <memory>
-
-#include "rendering.hpp"
-
 using namespace std;
 
 void _do();
 
 int main(int argc, char** argv)
 {
+	// todo: this will be used later for some rnd work
 	_do();
 
 	cout << endl << "Press any key to exit..." << endl;
@@ -17,7 +14,4 @@ int main(int argc, char** argv)
 }
 
 void _do() {
-	unique_ptr<IRenderer> renderer = std::make_unique<CubeRenderer>();
-	unique_ptr<IRenderer> skyboxRenderer = std::make_unique<SkyboxRenderer>();
-	renderer->render();
 }

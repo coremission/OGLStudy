@@ -3,7 +3,7 @@
 
 #define attribOffset(field) (reinterpret_cast<void *>(offsetof(VertexData, field)))
 
-Mesh::~Mesh() {
+LegacyMesh::~LegacyMesh() {
 	// delete VAO and VBOs
 	glDeleteVertexArrays(1, &vao);
 	glDeleteBuffers(1, &vbo);
@@ -12,13 +12,13 @@ Mesh::~Mesh() {
 		glDeleteBuffers(1, &indicesVbo);
 }
 
-void Mesh::bindAttribute(GLuint location, size_t size, int type, bool doNormalize, void* offset)
+void LegacyMesh::bindAttribute(GLuint location, size_t size, int type, bool doNormalize, void* offset)
 {
 	glVertexAttribPointer(location, size, type, doNormalize ? GL_TRUE : GL_FALSE, sizeof(VertexData), offset);
 	glEnableVertexAttribArray(location);
 }
 
-void Mesh::fillVertexBuffer()
+void LegacyMesh::fillVertexBuffer()
 {
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -30,14 +30,14 @@ void Mesh::fillVertexBuffer()
 	bindAttribute(3, 3, GL_FLOAT, true, attribOffset(_normal));
 }
 
-void Mesh::fillIndicesBuffer()
+void LegacyMesh::fillIndicesBuffer()
 {
 	glGenBuffers(1, &indicesVbo);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indicesVbo);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(GLuint), &indices[0], GL_STATIC_DRAW);
 }
 
-Mesh::Mesh(std::vector<VertexData> _vertices) 
+LegacyMesh::LegacyMesh(std::vector<VertexData> _vertices) 
 	:indexedMesh(false), vertices(_vertices)
 {
 	glGenVertexArrays(1, &vao);
@@ -48,7 +48,7 @@ Mesh::Mesh(std::vector<VertexData> _vertices)
 	glBindVertexArray(0);
 }
 
-Mesh::Mesh(std::vector<VertexData> _vertices, std::vector<GLuint> _indices)
+LegacyMesh::LegacyMesh(std::vector<VertexData> _vertices, std::vector<GLuint> _indices)
 	:indexedMesh(true), vertices(_vertices), indices(_indices)
 {
 	glGenVertexArrays(1, &vao);

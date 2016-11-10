@@ -133,6 +133,7 @@
     <ClCompile Include="Rendering\MaterialManager.cpp" />
     <ClCompile Include="Rendering\Mesh.cpp" />
     <ClCompile Include="Rendering\MeshManager.cpp" />
+    <ClCompile Include="Rendering\rendering.cpp" />
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\Material.cpp" />
     <ClCompile Include="Model\VertexData.cpp" />
@@ -198,6 +199,7 @@
     <ClInclude Include="Rendering\MaterialManager.h" />
     <ClInclude Include="Rendering\Mesh.h" />
     <ClInclude Include="Rendering\MeshManager.h" />
+    <ClInclude Include="Rendering\rendering.hpp" />
     <ClInclude Include="Rendering\ShaderLoader.h" />
     <ClInclude Include="Rendering\Material.h" />
     <ClInclude Include="Model\Scene.h" />

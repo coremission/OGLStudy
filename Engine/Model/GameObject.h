@@ -9,8 +9,8 @@
 #include <string>
 #include <memory>
 
-class BaseRenderer;
 class Component;
+class IRenderer;
 
 class GameObject {
 private:
@@ -18,7 +18,7 @@ private:
 public:
 	std::string name;
 	std::unique_ptr<Transform> transform;
-	std::unique_ptr<BaseRenderer> renderer;
+	std::unique_ptr<IRenderer> renderer;
 
 	GameObject();
 	explicit GameObject(const std::string& _name);

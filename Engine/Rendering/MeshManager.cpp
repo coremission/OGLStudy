@@ -9,23 +9,23 @@ constexpr char * const QUAD_MESH_ID = "rudy_quad";
 constexpr char * const INDEXED_QUAD_MESH_ID = "indexed_qube_mesh";
 constexpr char * const SKYBOX_CUBE_MESH_ID = "indexed_skybox_mesh";
 
-std::map<std::string, std::shared_ptr<Mesh>> MeshManager::meshMap;
+std::map<std::string, std::shared_ptr<LegacyMesh>> MeshManager::meshMap;
 
-shared_ptr<Mesh> MeshManager::registerMesh(std::string id, vector<VertexData> vertices)
+shared_ptr<LegacyMesh> MeshManager::registerMesh(std::string id, vector<VertexData> vertices)
 {
-	auto mesh = make_shared<Mesh>(vertices);
+	auto mesh = make_shared<LegacyMesh>(vertices);
 	meshMap[id] = mesh;
 	return mesh;
 }
 
-std::shared_ptr<Mesh> MeshManager::registerMesh(std::string id, std::vector<VertexData> vertices, std::vector<GLuint> indices)
+std::shared_ptr<LegacyMesh> MeshManager::registerMesh(std::string id, std::vector<VertexData> vertices, std::vector<GLuint> indices)
 {
-	auto mesh = make_shared<Mesh>(vertices, indices);
+	auto mesh = make_shared<LegacyMesh>(vertices, indices);
 	meshMap[id] = mesh;
 	return mesh;
 }
 
-shared_ptr<Mesh> MeshManager::getQuadMesh()
+shared_ptr<LegacyMesh> MeshManager::getQuadMesh()
 {
 	bool quadMeshCreated = meshMap.find(QUAD_MESH_ID) != meshMap.end();
 	if (quadMeshCreated)
@@ -48,7 +48,7 @@ shared_ptr<Mesh> MeshManager::getQuadMesh()
 	return registerMesh(QUAD_MESH_ID, vertices);
 }
 
-std::shared_ptr<Mesh> MeshManager::getIndexedQuadMesh()
+std::shared_ptr<LegacyMesh> MeshManager::getIndexedQuadMesh()
 {
 	bool meshCreated = meshMap.find(INDEXED_QUAD_MESH_ID) != meshMap.end();
 	if (meshCreated)

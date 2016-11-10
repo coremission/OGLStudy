@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef RUDY_RENDERING_HPP
+#define RUDY_RENDERING_HPP
+
 #include <vector>
 #include <iostream>
 #include <memory>
@@ -6,9 +10,10 @@
 // Basic interface to Use in GameObject
 class IRenderer {
 public:
-	virtual void render() {};
+	virtual void render() const {};
 	virtual ~IRenderer() = default;
 };
+
 
 template<typename VertexData>
 class Mesh {
@@ -33,7 +38,7 @@ protected:
 		// 3. Validate shader program (IF DEBUG)
 	}
 public:
-	virtual void render() override {
+	virtual void render() const override {
 		// 1. bind mesh to context (bind VAO)
 
 		// 2. use shader program
@@ -82,7 +87,7 @@ struct CubeMaterialTraits {
 class CubeRenderer : public Renderer<CubeRenderer, CubeMaterialTraits> {
 	friend class Renderer<CubeRenderer, CubeMaterialTraits>;
 public:
-	virtual void render() override { std::cout << "render cube perfectly"; };
+	virtual void render() const override { std::cout << "render cube perfectly"; };
 	virtual ~CubeRenderer() override { std::cout << std::endl << "~CubeRenderer" << std::endl; };
 };
 
@@ -118,6 +123,8 @@ struct SkyboxMaterialTraits {
 class SkyboxRenderer : public Renderer<SkyboxRenderer, SkyboxMaterialTraits> {
 	friend class Renderer<SkyboxRenderer, SkyboxMaterialTraits>;
 public:
-	virtual void render() override { std::cout << "render skybox perfectly"; };
+	virtual void render() const override { std::cout << "render skybox perfectly"; };
 	virtual ~SkyboxRenderer() override { std::cout << std::endl << "~SkyboxRenderer" << std::endl; };
 };
+
+#endif //RUDY_RENDERING_HPP

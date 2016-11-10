@@ -10,7 +10,7 @@ class ModelLoader
 {
 private:
 	static void processNode(GameObject*, aiNode* node, const aiScene* scene);
-	static std::shared_ptr<Mesh> processMesh(aiMesh* mesh, const aiScene* scene);
+	static std::shared_ptr<LegacyMesh> processMesh(aiMesh* mesh, const aiScene* scene);
 	static std::shared_ptr<Material> processMaterial();
 public:
 	static GameObject* LoadModel(const std::string&, const std::string&);

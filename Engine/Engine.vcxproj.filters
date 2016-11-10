@@ -93,6 +93,9 @@
     <ClCompile Include="Model\ModelLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\rendering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\glm\detail\_features.hpp">
@@ -1086,6 +1089,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Model\ModelLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\rendering.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
