@@ -18,7 +18,8 @@ class Mesh {
 template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
 protected:
-	Mesh<typename Traits::PerVertexData> mesh;
+	typename Traits::MeshData meshData;
+	typename Traits::Mesh mesh;
 	typename Traits::UniformData uniformData;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
@@ -57,11 +58,12 @@ struct CubeMaterialTraits {
 		int color;
 		int uv;
 	};
-	typedef std::vector<PerVertexData> MeshDataContainer;
+	typedef std::vector<PerVertexData> MeshData;
+	typedef Mesh<PerVertexData> Mesh;
 
 	class MeshAllocator {
 	public:
-		static void allocate(MeshDataContainer&& dataContainer) {};
+		static void allocate(MeshData&& dataContainer) {};
 		static void deallocate() {};
 	};
 
@@ -81,4 +83,40 @@ class CubeRenderer : public Renderer<CubeRenderer, CubeMaterialTraits> {
 public:
 	virtual void render() override { std::cout << "render cube perfectly"; };
 	virtual ~CubeRenderer() override { std::cout << std::endl << "~CubeRenderer" << std::endl; };
+};
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SKYBOX RENDERER IMPLEMENTATION ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+struct SkyboxMaterialTraits {
+	const char * VertexShaderPath = "";
+	const char * FragmentShaderPath = "";
+	// skybox is simple positions-only mesh (here must be glm::vec3);
+	typedef float PerVertexData;
+	typedef std::vector<PerVertexData> MeshData;
+	typedef Mesh<PerVertexData> Mesh;
+
+	class MeshAllocator {
+	public:
+		static void allocate(MeshData&& dataContainer) {};
+		static void deallocate() {};
+	};
+	
+	struct UniformData {
+		int top;
+		int bottom;
+		int front;
+		int back;
+		int left;
+		int right;
+		// ... etc
+	};
+};
+
+class SkyboxRenderer : public Renderer<SkyboxRenderer, SkyboxMaterialTraits> {
+	friend class Renderer<SkyboxRenderer, SkyboxMaterialTraits>;
+public:
+	virtual void render() override { std::cout << "render skybox perfectly"; };
+	virtual ~SkyboxRenderer() override { std::cout << std::endl << "~SkyboxRenderer" << std::endl; };
 };
