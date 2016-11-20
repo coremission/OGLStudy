@@ -1,5 +1,5 @@
 #include "ParticleSystem.h"
-#include <Rendering/MaterialManager.h>
+#include <Rendering/ShaderProgram.h>
 
 #include <glm/glm.hpp>
 #include <glew/glew.h>
@@ -42,7 +42,7 @@ void ParticleSystem::createBaseQuad()
 	glEnableVertexAttribArray(1);
 	glVertexAttribDivisor(1, 1);
 	
-	material = MaterialManager::getMaterial("ParticlesBillboard", "Shaders\\ParticleBillboard_Vertex.glsl", "Shaders\\ParticleBillboard_Fragment.glsl");
+	material = ShaderProgram::get("ParticlesBillboard", "Shaders\\ParticleBillboard_Vertex.glsl", "Shaders\\ParticleBillboard_Fragment.glsl");
 }
 
 void ParticleSystem::updateParticles()

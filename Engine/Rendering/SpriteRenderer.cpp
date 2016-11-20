@@ -1,18 +1,18 @@
 ﻿#include "SpriteRenderer.h"
-#include "MaterialManager.h"
+#include "ShaderProgram.h"
 #include "MeshManager.h"
 
 #include <memory>
 #include <iostream>
 #include "TextureManager.h"
 
-SpriteRenderer::SpriteRenderer(GameObject* _gameObject, std::shared_ptr<Texture> _texture):
-	BaseRenderer(_gameObject, MaterialManager::getDefaultSpriteMaterial(), MeshManager::getQuadMesh()),
+LegacySpriteRenderer::LegacySpriteRenderer(GameObject* _gameObject, std::shared_ptr<Texture> _texture):
+	BaseRenderer(_gameObject, ShaderProgram::getDefaultSpriteProgram(), MeshManager::getQuadMesh()),
 	sprite(std::make_unique<Sprite>(_texture))
 {
 }
 
-void SpriteRenderer::render() const
+void LegacySpriteRenderer::render() const
 {
 	// bind VAO
 	glBindVertexArray(mesh->vao);
@@ -36,13 +36,19 @@ void SpriteRenderer::render() const
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-SpriteRenderer::~SpriteRenderer()
+LegacySpriteRenderer::~LegacySpriteRenderer()
 {
 	std::cout << "~spriteRenderer.destructor " << std::endl;
 }
 
-std::unique_ptr<SpriteRenderer> SpriteRenderer::create(GameObject* _gameObject, const std::string& spriteFileName)
+std::unique_ptr<LegacySpriteRenderer> LegacySpriteRenderer::create(GameObject* _gameObject, const std::string& spriteFileName)
 {
-	auto renderer = std::make_unique<SpriteRenderer>(_gameObject, TextureManager::getTexture(spriteFileName));
+	auto renderer = std::make_unique<LegacySpriteRenderer>(_gameObject, TextureManager::getTexture(spriteFileName));
 	return renderer;
+}
+
+/// new sprite renderer
+
+SpriteRenderer::~SpriteRenderer()
+{
 }

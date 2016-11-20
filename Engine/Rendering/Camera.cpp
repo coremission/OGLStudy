@@ -69,6 +69,9 @@ void Camera::initializeSkyboxProgram(const std::string& vertexShaderPath, const 
 
 void Camera::clearWithSkybox() const
 {
+	// todo: disabled
+	return;
+
 	// 0. reset depth mask
 	glDepthMask(GL_FALSE);
 

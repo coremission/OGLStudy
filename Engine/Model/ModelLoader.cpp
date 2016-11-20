@@ -6,7 +6,7 @@
 #include <assimp/postprocess.h>
 #include <Rendering/Texture.h>
 #include <Rendering/MeshManager.h>
-#include <Rendering/MaterialManager.h>
+#include <Rendering/ShaderProgram.h>
 
 using namespace std;
 
@@ -26,9 +26,9 @@ GameObject* ModelLoader::LoadModel(const string& name, const std::string& path)
 	return gameObject;
 }
 
-shared_ptr<Material> ModelLoader::processMaterial()
+shared_ptr<ShaderProgram> ModelLoader::processMaterial()
 {
-	return MaterialManager::getMaterial("temp_888", "Shaders\\Diffuse_Vertex.glsl", "Shaders\\Diffuse_Fragment.glsl");
+	return ShaderProgram::get("temp_888", "Shaders\\Diffuse_Vertex.glsl", "Shaders\\Diffuse_Fragment.glsl");
 }
 
 void ModelLoader::processNode(GameObject* parent, aiNode* node, const aiScene* scene)

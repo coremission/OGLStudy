@@ -1,7 +1,7 @@
 ﻿#ifndef BASERENDERER_h
 #define BASERENDERER_h
 #include <Model/GameObject.h>
-#include "Material.h"
+#include "ShaderProgram.h"
 #include "Mesh.h"
 
 #include <memory>
@@ -16,13 +16,13 @@ protected:
 
 public:
 	std::shared_ptr<LegacyMesh> mesh;
-	std::shared_ptr<Material> material;
+	std::shared_ptr<ShaderProgram> material;
 	
-	BaseRenderer(GameObject* gameObject, std::shared_ptr<Material>, std::shared_ptr<LegacyMesh> mesh);
+	BaseRenderer(GameObject* gameObject, std::shared_ptr<ShaderProgram>, std::shared_ptr<LegacyMesh> mesh);
 	virtual ~BaseRenderer();
 	virtual void render() const override;
 
-	static std::unique_ptr<BaseRenderer> create(GameObject* gameObject, std::shared_ptr<Material> material, std::shared_ptr<LegacyMesh> mesh);
+	static std::unique_ptr<BaseRenderer> create(GameObject* gameObject, std::shared_ptr<ShaderProgram> material, std::shared_ptr<LegacyMesh> mesh);
 };
 
 #endif // BASERENDERER_h

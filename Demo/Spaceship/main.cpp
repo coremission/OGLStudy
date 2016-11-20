@@ -1,11 +1,7 @@
 #include <Application.h>
 #include <Model/ModelLoader.h>
-#include <ParticleSystem/ParticleSystem.h>
-
 #include <iostream>
 #include "RotationBehaviour.h"
-#include <Rendering/MaterialManager.h>
-#include <Rendering/MeshManager.h>
 #include "CameraController.h"
 
 using namespace std;

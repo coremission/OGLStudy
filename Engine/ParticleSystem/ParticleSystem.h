@@ -3,7 +3,7 @@
 
 #include "Particle.h"
 #include <Model/Component.h>
-#include <Rendering/Material.h>
+#include <Rendering/ShaderProgram.h>
 
 #include <vector>
 #include <memory>
@@ -15,7 +15,7 @@ private:
 	GLuint instaceBuffer;
 	const int MaxParticlesCount;
 	std::vector<Particle> particles;
-	std::shared_ptr<Material> material;
+	std::shared_ptr<ShaderProgram> material;
 
 	void createBaseQuad();
 	void updateParticles();

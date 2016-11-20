@@ -18,9 +18,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Rendering\Material.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rendering\ShaderLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,9 +34,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Model\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rendering\MaterialManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\Mesh.cpp">
@@ -94,6 +88,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\rendering.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\ShaderProgram.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -896,9 +893,6 @@
     <None Include="Dependencies\_dlls\assimp.exp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Rendering\Material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering\ShaderLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -915,9 +909,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Model\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering\MaterialManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\Mesh.h">
@@ -1092,6 +1083,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\rendering.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\ShaderProgram.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

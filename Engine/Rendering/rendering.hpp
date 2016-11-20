@@ -1,7 +1,7 @@
-#pragma once
-
 #ifndef RUDY_RENDERING_HPP
 #define RUDY_RENDERING_HPP
+
+#include "ShaderProgram.h"
 
 #include <vector>
 #include <iostream>
@@ -14,7 +14,6 @@ public:
 	virtual ~IRenderer() = default;
 };
 
-
 template<typename VertexData>
 class Mesh {
 	int vao;
@@ -25,16 +24,18 @@ template<typename DerivedRenderer, typename Traits>
 class Renderer : public IRenderer {
 protected:
 	typename Traits::MeshData meshData;
-	std::shared_ptr<typename Traits::Mesh> mesh;
 	typename Traits::UniformData uniformData;
+	std::shared_ptr<typename Traits::Mesh> mesh;
+	std::shared_ptr<ShaderProgram> shaderProgram;
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
 	// constructor
-	Renderer() {
+	Renderer():
 		// 1. Load mesh
-
+		mesh(nullptr),
 		// 2. Load shader program
-
+		shaderProgram(ShaderProgram::get("spriteProgram", Traits::VertexShaderPath, Traits::FragmentShaderPath))
+	{
 		// 3. Validate shader program (IF DEBUG)
 	}
 public:
@@ -55,6 +56,7 @@ public:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct CubeMaterialTraits {
+	const char * ShaderProgramName = "";
 	const char * VertexShaderPath = "";
 	const char * FragmentShaderPath = "";
 
@@ -96,6 +98,7 @@ public:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 struct SkyboxMaterialTraits {
+	const char * ShaderProgramName = "";
 	const char * VertexShaderPath = "";
 	const char * FragmentShaderPath = "";
 	// skybox is simple positions-only mesh (here must be glm::vec3);
