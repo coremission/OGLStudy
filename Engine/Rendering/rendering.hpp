@@ -34,7 +34,7 @@ protected:
 		// 1. Load mesh
 		mesh(nullptr),
 		// 2. Load shader program
-		shaderProgram(ShaderProgram::get("spriteProgram", Traits::VertexShaderPath, Traits::FragmentShaderPath))
+		shaderProgram(ShaderProgram::get(Traits::ShaderProgramName, Traits::VertexShaderPath, Traits::FragmentShaderPath))
 	{
 		// 3. Validate shader program (IF DEBUG)
 	}

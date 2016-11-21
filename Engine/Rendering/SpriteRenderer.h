@@ -25,9 +25,9 @@ public:
 /////////////////////////////////////////////////////////////////////////
 
 struct SpriteMaterialTraits {
-	const char * ShaderProgramName = "";
-	const char * VertexShaderPath = "";
-	const char * FragmentShaderPath = "";
+	const char * ShaderProgramName = "default_sprite_shader_prog";
+	const char * VertexShaderPath = "Shaders\\Vertex.glsl";
+	const char * FragmentShaderPath = "Shaders\\Fragment.glsl";
 	typedef float PerVertexData;
 	typedef std::vector<PerVertexData> MeshData;
 	typedef Mesh<PerVertexData> Mesh;
@@ -54,7 +54,7 @@ class SpriteRenderer: public Renderer<SpriteRenderer, SpriteMaterialTraits>
 	friend class Renderer<SpriteRenderer, SpriteMaterialTraits>;
 public:
 	virtual ~SpriteRenderer() override;
-	virtual void render() const override { std::cout << "render skybox perfectly"; };
+	virtual void render() const override { std::cout << "render sprite perfectly"; };
 };
 
 #endif //SPRITERENDERER_h

@@ -22,6 +22,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RnDProject", "RnDProject\Rn
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Spaceship", "Demo\Spaceship\Spaceship.vcxproj", "{60E45867-B09F-4F7D-982D-4A86C6466D46}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderingTestFixture", "Tests\RenderingTestFixture\RenderingTestFixture.vcxproj", "{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -70,6 +72,14 @@ Global
 		{60E45867-B09F-4F7D-982D-4A86C6466D46}.Release|x64.Build.0 = Release|x64
 		{60E45867-B09F-4F7D-982D-4A86C6466D46}.Release|x86.ActiveCfg = Release|Win32
 		{60E45867-B09F-4F7D-982D-4A86C6466D46}.Release|x86.Build.0 = Release|Win32
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Debug|x64.ActiveCfg = Debug|x64
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Debug|x64.Build.0 = Debug|x64
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Debug|x86.ActiveCfg = Debug|Win32
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Debug|x86.Build.0 = Debug|Win32
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Release|x64.ActiveCfg = Release|x64
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Release|x64.Build.0 = Release|x64
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Release|x86.ActiveCfg = Release|Win32
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +88,6 @@ Global
 		{8D07E041-A1A1-4734-B6B3-0DD9829FBE44} = {7A074D20-54E7-4525-87D1-EEF5F8BCD033}
 		{4348D52B-AFFA-4CAE-ABD6-629DFE74F707} = {D61F3BD9-BF13-46F2-AC53-A30397F055F4}
 		{60E45867-B09F-4F7D-982D-4A86C6466D46} = {3994829D-284B-4189-9B3C-012BFB84A224}
+		{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70} = {D61F3BD9-BF13-46F2-AC53-A30397F055F4}
 	EndGlobalSection
 EndGlobal
