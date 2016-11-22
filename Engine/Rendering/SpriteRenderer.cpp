@@ -47,10 +47,14 @@ std::unique_ptr<LegacySpriteRenderer> LegacySpriteRenderer::create(GameObject* _
 	return renderer;
 }
 
-
 /////////////////////////////////////////////////////////////////////////
 /// new sprite renderer
 /////////////////////////////////////////////////////////////////////////
+SpriteRenderer::SpriteRenderer(GameObject* _gameObject, const std::string& spriteFileName):
+	Renderer(), gameObject(_gameObject)
+{
+}
+
 SpriteRenderer::~SpriteRenderer()
 {
 }

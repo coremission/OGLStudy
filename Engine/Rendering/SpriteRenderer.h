@@ -25,9 +25,9 @@ public:
 /////////////////////////////////////////////////////////////////////////
 
 struct SpriteMaterialTraits {
-	const char * ShaderProgramName = "default_sprite_shader_prog";
-	const char * VertexShaderPath = "Shaders\\Vertex.glsl";
-	const char * FragmentShaderPath = "Shaders\\Fragment.glsl";
+	static constexpr const char * ShaderProgramName = "default_sprite_shader_prog";
+	static constexpr const char * VertexShaderPath = "Shaders\\Vertex.glsl";
+	static constexpr const char * FragmentShaderPath = "Shaders\\Fragment.glsl";
 	typedef float PerVertexData;
 	typedef std::vector<PerVertexData> MeshData;
 	typedef Mesh<PerVertexData> Mesh;
@@ -37,24 +37,16 @@ struct SpriteMaterialTraits {
 		static void allocate(MeshData&& dataContainer) {};
 		static void deallocate() {};
 	};
-
-	struct UniformData {
-		int top;
-		int bottom;
-		int front;
-		int back;
-		int left;
-		int right;
-		// ... etc
-	};
 };
 
 class SpriteRenderer: public Renderer<SpriteRenderer, SpriteMaterialTraits>
 {
 	friend class Renderer<SpriteRenderer, SpriteMaterialTraits>;
+	GameObject* gameObject;
 public:
+	SpriteRenderer(GameObject* gameObject, const std::string& spriteFileName);
 	virtual ~SpriteRenderer() override;
-	virtual void render() const override { std::cout << "render sprite perfectly"; };
+	virtual void render() const override { std::cout << "render sprite perfectly" << std::endl; };
 };
 
 #endif //SPRITERENDERER_h

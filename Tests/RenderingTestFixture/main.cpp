@@ -40,8 +40,9 @@ void setUpScene() {
 	// BALL
 	GameObject* ball = new GameObject("ball");
 	// create renderer
-	ball->renderer = LegacySpriteRenderer::create(ball, "Sprites\\ball.png");
-	
+	//ball->renderer = LegacySpriteRenderer::create(ball, "Sprites\\ball.png");
+	ball->renderer = make_unique<SpriteRenderer>(ball, "Sprites\\ball.png");
+
 	// TODO: add camera
 	// CAMERA
 	GameObject* camera = new GameObject("camera");

@@ -1,10 +1,13 @@
 ﻿#ifndef MESH_h
 #define MESH_h
-#include <vector>
+
+#include "rendering.hpp"
 #include <Model/VertexData.h>
+
+#include <vector>
 #include <glew/glew.h>
 
-class LegacyMesh
+class LegacyMesh: public BaseMesh
 {
 private:
 	bool indexedMesh;
@@ -18,10 +21,9 @@ private:
 	
 	static void bindAttribute(GLuint location, size_t size, int type, bool doNormalize, void* offset);
 public:
-	GLuint vao;
 	LegacyMesh(std::vector<VertexData>);
 	LegacyMesh(std::vector<VertexData>, std::vector<GLuint>);
-	~LegacyMesh();
+	virtual ~LegacyMesh() override;
 	int verticesCount() const { return vertices.size(); }
 	int indicesCount() const { return indices.size(); }
 	bool isIndexed() const { return indexedMesh; }

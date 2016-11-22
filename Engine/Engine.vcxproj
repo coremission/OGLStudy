@@ -132,7 +132,6 @@
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\Mesh.cpp" />
     <ClCompile Include="Rendering\MeshManager.cpp" />
-    <ClCompile Include="Rendering\rendering.cpp" />
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\ShaderProgram.cpp" />
     <ClCompile Include="Model\VertexData.cpp" />
