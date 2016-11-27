@@ -2,9 +2,10 @@
 #include <Model/Component.h>
 #include "BrickBehaviour.h"
 #include <Rendering/SpriteRenderer.h>
+#include <System/Time.h>
 
 #include <cmath>
-#include <System/Time.h>
+#include <memory>
 
 constexpr float diff = 0.0001f;
 
@@ -80,7 +81,7 @@ void Controller::Start()
 			brick->transform->setParent(tempRoot->transform.get());
 			brick->transform->setLocalPosition(start + glm::vec3(offset.x * j, offset.y * i, start.z));
 			brick->AddComponent(brickBehaviour);
-			brick->renderer = LegacySpriteRenderer::create(brick, "Sprites\\brick.png");
+			brick->renderer = std::make_unique<SpriteRenderer>(brick, "Sprites\\brick.png");
 			bricks.push_back(brickBehaviour);
 		}
 	}

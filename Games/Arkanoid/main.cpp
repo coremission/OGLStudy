@@ -47,14 +47,14 @@ void setUpScene() {
 	ball->AddComponent<BallBehaviour>(ballBehaviour);
 
 	// create renderer
-	ball->renderer = LegacySpriteRenderer::create(ball, "Sprites\\ball.png");
+	ball->renderer = make_unique<SpriteRenderer>(ball, "Sprites\\ball.png");
 	
 	// PADDLE
 	GameObject* paddle = new GameObject("paddle");
 	PaddleBehaviour* paddleBehaviour = new PaddleBehaviour(paddle);
 	paddleBehaviour->setUpBall(ballBehaviour);
 	paddle->AddComponent(paddleBehaviour);
-	paddle->renderer = LegacySpriteRenderer::create(paddle, "Sprites\\paddle.png");
+	paddle->renderer = make_unique<SpriteRenderer>(paddle, "Sprites\\paddle.png");
 	
 	// CONTROLLER
 	GameObject* controller = new GameObject("controller");

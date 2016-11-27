@@ -2,27 +2,9 @@
 #define SPRITERENDERER_h
 
 #include "rendering.hpp"
-#include "BaseRenderer.h"
-#include <Model/GameObject.h>
 #include "Sprite.h"
-
+#include <Model/GameObject.h>
 #include <memory>
-
-class GameObject;
-class LegacySpriteRenderer: public BaseRenderer
-{
-private:
-	std::unique_ptr<Sprite> sprite;
-public:
-	LegacySpriteRenderer(GameObject*, std::shared_ptr<Texture>);
-	virtual void render() const override;
-	virtual ~LegacySpriteRenderer() override;
-	static std::unique_ptr<LegacySpriteRenderer> create(GameObject*, const std::string&);
-};
-
-
-/////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////
 
 struct SpriteMaterialTraits {
 	static constexpr const char * ShaderProgramName = "default_sprite_shader_prog";
@@ -31,12 +13,6 @@ struct SpriteMaterialTraits {
 	typedef float PerVertexData;
 	typedef std::vector<PerVertexData> MeshData;
 	typedef Mesh<PerVertexData> Mesh;
-
-	class MeshAllocator {
-	public:
-		static void allocate(MeshData&& dataContainer) {};
-		static void deallocate() {};
-	};
 };
 
 class SpriteRenderer: public Renderer<SpriteRenderer, SpriteMaterialTraits>

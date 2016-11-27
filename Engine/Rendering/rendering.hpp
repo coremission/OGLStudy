@@ -74,12 +74,6 @@ struct SkyboxMaterialTraits {
 	typedef float PerVertexData;
 	typedef std::vector<PerVertexData> MeshData;
 	typedef Mesh<PerVertexData> Mesh;
-
-	class MeshAllocator {
-	public:
-		static void allocate(MeshData&& dataContainer) {};
-		static void deallocate() {};
-	};
 };
 
 class SkyboxRenderer : public Renderer<SkyboxRenderer, SkyboxMaterialTraits> {
