@@ -6,6 +6,7 @@ using namespace std;
 using namespace glm;
 
 constexpr char * const QUAD_MESH_ID = "rudy_quad";
+constexpr char * const SPRITE_QUAD_MESH_ID = "rudy_sprite_quad";
 constexpr char * const INDEXED_QUAD_MESH_ID = "indexed_qube_mesh";
 constexpr char * const SKYBOX_CUBE_MESH_ID = "indexed_skybox_mesh";
 
@@ -134,4 +135,27 @@ GLuint MeshManager::getSkyboxMesh()
 	glEnableVertexAttribArray(0);
 
 	return meshVao;
+}
+
+std::shared_ptr<BaseMesh> MeshManager::getDefaultSpriteMesh()
+{
+	bool spriteMeshCreated = meshMap.find(SPRITE_QUAD_MESH_ID) != meshMap.end();
+	if (spriteMeshCreated)
+		return meshMap[SPRITE_QUAD_MESH_ID];
+
+	auto lb = VertexData{ vec3(-1.0f, -1.0f, 0.0f), vec4(0.0f, 1.0f, 0.0f, 1.0f), vec2(0.0f, 0.0f) };
+	auto lt = VertexData{ vec3(-1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(0.0f, 1.0f) };
+	auto br = VertexData{ vec3(1.0f, -1.0f, 0.0f), vec4(0.0f, 0.0f, 1.0f, 1.0f), vec2(1.0f, 0.0f) };
+	auto tr = VertexData{ vec3(1.0f,  1.0f, 0.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec2(1.0f, 1.0f) };
+
+	vector<VertexData> vertices;
+	vertices.push_back(lb);
+	vertices.push_back(lt);
+	vertices.push_back(br);
+
+	vertices.push_back(lt);
+	vertices.push_back(tr);
+	vertices.push_back(br);
+
+	return registerMesh(SPRITE_QUAD_MESH_ID, vertices);
 }

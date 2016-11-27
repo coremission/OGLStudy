@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <memory>
+#include "SpriteRenderer.h"
 
 class MeshManager
 {
@@ -17,6 +18,7 @@ public:
 	static std::shared_ptr<LegacyMesh> getQuadMesh();
 	static std::shared_ptr<LegacyMesh> getIndexedQuadMesh();
 	static GLuint getSkyboxMesh();
+	static std::shared_ptr<BaseMesh> getDefaultSpriteMesh();
 };
 
 #endif //MESHMANAGER_h

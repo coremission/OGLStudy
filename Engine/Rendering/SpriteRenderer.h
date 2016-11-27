@@ -43,10 +43,11 @@ class SpriteRenderer: public Renderer<SpriteRenderer, SpriteMaterialTraits>
 {
 	friend class Renderer<SpriteRenderer, SpriteMaterialTraits>;
 	GameObject* gameObject;
+	std::shared_ptr<Texture> spriteTexture;
 public:
 	SpriteRenderer(GameObject* gameObject, const std::string& spriteFileName);
 	virtual ~SpriteRenderer() override;
-	virtual void render() const override { std::cout << "render sprite perfectly" << std::endl; };
+	virtual void render() const override;
 };
 
 #endif //SPRITERENDERER_h

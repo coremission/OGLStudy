@@ -2,7 +2,6 @@
 #define RUDY_RENDERING_HPP
 
 #include "ShaderProgram.h"
-
 #include <vector>
 #include <iostream>
 #include <memory>
@@ -18,7 +17,7 @@ public:
 class BaseMesh {
 public:
 	GLuint vao;
-	virtual ~BaseMesh() = default;
+	virtual ~BaseMesh() = default; // there must be glDeleteArrayObjects
 };
 
 template<typename VertexData>
@@ -35,7 +34,7 @@ protected:
 
 	constexpr DerivedRenderer* derived() { return static_cast<DerivedRenderer*>(this); }
 	// constructor
-	Renderer();
+	Renderer(std::shared_ptr<BaseMesh>);
 public:
 	virtual void render() const override {
 		// 1. bind mesh to context (bind VAO)
@@ -52,49 +51,16 @@ public:
 /////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////DEFINITIONS///////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
+
 template <typename DerivedRenderer, typename Traits>
-Renderer<DerivedRenderer, Traits>::Renderer() :
+Renderer<DerivedRenderer, Traits>::Renderer(std::shared_ptr<BaseMesh> _mesh):
 	// 1. Load mesh
-	mesh(nullptr),
+	mesh(_mesh),
 	// 2. Load shader program
 	shaderProgram(ShaderProgram::get(Traits::ShaderProgramName, Traits::VertexShaderPath, Traits::FragmentShaderPath))
 {
 	// 3. Validate shader program (IF DEBUG)
 }
-
-
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SPECIFIC RENDERER IMPLEMENTATION //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-struct CubeMaterialTraits {
-	const char * ShaderProgramName = "";
-	const char * VertexShaderPath = "";
-	const char * FragmentShaderPath = "";
-
-	struct PerVertexData {
-		int position;
-		int normal;
-		int color;
-		int uv;
-	};
-	typedef std::vector<PerVertexData> MeshData;
-	typedef Mesh<PerVertexData> Mesh;
-
-	class MeshAllocator {
-	public:
-		static std::shared_ptr<Mesh> allocate(MeshData&& dataContainer) {};
-		static void deallocate() {};
-	};
-};
-
-class CubeRenderer : public Renderer<CubeRenderer, CubeMaterialTraits> {
-	friend class Renderer<CubeRenderer, CubeMaterialTraits>;
-public:
-	virtual void render() const override { std::cout << "render cube perfectly"; };
-	virtual ~CubeRenderer() override { std::cout << std::endl << "~CubeRenderer" << std::endl; };
-};
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // SKYBOX RENDERER IMPLEMENTATION ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
