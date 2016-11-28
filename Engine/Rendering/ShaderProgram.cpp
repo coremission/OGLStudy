@@ -32,12 +32,6 @@ ShaderProgram::~ShaderProgram()
 	glDeleteProgram(_programId);
 }
 
-GLuint ShaderProgram::programId() const
-{
-	return _programId;
-}
-
-
 // cache
 constexpr char * DEFAULT_SPRITE_MATERIAL = "simple_sprite_material";
 

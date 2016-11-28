@@ -33,8 +33,7 @@ void SpriteRenderer::render() const
 	glm::mat4 combined = gameObject->transform->getLocalToWorldMatrix();
 	glUniformMatrix4fv(rotationLocation, 1, GL_FALSE, &combined[0][0]);
 
-	// 4. draw	
-	// 6 vertices as triangles
+	// 4. draw 6 vertices as triangles
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 
 	// 5. unbind program, texture and VAO

@@ -51,8 +51,6 @@ void setUpScene()
 		"Assets\\Skyboxes\\mp_drakeq\\drakeq_up.png",
 	});*/
 
-	camera->initializeSkyboxProgram("Shaders\\Skybox_Vertex.glsl", "Shaders\\Skybox_Fragment.glsl");
-
 	auto someModel = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(someModel);
 	someModel->AddComponent<RotationBehaviour>(rotation);

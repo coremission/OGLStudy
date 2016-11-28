@@ -7,6 +7,7 @@ using namespace glm;
 
 constexpr char * const QUAD_MESH_ID = "rudy_quad";
 constexpr char * const SPRITE_QUAD_MESH_ID = "rudy_sprite_quad";
+constexpr char * const CUBEMAP_MESH_ID = "rudy_sprite_quad";
 constexpr char * const INDEXED_QUAD_MESH_ID = "indexed_qube_mesh";
 constexpr char * const SKYBOX_CUBE_MESH_ID = "indexed_skybox_mesh";
 
@@ -71,8 +72,12 @@ std::shared_ptr<LegacyMesh> MeshManager::getIndexedQuadMesh()
 	return registerMesh(INDEXED_QUAD_MESH_ID, vertices, indices);
 }
 
-GLuint MeshManager::getSkyboxMesh()
+std::shared_ptr<BaseMesh> MeshManager::getSkyboxMesh()
 {
+	bool skyBoxMeshCreated = meshMap.find(CUBEMAP_MESH_ID) != meshMap.end();
+	if (skyBoxMeshCreated)
+		return meshMap[CUBEMAP_MESH_ID];
+
 	GLuint meshVbo;
 	GLuint meshVao;
 
@@ -134,7 +139,7 @@ GLuint MeshManager::getSkyboxMesh()
 	glVertexAttribPointer(0, bufferSize, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, 0);
 	glEnableVertexAttribArray(0);
 
-	return meshVao;
+	return std::make_shared<BaseMesh>(meshVao);
 }
 
 std::shared_ptr<BaseMesh> MeshManager::getDefaultSpriteMesh()

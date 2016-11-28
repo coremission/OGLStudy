@@ -4,6 +4,7 @@
 #include <Application.h>
 #include <iostream>
 #include <memory>
+#include <Rendering/SkyboxRenderer.h>
 
 using namespace std;
 
@@ -37,14 +38,22 @@ void _do(int argc, char **argv) {
 }
 
 void setUpScene() {
-	// BALL
-	GameObject* ball = new GameObject("ball");
-	// create renderer
-	//ball->renderer = LegacySpriteRenderer::create(ball, "Sprites\\ball.png");
-	ball->renderer = make_unique<SpriteRenderer>(ball, "Sprites\\ball.png");
 
-	// TODO: add camera
-	// CAMERA
-	GameObject* camera = new GameObject("camera");
-	camera->AddComponent<Camera>();
+	GameObject* cameraGo = new GameObject("camera");
+	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
+	cameraGo->AddComponent(camera);
+
+	// BALL
+	//GameObject* ball = new GameObject("ball");
+	//ball->renderer = make_unique<SpriteRenderer>(ball, "Skyboxes\\mp_drakeq\\drakeq_bk.png");
+	auto filenames = std::vector<string>{
+		"Skyboxes\\mp_drakeq\\drakeq_bk.png",
+		"Skyboxes\\mp_drakeq\\drakeq_dn.png",
+		"Skyboxes\\mp_drakeq\\drakeq_ft.png",
+		"Skyboxes\\mp_drakeq\\drakeq_lf.png",
+		"Skyboxes\\mp_drakeq\\drakeq_rt.png",
+		"Skyboxes\\mp_drakeq\\drakeq_up.png",
+	};
+
+	cameraGo->renderer = make_unique<SkyboxRenderer>(camera, filenames);
 }

@@ -13,7 +13,7 @@ private:
 	std::string _materialName;
 public:
 	~ShaderProgram();
-	GLuint programId() const;
+	GLuint programId() const { return _programId; }
 	ShaderProgram(const std::string &materialName, const std::string &vertexShaderPath, const std::string &fragmentShaderPath);
 // Shader programs cache
 private:

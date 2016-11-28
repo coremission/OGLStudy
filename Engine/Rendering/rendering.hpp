@@ -3,7 +3,6 @@
 
 #include "ShaderProgram.h"
 #include <vector>
-#include <iostream>
 #include <memory>
 
 // Basic interface to Use in GameObject
@@ -17,6 +16,8 @@ public:
 class BaseMesh {
 public:
 	GLuint vao;
+	BaseMesh();
+	BaseMesh(GLuint _vao);
 	virtual ~BaseMesh() = default; // there must be glDeleteArrayObjects
 };
 
@@ -48,9 +49,7 @@ public:
 	virtual ~Renderer() = default;
 };
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////DEFINITIONS///////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////// TEMPLATE DEFINITIONS///////////////////////////////////////////////////
 
 template <typename DerivedRenderer, typename Traits>
 Renderer<DerivedRenderer, Traits>::Renderer(std::shared_ptr<BaseMesh> _mesh):
@@ -61,26 +60,5 @@ Renderer<DerivedRenderer, Traits>::Renderer(std::shared_ptr<BaseMesh> _mesh):
 {
 	// 3. Validate shader program (IF DEBUG)
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SKYBOX RENDERER IMPLEMENTATION ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-struct SkyboxMaterialTraits {
-	const char * ShaderProgramName = "";
-	const char * VertexShaderPath = "";
-	const char * FragmentShaderPath = "";
-	// skybox is simple positions-only mesh (here must be glm::vec3);
-	typedef float PerVertexData;
-	typedef std::vector<PerVertexData> MeshData;
-	typedef Mesh<PerVertexData> Mesh;
-};
-
-class SkyboxRenderer : public Renderer<SkyboxRenderer, SkyboxMaterialTraits> {
-	friend class Renderer<SkyboxRenderer, SkyboxMaterialTraits>;
-public:
-	virtual void render() const override { std::cout << "render skybox perfectly"; };
-	virtual ~SkyboxRenderer() override { std::cout << std::endl << "~SkyboxRenderer" << std::endl; };
-};
 
 #endif //RUDY_RENDERING_HPP

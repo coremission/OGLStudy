@@ -132,9 +132,11 @@
     <ClCompile Include="Rendering\Camera.cpp" />
     <ClCompile Include="Rendering\Mesh.cpp" />
     <ClCompile Include="Rendering\MeshManager.cpp" />
+    <ClCompile Include="Rendering\rendering.cpp" />
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\ShaderProgram.cpp" />
     <ClCompile Include="Model\VertexData.cpp" />
+    <ClCompile Include="Rendering\SkyboxRenderer.cpp" />
     <ClCompile Include="Rendering\Sprite.cpp" />
     <ClCompile Include="Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
@@ -201,6 +203,7 @@
     <ClInclude Include="Rendering\ShaderProgram.h" />
     <ClInclude Include="Model\Scene.h" />
     <ClInclude Include="Model\VertexData.h" />
+    <ClInclude Include="Rendering\SkyboxRenderer.h" />
     <ClInclude Include="Rendering\Sprite.h" />
     <ClInclude Include="Rendering\SpriteRenderer.h" />
     <ClInclude Include="Rendering\Texture.h" />
