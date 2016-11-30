@@ -1,12 +1,15 @@
 ﻿#include "SkyboxRenderer.h"
 #include "TextureManager.h"
 #include "MeshManager.h"
+#include <iostream>
 
 SkyboxRenderer::SkyboxRenderer(Camera* _camera, std::vector<std::string> filenames):
 	Renderer(MeshManager::getSkyboxMesh()),
 	cubeMapTextureId(createCubemap(filenames)),
 	camera(_camera)
-{}
+{
+	std::cout << "skybox renderer created" << std::endl;
+}
 
 void SkyboxRenderer::render() const
 {
@@ -21,7 +24,8 @@ void SkyboxRenderer::render() const
 
 	// 3. bind uniforms
 	//// 3.1 cubemap
-	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureId);
+	// TODO: SKIP CUBEMAP
+	//glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureId);
 
 	//// 3.2 view projection matrix
 	GLuint vpLocation = glGetUniformLocation(shaderProgram->programId(), "VPMatrix");
@@ -41,7 +45,10 @@ SkyboxRenderer::~SkyboxRenderer()
 
 GLuint SkyboxRenderer::createCubemap(std::vector<std::string> filenames)
 {
+	// TODO: skip cubemap
 	GLuint id = 0;
+	return id;
+
 	// 1. generate skybox texture
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, id);

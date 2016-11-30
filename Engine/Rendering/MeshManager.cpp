@@ -81,7 +81,7 @@ std::shared_ptr<BaseMesh> MeshManager::getSkyboxMesh()
 	GLuint meshVbo;
 	GLuint meshVao;
 
-	GLfloat skyboxVertices[] = {
+	GLfloat cubemapVertices[] = {
 		// Positions          
 		-1.0f,  1.0f, -1.0f,
 		-1.0f, -1.0f, -1.0f,
@@ -132,11 +132,11 @@ std::shared_ptr<BaseMesh> MeshManager::getSkyboxMesh()
 	glGenBuffers(1, &meshVbo);
 	glBindBuffer(GL_ARRAY_BUFFER, meshVbo);
 
-	int bufferSize = sizeof(skyboxVertices);
+	int bufferSize = sizeof(cubemapVertices);
 
-	glBufferData(GL_ARRAY_BUFFER, bufferSize, skyboxVertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, bufferSize, &cubemapVertices[0], GL_STATIC_DRAW);
 
-	glVertexAttribPointer(0, bufferSize, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, 0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 3, nullptr);
 	glEnableVertexAttribArray(0);
 
 	return std::make_shared<BaseMesh>(meshVao);

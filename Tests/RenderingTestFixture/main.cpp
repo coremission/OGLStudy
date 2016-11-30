@@ -1,10 +1,11 @@
 #include <Rendering/SpriteRenderer.h>
 #include <Rendering/Camera.h>
-
+#include <Rendering/SkyboxRenderer.h>
+#include "CameraController.h"
 #include <Application.h>
+
 #include <iostream>
 #include <memory>
-#include <Rendering/SkyboxRenderer.h>
 
 using namespace std;
 
@@ -42,7 +43,8 @@ void setUpScene() {
 	GameObject* cameraGo = new GameObject("camera");
 	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
 	cameraGo->AddComponent(camera);
-
+	CameraController* cameraController = new CameraController(cameraGo);
+	cameraGo->AddComponent(cameraController);
 	// BALL
 	//GameObject* ball = new GameObject("ball");
 	//ball->renderer = make_unique<SpriteRenderer>(ball, "Skyboxes\\mp_drakeq\\drakeq_bk.png");
