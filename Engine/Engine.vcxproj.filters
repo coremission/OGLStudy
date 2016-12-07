@@ -96,6 +96,9 @@
     <ClCompile Include="Rendering\rendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\WireframeRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\glm\detail\_features.hpp">
@@ -1092,6 +1095,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\SkyboxRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\WireframeRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

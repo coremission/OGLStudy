@@ -141,6 +141,7 @@
     <ClCompile Include="Rendering\SpriteRenderer.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
     <ClCompile Include="Rendering\TextureManager.cpp" />
+    <ClCompile Include="Rendering\WireframeRenderer.cpp" />
     <ClCompile Include="System\Input.cpp" />
     <ClCompile Include="System\IOManager.cpp" />
     <ClCompile Include="System\Screen.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Rendering\SpriteRenderer.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\TextureManager.h" />
+    <ClInclude Include="Rendering\WireframeRenderer.h" />
     <ClInclude Include="System\Input.h" />
     <ClInclude Include="System\IOManager.h" />
     <ClInclude Include="System\Screen.h" />

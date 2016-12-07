@@ -41,6 +41,8 @@ void _do(int argc, char **argv) {
 void setUpScene() {
 
 	GameObject* cameraGo = new GameObject("camera");
+	GameObject* cube = new GameObject("cube");
+
 	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
 	cameraGo->AddComponent(camera);
 	CameraController* cameraController = new CameraController(cameraGo);
@@ -57,5 +59,5 @@ void setUpScene() {
 		"Skyboxes\\mp_drakeq\\drakeq_up.png",
 	};
 
-	cameraGo->renderer = make_unique<SkyboxRenderer>(camera, filenames);
+	cube->renderer = make_unique<SkyboxRenderer>(camera, filenames);
 }

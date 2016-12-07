@@ -33,7 +33,7 @@ void SkyboxRenderer::render() const
 	glUniformMatrix4fv(vpLocation, 1, GL_FALSE, &viewProjectionMatrix[0][0]);
 
 	// 4. draw skybox
-	glDrawArrays(GL_TRIANGLES, 0, 36);
+	glDrawArrays(GL_LINES, 0, 36);
 
 	// 5. set depth mask back
 	glDepthMask(GL_TRUE);
