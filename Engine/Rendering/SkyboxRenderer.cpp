@@ -16,7 +16,7 @@ void SkyboxRenderer::render() const
 	// 0. reset depth mask
 	glDepthMask(GL_FALSE);
 	// 0.5. wireframe mode
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINES);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// 1. bind skybox vao
 	glBindVertexArray(mesh->vao);
@@ -41,7 +41,7 @@ void SkyboxRenderer::render() const
 	glDepthMask(GL_TRUE);
 
 	// 6. set wirframe back
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 SkyboxRenderer::~SkyboxRenderer()

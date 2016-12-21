@@ -8,6 +8,6 @@ uniform mat4 VPMatrix;
 
 void main(void)
 {
-    gl_Position = VPMatrix * vec4(in_position, 1.0);  
+    gl_Position = VPMatrix * vec4(in_position - vec3(0, 0, 4), 1.0);  
     TexCoords = gl_Position.xyz;
 }

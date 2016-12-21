@@ -47,9 +47,7 @@ void setUpScene() {
 	cameraGo->AddComponent(camera);
 	CameraController* cameraController = new CameraController(cameraGo);
 	cameraGo->AddComponent(cameraController);
-	// BALL
-	//GameObject* ball = new GameObject("ball");
-	//ball->renderer = make_unique<SpriteRenderer>(ball, "Skyboxes\\mp_drakeq\\drakeq_bk.png");
+	
 	auto filenames = std::vector<string>{
 		"Skyboxes\\mp_drakeq\\drakeq_bk.png",
 		"Skyboxes\\mp_drakeq\\drakeq_dn.png",
