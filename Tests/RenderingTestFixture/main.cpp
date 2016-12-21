@@ -43,7 +43,7 @@ void setUpScene() {
 	GameObject* cameraGo = new GameObject("camera");
 	GameObject* cube = new GameObject("cube");
 
-	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
+	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 0.1f, 1000.0f);
 	cameraGo->AddComponent(camera);
 	CameraController* cameraController = new CameraController(cameraGo);
 	cameraGo->AddComponent(cameraController);

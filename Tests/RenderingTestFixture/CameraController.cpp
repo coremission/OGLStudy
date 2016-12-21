@@ -19,16 +19,16 @@ void CameraController::Update()
 	constexpr float mouseSensX = 0.0001f;
 	constexpr float mouseSensY = 0.0001f;
 
-	if (Input::checkIfKeyPressed(KeyCodes::W)) {
+	if (Input::checkIfKeyPressed(KeyCodes::D)) {
 		transform->addLocalYawPitchRoll(vec3(0.0f, 0.0f, 0.01f));
 	}
-	if (Input::checkIfKeyPressed(KeyCodes::S)) {
+	if (Input::checkIfKeyPressed(KeyCodes::A)) {
 		transform->addLocalYawPitchRoll(vec3(0.0f, 0.0f, -0.01f));
 	}
-	if (Input::checkIfKeyPressed(KeyCodes::D)) {
+	if (Input::checkIfKeyPressed(KeyCodes::W)) {
 		transform->addLocalYawPitchRoll(vec3(0.01f, 0.0f, 0.0));
 	}
-	if (Input::checkIfKeyPressed(KeyCodes::A)) {
+	if (Input::checkIfKeyPressed(KeyCodes::S)) {
 		transform->addLocalYawPitchRoll(vec3(-0.01f, 0.0f, 0.0));
 	}
 
