@@ -16,7 +16,7 @@ void SkyboxRenderer::render() const
 	// 0. reset depth mask
 	glDepthMask(GL_FALSE);
 	// 0.5. wireframe mode
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	// 1. bind skybox vao
 	glBindVertexArray(mesh->vao);
@@ -50,22 +50,29 @@ SkyboxRenderer::~SkyboxRenderer()
 
 GLuint SkyboxRenderer::createCubemap(std::vector<std::string> filenames)
 {
-	// TODO: skip cubemap
-	GLuint id = 0;
-	return id;
+	GLuint id;
 
 	// 1. generate skybox texture
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, id);
 
 	// 2. load 6 images
-	for (GLuint i = 0; i < 6; i++)
-	{
-		unsigned long width, height;
+	/*
+	GL_TEXTURE_CUBE_MAP_POSITIVE_X
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+	GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+	GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+	*/
+
+	for (GLuint i = 0; i < 6; i++) {
 		std::vector<unsigned char> image;
+		unsigned long width, height;
+
 		TextureManager::loadPng(filenames[i], image, width, height);
-		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB,
-			width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, &image[0]);
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA,
+			width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
 	}
 
 	// 3. set cubemap texture parameters
