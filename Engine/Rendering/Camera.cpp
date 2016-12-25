@@ -1,10 +1,10 @@
 ﻿#include "Camera.h"
 #include "Model/Transform.h"
-#include "TextureManager.h"
-#include <vector>
+#include "SkyboxRenderer.h"
+
 #include <glm/gtx/transform.hpp>
-#include "ShaderLoader.h"
-#include "MeshManager.h"
+#include <vector>
+#include <memory>
 
 // static fields
 Camera* Camera::main = nullptr;
@@ -31,26 +31,36 @@ void Camera::Start()
 {
 }
 
-glm::mat4 Camera::getViewProjectionMatrix() const
-{
+glm::mat4 Camera::getViewProjectionMatrix() const {
 	recalculateMatrices();
 	return projectionMatrix * viewMatrix;
 }
 
-glm::mat4 Camera::getViewMatrix() const
-{
+glm::mat4 Camera::getOrientationMatrix() const {
+	// todo: must be without translation, scale
+	return getViewProjectionMatrix();
+}
+
+glm::mat4 Camera::getViewMatrix() const {
 	recalculateMatrices();
 	return viewMatrix;
 }
 
-glm::mat4 Camera::getProjectionMatrix() const
-{
+glm::mat4 Camera::getProjectionMatrix() const {
 	recalculateMatrices();
 	return projectionMatrix;
 }
 
-void Camera::recalculateMatrices() const
-{
+void Camera::recalculateMatrices() const {
 	projectionMatrix = glm::perspective(glm::radians(horizontalFov), ratio, nearClippingPlane, farClippingPlane);
 	viewMatrix = transform->getWorldToLocalMatrix();
+}
+
+void Camera::loadSkybox(std::vector<std::string>& filenames) {
+	skyboxRenderer = std::make_unique<SkyboxRenderer>(this, filenames);
+}
+
+void Camera::clearWithSkybox() const
+{
+	skyboxRenderer->render();
 }

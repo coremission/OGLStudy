@@ -9,5 +9,5 @@ uniform mat4 VPMatrix;
 void main(void)
 {
     gl_Position = VPMatrix * vec4(in_position, 1.0);  
-    TexCoords = in_position;//gl_Position.xyz;
+    TexCoords = in_position;
 }

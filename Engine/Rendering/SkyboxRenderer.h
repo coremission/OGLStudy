@@ -20,12 +20,12 @@ struct SkyboxMaterialTraits {
 class SkyboxRenderer : public Renderer<SkyboxRenderer, SkyboxMaterialTraits> {
 	// skybox
 	GLuint cubeMapTextureId;
-	Camera* camera;
+	Camera * const camera;
 
 	friend class Renderer<SkyboxRenderer, SkyboxMaterialTraits>;
 	GLuint createCubemap(std::vector<std::string> filenames);
 public:
-	explicit SkyboxRenderer(Camera* _camera, std::vector<std::string> filenames);
+	explicit SkyboxRenderer(Camera * const _camera, std::vector<std::string> filenames);
 	virtual void render() const override;
 	virtual ~SkyboxRenderer() override;
 };

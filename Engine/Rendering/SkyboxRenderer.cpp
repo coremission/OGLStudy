@@ -3,7 +3,7 @@
 #include "MeshManager.h"
 #include <iostream>
 
-SkyboxRenderer::SkyboxRenderer(Camera* _camera, std::vector<std::string> filenames):
+SkyboxRenderer::SkyboxRenderer(Camera * const _camera, std::vector<std::string> filenames):
 	Renderer(MeshManager::getSkyboxMesh()),
 	cubeMapTextureId(createCubemap(filenames)),
 	camera(_camera)

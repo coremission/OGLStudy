@@ -3,6 +3,8 @@
 #include <iostream>
 #include "RotationBehaviour.h"
 #include "CameraController.h"
+#include <Rendering/SkyboxRenderer.h>
+#include <System/system.hpp>
 
 using namespace std;
 
@@ -37,25 +39,42 @@ void _do(int argc, char **argv) {
 void setUpScene()
 {
 	GameObject* cameraGo = new GameObject("camera");
-	Camera* camera = new Camera(cameraGo, 60.0f, 4.0f / 3.0f, 1.0f, 1000.0f);
+	float screenRatio = static_cast<float>(Screen::width) / static_cast<float>(Screen::height);
+
+	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 1000.0f);
 	cameraGo->AddComponent(camera);
-	camera->transform->setLocalPosition(glm::vec3(0.0f, 5.0f, 0.0f));
 	CameraController* cameraController = new CameraController(cameraGo);
 	cameraGo->AddComponent(cameraController);
-	/*camera->initializeSkybox(std::vector<string>{
-		"Assets\\Skyboxes\\mp_drakeq\\drakeq_bk.png",
-		"Assets\\Skyboxes\\mp_drakeq\\drakeq_dn.png", 
-		"Assets\\Skyboxes\\mp_drakeq\\drakeq_ft.png", 
-		"Assets\\Skyboxes\\mp_drakeq\\drakeq_lf.png", 
-		"Assets\\Skyboxes\\mp_drakeq\\drakeq_rt.png", 
-		"Assets\\Skyboxes\\mp_drakeq\\drakeq_up.png",
-	});*/
 
-	auto someModel = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
-	RotationBehaviour* rotation = new RotationBehaviour(someModel);
-	someModel->AddComponent<RotationBehaviour>(rotation);
+	/*
+	GL_TEXTURE_CUBE_MAP_POSITIVE_X
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+	GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+	GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+	GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+	*/
+	auto filenames = std::vector<string>{
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_rt.png",
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_lf.png",
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_up.png",
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_dn.png",
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_bk.png",
+		"Assets\\Skyboxes\\mp_drakeq\\drakeq_ft.png",
+	};
+
+	camera->loadSkybox(filenames);
+	
+	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
+	//RotationBehaviour* rotation = new RotationBehaviour(spaceShipGo);
+	//spaceShipGo->AddComponent<RotationBehaviour>(rotation);
 
 	// negative z because glm::perspective flips z
-	someModel->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, -50.0f));
-	someModel->transform->setLocalScale(glm::vec3(1.0f, 1.0f, 1.0f));
+	spaceShipGo->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
+	spaceShipGo->transform->setLocalScale(glm::vec3(1.0f, 1.0f, 1.0f));
+
+	// todo: here is an issue with vp matrix
+	// Place camera behing ship
+	//camera->transform->setParent(spaceShipGo->transform.get());
+	camera->transform->setLocalPosition(glm::vec3(0, 1, 50));
 }

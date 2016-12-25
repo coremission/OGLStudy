@@ -42,9 +42,8 @@ void _do(int argc, char **argv) {
 void setUpScene() {
 
 	GameObject* cameraGo = new GameObject("camera");
-	GameObject* cube = new GameObject("cube");
 
-	float screenRatio = (float)Screen::width / (float)Screen::height;
+	float screenRatio = static_cast<float>(Screen::width) / static_cast<float>(Screen::height);
 
 	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 1000.0f);
 	cameraGo->AddComponent(camera);
@@ -68,5 +67,5 @@ void setUpScene() {
 		"Skyboxes\\mp_drakeq\\drakeq_ft.png",
 	};
 
-	cube->renderer = make_unique<SkyboxRenderer>(camera, filenames);
+	camera->loadSkybox(filenames);
 }
