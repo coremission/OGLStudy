@@ -39,6 +39,12 @@ void Transform::setLocalPosition(vec3 value)
 	recalculateMatrices();
 }
 
+void Transform::setLocalRotation(glm::quat value)
+{
+	localRotation = value;
+	recalculateMatrices();
+}
+
 void Transform::setLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 {
 	localRotation = quat(yawPitchRoll);
@@ -49,6 +55,13 @@ void Transform::addLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 {
 	localRotation = localRotation * quat(yawPitchRoll);
 	recalculateMatrices();
+}
+
+void Transform::LookAt(glm::vec3 worldPosition)
+{
+	auto thisWorldForward = transformDirection(vec3(0, 0, 1));
+	auto lookQuaternion = quat_cast(glm::lookAt(thisWorldForward, worldPosition, vec3(0, 1, 0)));
+	setLocalRotation(localRotation * lookQuaternion);
 }
 
 void Transform::setLocalScale(glm::vec3 value)
@@ -69,12 +82,22 @@ const glm::mat4& Transform::getWorldToLocalMatrix() const
 	return worldToLocalMatrix;
 }
 
-const glm::vec3 Transform::transformPoint(const glm::vec3& p)
+glm::vec3 Transform::transformPoint(glm::vec3 p)
 {
 	return vec3(getLocalToWorldMatrix() * vec4(p, 1.0f));
 }
 
-const glm::vec3 Transform::inverseTransformPoint(const glm::vec3& p)
+glm::vec3 Transform::inverseTransformPoint(glm::vec3 p)
 {
 	return vec3(getWorldToLocalMatrix() * vec4(p, 1.0f));
+}
+
+glm::vec3 Transform::transformDirection(glm::vec3 direction)
+{
+	return vec3(getLocalToWorldMatrix() * vec4(direction, 0));
+}
+
+glm::vec3 Transform::inverseTransformDirection(glm::vec3 direction)
+{
+	return vec3(getWorldToLocalMatrix() * vec4(direction, 0));
 }

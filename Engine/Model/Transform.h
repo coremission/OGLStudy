@@ -25,10 +25,12 @@ public:
 	glm::quat getLocalRotation() const { return localRotation; }
 	glm::quat getRotation() const { return rotation; };
 
+	void setLocalRotation(glm::quat);
 	// YawPitchRoll is rotation Y * X * Z
 	void setLocalYawPitchRoll(glm::vec3);
 	void addLocalYawPitchRoll(glm::vec3);
-
+	void LookAt(glm::vec3);
+	
 	glm::vec3 getLocalScale() const { return localScale; };
 	void setLocalScale(glm::vec3);
 
@@ -38,8 +40,10 @@ public:
 	const glm::mat4& getLocalToWorldMatrix() const;
 	const glm::mat4& getWorldToLocalMatrix() const;
 
-	const glm::vec3 transformPoint(const glm::vec3&);
-	const glm::vec3 inverseTransformPoint(const glm::vec3&);
+	glm::vec3 transformPoint(glm::vec3);
+	glm::vec3 inverseTransformPoint(glm::vec3);
+	glm::vec3 transformDirection(glm::vec3);
+	glm::vec3 inverseTransformDirection(glm::vec3);
 
 	Transform();
 	~Transform();

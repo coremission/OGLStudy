@@ -76,5 +76,8 @@ void setUpScene()
 	// todo: here is an issue with vp matrix
 	// Place camera behing ship
 	camera->transform->setParent(spaceShipGo->transform.get());
-	camera->transform->setLocalPosition(glm::vec3(0, 1, 50));
+	camera->transform->setLocalPosition(glm::vec3(35, 1, 50));
+
+	// use local position because ship is root transform
+	camera->transform->LookAt(spaceShipGo->transform->getLocalPosition());
 }
