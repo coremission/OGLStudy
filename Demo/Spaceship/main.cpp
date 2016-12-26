@@ -66,8 +66,8 @@ void setUpScene()
 	camera->loadSkybox(filenames);
 	
 	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
-	//RotationBehaviour* rotation = new RotationBehaviour(spaceShipGo);
-	//spaceShipGo->AddComponent<RotationBehaviour>(rotation);
+	RotationBehaviour* rotation = new RotationBehaviour(spaceShipGo);
+	spaceShipGo->AddComponent<RotationBehaviour>(rotation);
 
 	// negative z because glm::perspective flips z
 	spaceShipGo->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
@@ -75,6 +75,6 @@ void setUpScene()
 
 	// todo: here is an issue with vp matrix
 	// Place camera behing ship
-	//camera->transform->setParent(spaceShipGo->transform.get());
+	camera->transform->setParent(spaceShipGo->transform.get());
 	camera->transform->setLocalPosition(glm::vec3(0, 1, 50));
 }

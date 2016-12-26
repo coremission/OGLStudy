@@ -2,12 +2,15 @@
 #define TRANSFORM_h
 
 #include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
+
 class Transform
 {
 private:
 	glm::vec3 localPosition;
 	glm::vec3 localScale;
-	glm::vec3 localRotation;
+	glm::quat localRotation;
+	mutable glm::quat rotation;
 
 	mutable glm::mat4 localToWorldMatrix;
 	mutable glm::mat4 worldToLocalMatrix;
@@ -19,7 +22,8 @@ public:
 	glm::vec3 getLocalPosition() const { return localPosition; };
 	void setLocalPosition(glm::vec3);
 
-	glm::vec3 getLocalYawPitchRoll() const { return localRotation; }
+	glm::quat getLocalRotation() const { return localRotation; }
+	glm::quat getRotation() const { return rotation; };
 
 	// YawPitchRoll is rotation Y * X * Z
 	void setLocalYawPitchRoll(glm::vec3);
@@ -37,8 +41,6 @@ public:
 	const glm::vec3 transformPoint(const glm::vec3&);
 	const glm::vec3 inverseTransformPoint(const glm::vec3&);
 
-	glm::vec3 position;
-	glm::vec3 rotation;
 	Transform();
 	~Transform();
 };

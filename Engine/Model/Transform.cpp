@@ -1,6 +1,7 @@
 ﻿#include "Transform.h"
 
 #include <glm/gtx/transform.hpp>
+#include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/euler_angles.inl>
 
 using namespace glm;
@@ -19,9 +20,14 @@ Transform::~Transform()
 
 void Transform::recalculateMatrices() const
 {
-	auto result = translate(localPosition) * scale(localScale) * orientate4(localRotation);
+	auto result = translate(localPosition) * scale(localScale) * glm::mat4_cast(localRotation);
 	if (parent != nullptr)
 		result = parent->localToWorldMatrix * result;
+
+	if (parent != nullptr)
+		rotation = parent->getRotation() * localRotation;
+	else
+		rotation = localRotation;
 
 	localToWorldMatrix = result;
 	worldToLocalMatrix = glm::inverse(localToWorldMatrix);
@@ -35,13 +41,13 @@ void Transform::setLocalPosition(vec3 value)
 
 void Transform::setLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 {
-	localRotation = yawPitchRoll;
+	localRotation = quat(yawPitchRoll);
 	recalculateMatrices();
 }
 
 void Transform::addLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 {
-	localRotation = localRotation + yawPitchRoll;
+	localRotation = localRotation * quat(yawPitchRoll);
 	recalculateMatrices();
 }
 

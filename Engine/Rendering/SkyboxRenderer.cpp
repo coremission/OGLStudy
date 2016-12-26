@@ -30,9 +30,9 @@ void SkyboxRenderer::render() const
 	//glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureId);
 
 	//// 3.2 view projection matrix
-	GLuint vpLocation = glGetUniformLocation(shaderProgram->programId(), "VPMatrix");
-	glm::mat4 viewProjectionMatrix = camera->getViewProjectionMatrix();
-	glUniformMatrix4fv(vpLocation, 1, GL_FALSE, &viewProjectionMatrix[0][0]);
+	GLuint vpLocation = glGetUniformLocation(shaderProgram->programId(), "OrientationMatrix");
+	glm::mat4 orientationMatrix = camera->getOrientationMatrix();
+	glUniformMatrix4fv(vpLocation, 1, GL_FALSE, &orientationMatrix[0][0]);
 
 	// 4. draw skybox
 	glDrawArrays(GL_TRIANGLES, 0, 36);

@@ -1,6 +1,5 @@
 #include <Rendering/SpriteRenderer.h>
 #include <Rendering/Camera.h>
-#include <Rendering/SkyboxRenderer.h>
 #include "CameraController.h"
 #include <Application.h>
 #include <System/system.hpp>
@@ -40,16 +39,20 @@ void _do(int argc, char **argv) {
 }
 
 void setUpScene() {
+	GameObject* tempGo = new GameObject("temp");
 
 	GameObject* cameraGo = new GameObject("camera");
-
 	float screenRatio = static_cast<float>(Screen::width) / static_cast<float>(Screen::height);
-
 	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 1000.0f);
 	cameraGo->AddComponent(camera);
-	CameraController* cameraController = new CameraController(cameraGo);
-	cameraGo->AddComponent(cameraController);
 	
+	CameraController* cameraController = new CameraController(cameraGo);
+	tempGo->AddComponent(cameraController);
+	
+	cameraGo->transform->setParent(tempGo->transform.get());
+
+	tempGo->transform->setLocalPosition(glm::vec3(10, 0, 10));
+
 	/*
 	GL_TEXTURE_CUBE_MAP_POSITIVE_X
 	GL_TEXTURE_CUBE_MAP_NEGATIVE_X

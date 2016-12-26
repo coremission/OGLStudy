@@ -37,8 +37,10 @@ glm::mat4 Camera::getViewProjectionMatrix() const {
 }
 
 glm::mat4 Camera::getOrientationMatrix() const {
-	// todo: must be without translation, scale
-	return getViewProjectionMatrix();
+	recalculateMatrices();
+	// todo: while orientation isn't tuned for camera control
+	//return getViewProjectionMatrix();
+	return projectionMatrix * glm::mat4_cast(transform->getRotation());
 }
 
 glm::mat4 Camera::getViewMatrix() const {
