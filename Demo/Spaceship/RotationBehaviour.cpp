@@ -9,6 +9,6 @@ RotationBehaviour::RotationBehaviour(GameObject* game_object)
 
 void RotationBehaviour::Update()
 {
-	transform->addLocalYawPitchRoll(glm::vec3(0.0f, 0.0f, 0.02f * Time::deltaTime)
+	transform->rotate(glm::vec3(0.0f, 0.0f, 0.02f * Time::deltaTime)
 	);
 }

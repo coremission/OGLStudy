@@ -10,10 +10,11 @@
 
 using namespace std;
 
-GameObject* ModelLoader::LoadModel(const string& name, const std::string& path)
+GameObject* ModelLoader::LoadModel(const string& name, const string& modelFilePath,
+	const string& diffuseTextureFilePath)
 {
 	Assimp::Importer import;
-	const aiScene* scene = import.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs);
+	const aiScene* scene = import.ReadFile(modelFilePath, aiProcess_Triangulate | aiProcess_FlipUVs);
 
 	if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) {
 		cout << "ERROR::ASSIMP::" << import.GetErrorString() << endl;
@@ -21,7 +22,7 @@ GameObject* ModelLoader::LoadModel(const string& name, const std::string& path)
 	}
 
 	auto gameObject = new GameObject(name);
-	processNode(gameObject, scene->mRootNode, scene);
+	processNode(gameObject, scene->mRootNode, scene, diffuseTextureFilePath);
 	
 	return gameObject;
 }
@@ -31,28 +32,28 @@ shared_ptr<ShaderProgram> ModelLoader::processMaterial()
 	return ShaderProgram::get("temp_888", "Shaders\\Diffuse_Vertex.glsl", "Shaders\\Diffuse_Fragment.glsl");
 }
 
-void ModelLoader::processNode(GameObject* parent, aiNode* node, const aiScene* scene)
+void ModelLoader::processNode(GameObject* parent, aiNode* node, const aiScene* scene, const string& diffuseTextureFilePath)
 {
 	// Process meshes
 	for (GLuint i = 0; i < node->mNumMeshes; i++) 	{
 		aiMesh* mesh_ = scene->mMeshes[node->mMeshes[i]];
-		auto mesh = processMesh(mesh_, scene);
-
 		auto gameObject = new GameObject(std::string(node->mName.C_Str()));
+		auto mesh = processMesh(gameObject->name + "_mesh", mesh_, scene);
+
 		gameObject->transform->setParent(parent->transform.get());
 
 		auto material = processMaterial();
-		gameObject->renderer = BaseRenderer::create(gameObject, material, mesh, "Assets\\space_cruiser_4_color.png");
+		gameObject->renderer = BaseRenderer::create(gameObject, material, mesh, diffuseTextureFilePath);
 		//this->meshes.push_back(this->processMesh(mesh, scene));
 	}
 
 	// Recursively process child nodes
 	for (GLuint i = 0; i < node->mNumChildren; i++) {
-		ModelLoader::processNode(parent, node->mChildren[i], scene);
+		processNode(parent, node->mChildren[i], scene, diffuseTextureFilePath);
 	}
 }
 
-shared_ptr<LegacyMesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* scene)
+shared_ptr<LegacyMesh> ModelLoader::processMesh(const string& meshId, aiMesh* aiMesh_, const aiScene* scene)
 {
 	vector<VertexData> vertices;
 	vector<GLuint> indices;
@@ -84,5 +85,5 @@ shared_ptr<LegacyMesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* 
 	if (aiMesh_->mMaterialIndex >= 0) {
 	}
 
-	return MeshManager::registerMesh("rand888", vertices, indices);
+	return MeshManager::registerMesh(meshId, vertices, indices);
 }

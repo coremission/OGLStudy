@@ -9,6 +9,7 @@ using namespace std;
 
 void _do(int, char**);
 void setUpScene();
+constexpr float  PI = 3.14159265358979f;
 
 int main(int argc, char **argv)
 {
@@ -37,10 +38,17 @@ void _do(int argc, char **argv) {
 
 void setUpScene()
 {
+	// load space station
+	auto spaceStation = ModelLoader::LoadModel("station", "Assets\\spacestation\\space_station_4.obj",
+		"Assets\\spacestation\\space_station_4_diffuse.png");
+	spaceStation->transform->setLocalPosition(glm::vec3(0, 0, -800));
+
+	GameObject * spaceShipRootGo = new GameObject("spaceshipRoot");
+	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj", "Assets\\space_cruiser_4_color.png");
 	GameObject* cameraGo = new GameObject("camera");
 	float screenRatio = static_cast<float>(Screen::width) / static_cast<float>(Screen::height);
 
-	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 1000.0f);
+	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 10000.0f);
 	cameraGo->AddComponent(camera);
 	
 	/*
@@ -62,17 +70,21 @@ void setUpScene()
 
 	camera->loadSkybox(filenames);
 	
-	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
-	RotationBehaviour* rotation = new RotationBehaviour(spaceShipGo);
-	spaceShipGo->AddComponent<RotationBehaviour>(rotation);
-	CameraController* cameraController = new CameraController(spaceShipGo);
-	spaceShipGo->AddComponent(cameraController);
+	// automatic rotation
+//	RotationBehaviour* rotation = new RotationBehaviour(spaceShipRootGo);
+//	spaceShipRootGo->AddComponent<RotationBehaviour>(rotation);
 
+	spaceShipGo->transform->setParent(spaceShipRootGo->transform.get());
+
+	CameraController* cameraController = new CameraController(spaceShipRootGo);
+	spaceShipRootGo->AddComponent(cameraController);
+	
 	// todo: here is an issue with vp matrix
 	// Place camera behing ship
-	camera->transform->setParent(spaceShipGo->transform.get());
-	camera->transform->setLocalPosition(glm::vec3(35, 1, 50));
-	camera->transform->addLocalYawPitchRoll(glm::vec3(0, 1, 0));
+	spaceShipGo->transform->setLocalPosition(glm::vec3(0, -20, -20));
+	spaceShipGo->transform->rotate(glm::vec3(0, -PI / 2.0f, 0));
+	camera->transform->setParent(spaceShipRootGo->transform.get());
+	camera->transform->setLocalPosition(glm::vec3(0, 0, 50));
 	// use local position because ship is root transform
-	//camera->transform->LookAt(spaceShipGo->transform->getLocalPosition());
+	//camera->transform->lookAt(spaceShipGo->transform->getLocalPosition());
 }

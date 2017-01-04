@@ -40,6 +40,12 @@ void Transform::setLocalPosition(vec3 value)
 	recalculateMatrices();
 }
 
+glm::quat Transform::getRotation() const
+{
+	recalculateMatrices();
+	return rotation;
+}
+
 void Transform::setLocalRotation(glm::quat value)
 {
 	localRotation = value;
@@ -52,13 +58,13 @@ void Transform::setLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 	recalculateMatrices();
 }
 
-void Transform::addLocalYawPitchRoll(glm::vec3 yawPitchRoll)
+void Transform::rotate(glm::vec3 yawPitchRoll)
 {
-	localRotation = localRotation * quat(yawPitchRoll);
+	localRotation = quat(yawPitchRoll) * localRotation;
 	recalculateMatrices();
 }
 
-void Transform::LookAt(glm::vec3 targetWorldPos)
+void Transform::lookAt(glm::vec3 targetWorldPos)
 {
 	auto eyeWorldPos = transformPoint(vec3(0, 0, 0));
 

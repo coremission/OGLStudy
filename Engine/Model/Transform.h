@@ -23,13 +23,12 @@ public:
 	void setLocalPosition(glm::vec3);
 
 	glm::quat getLocalRotation() const { return localRotation; }
-	glm::quat getRotation() const { return rotation; };
-
+	glm::quat getRotation() const;
 	void setLocalRotation(glm::quat);
 	// YawPitchRoll is rotation Y * X * Z
 	void setLocalYawPitchRoll(glm::vec3);
-	void addLocalYawPitchRoll(glm::vec3);
-	void LookAt(glm::vec3);
+	void rotate(glm::vec3);
+	void lookAt(glm::vec3);
 	
 	glm::vec3 getLocalScale() const { return localScale; };
 	void setLocalScale(glm::vec3);
