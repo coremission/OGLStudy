@@ -99,6 +99,9 @@
     <ClCompile Include="Rendering\WireframeRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Rendering\DDSLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\glm\detail\_features.hpp">
@@ -1098,6 +1101,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\WireframeRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\DDSLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

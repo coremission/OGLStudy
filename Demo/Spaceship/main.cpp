@@ -3,7 +3,6 @@
 #include <iostream>
 #include "RotationBehaviour.h"
 #include "CameraController.h"
-#include <Rendering/SkyboxRenderer.h>
 #include <System/system.hpp>
 
 using namespace std;
@@ -43,9 +42,7 @@ void setUpScene()
 
 	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 1000.0f);
 	cameraGo->AddComponent(camera);
-	CameraController* cameraController = new CameraController(cameraGo);
-	cameraGo->AddComponent(cameraController);
-
+	
 	/*
 	GL_TEXTURE_CUBE_MAP_POSITIVE_X
 	GL_TEXTURE_CUBE_MAP_NEGATIVE_X
@@ -68,16 +65,14 @@ void setUpScene()
 	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj");
 	RotationBehaviour* rotation = new RotationBehaviour(spaceShipGo);
 	spaceShipGo->AddComponent<RotationBehaviour>(rotation);
-
-	// negative z because glm::perspective flips z
-	spaceShipGo->transform->setLocalPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-	spaceShipGo->transform->setLocalScale(glm::vec3(1.0f, 1.0f, 1.0f));
+	CameraController* cameraController = new CameraController(spaceShipGo);
+	spaceShipGo->AddComponent(cameraController);
 
 	// todo: here is an issue with vp matrix
 	// Place camera behing ship
 	camera->transform->setParent(spaceShipGo->transform.get());
 	camera->transform->setLocalPosition(glm::vec3(35, 1, 50));
-
+	camera->transform->addLocalYawPitchRoll(glm::vec3(0, 1, 0));
 	// use local position because ship is root transform
-	camera->transform->LookAt(spaceShipGo->transform->getLocalPosition());
+	//camera->transform->LookAt(spaceShipGo->transform->getLocalPosition());
 }

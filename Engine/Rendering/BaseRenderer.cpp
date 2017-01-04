@@ -1,10 +1,11 @@
 ﻿#include "BaseRenderer.h"
 #include "Camera.h"
 #include <iostream>
+#include "TextureManager.h"
 using namespace std;
 
-BaseRenderer::BaseRenderer(GameObject* gameObject, shared_ptr<ShaderProgram> _material, shared_ptr<LegacyMesh> _mesh): 
-	_gameObject(gameObject), mesh(_mesh), material(_material)
+BaseRenderer::BaseRenderer(GameObject* gameObject, shared_ptr<ShaderProgram> _material, shared_ptr<LegacyMesh> _mesh, const std::string& diffuseTextureFilename):
+	_gameObject(gameObject), mesh(_mesh), material(_material), diffuseTexture(TextureManager::getTexture(diffuseTextureFilename))
 {
 }
 
@@ -18,6 +19,9 @@ void BaseRenderer::render() const
 
 	GLuint program = material->programId();
 	glUseProgram(program);
+
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, diffuseTexture->id);
 
 	GLuint m2wLocation = glGetUniformLocation(program, "Model2World");
 	glm::mat4 modelingMatrix = _gameObject->transform->getLocalToWorldMatrix();
@@ -41,7 +45,7 @@ void BaseRenderer::render() const
 		glDrawArrays(GL_TRIANGLES, 0, mesh->verticesCount());
 }
 
-std::unique_ptr<BaseRenderer> BaseRenderer::create(GameObject* gameObject, std::shared_ptr<ShaderProgram> material, std::shared_ptr<LegacyMesh> mesh)
+std::unique_ptr<BaseRenderer> BaseRenderer::create(GameObject* gameObject, std::shared_ptr<ShaderProgram> material, std::shared_ptr<LegacyMesh> mesh, const std::string& diffuseTextureFilename)
 {
-	return std::make_unique<BaseRenderer>(gameObject, material, mesh);
+	return std::make_unique<BaseRenderer>(gameObject, material, mesh, diffuseTextureFilename);
 }

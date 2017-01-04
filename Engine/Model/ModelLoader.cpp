@@ -42,7 +42,7 @@ void ModelLoader::processNode(GameObject* parent, aiNode* node, const aiScene* s
 		gameObject->transform->setParent(parent->transform.get());
 
 		auto material = processMaterial();
-		gameObject->renderer = BaseRenderer::create(gameObject, material, mesh);
+		gameObject->renderer = BaseRenderer::create(gameObject, material, mesh, "Assets\\space_cruiser_4_color.png");
 		//this->meshes.push_back(this->processMesh(mesh, scene));
 	}
 
@@ -66,7 +66,7 @@ shared_ptr<LegacyMesh> ModelLoader::processMesh(aiMesh* aiMesh_, const aiScene* 
 			// colour
 			glm::vec4{1.0f, 1.0f, 1.0f, 1.0f},
 			// texture coordinates (uvs)
-			//glm::vec2{aiMesh_->mTextureCoords[i][0].x, aiMesh_->mTextureCoords[i][0].y}
+			glm::vec2{aiMesh_->mTextureCoords[0][i].x, aiMesh_->mTextureCoords[0][i].y}
 		};
 		// normal
 		if(aiMesh_->mNormals != nullptr)

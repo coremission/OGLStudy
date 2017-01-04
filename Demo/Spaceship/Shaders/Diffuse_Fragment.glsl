@@ -8,5 +8,5 @@ uniform sampler2D mySampler;
 
 void main(void)
 {
-  out_color = color;//texture(mySampler, vec2(uv.x, uv.y));
+  out_color = color * texture(mySampler, vec2(uv.x, uv.y));
 }

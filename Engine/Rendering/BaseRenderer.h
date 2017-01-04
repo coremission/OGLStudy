@@ -3,9 +3,10 @@
 #include <Model/GameObject.h>
 #include "ShaderProgram.h"
 #include "Mesh.h"
+#include "rendering.hpp"
+#include "Texture.h"
 
 #include <memory>
-#include "rendering.hpp"
 
 class GameObject;
 
@@ -17,12 +18,13 @@ protected:
 public:
 	std::shared_ptr<LegacyMesh> mesh;
 	std::shared_ptr<ShaderProgram> material;
-	
-	BaseRenderer(GameObject* gameObject, std::shared_ptr<ShaderProgram>, std::shared_ptr<LegacyMesh> mesh);
+	std::shared_ptr<Texture> diffuseTexture;
+
+	BaseRenderer(GameObject* gameObject, std::shared_ptr<ShaderProgram>, std::shared_ptr<LegacyMesh> mesh, const std::string& diffuseTextureFilename);
 	virtual ~BaseRenderer();
 	virtual void render() const override;
 
-	static std::unique_ptr<BaseRenderer> create(GameObject* gameObject, std::shared_ptr<ShaderProgram> material, std::shared_ptr<LegacyMesh> mesh);
+	static std::unique_ptr<BaseRenderer> create(GameObject* gameObject, std::shared_ptr<ShaderProgram> material, std::shared_ptr<LegacyMesh> mesh, const std::string& diffuseTextureFilename);
 };
 
 #endif // BASERENDERER_h

@@ -3,6 +3,7 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/euler_angles.inl>
+#include <iostream>
 
 using namespace glm;
 
@@ -57,11 +58,13 @@ void Transform::addLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 	recalculateMatrices();
 }
 
-void Transform::LookAt(glm::vec3 worldPosition)
+void Transform::LookAt(glm::vec3 targetWorldPos)
 {
-	auto thisWorldForward = transformDirection(vec3(0, 0, 1));
-	auto lookQuaternion = quat_cast(glm::lookAt(thisWorldForward, worldPosition, vec3(0, 1, 0)));
-	setLocalRotation(localRotation * lookQuaternion);
+	auto eyeWorldPos = transformPoint(vec3(0, 0, 0));
+
+	std::cout << eyeWorldPos.x << eyeWorldPos.y << eyeWorldPos.z;
+	auto lookQuaternion = quat_cast(glm::lookAt(eyeWorldPos, targetWorldPos, vec3(0, 1, 0)));
+	setLocalRotation(lookQuaternion);
 }
 
 void Transform::setLocalScale(glm::vec3 value)
