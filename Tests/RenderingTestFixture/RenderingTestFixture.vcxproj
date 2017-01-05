@@ -134,14 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Fragment.glsl" />
-    <None Include="Shaders\Skybox_Fragment.glsl" />
-    <None Include="Shaders\Skybox_Vertex.glsl" />
     <None Include="Shaders\Vertex.glsl" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Sprites\ball.png" />
-    <Image Include="Sprites\brick.png" />
-    <Image Include="Sprites\paddle.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -39,5 +39,5 @@ void _do(int argc, char **argv) {
 
 void setUpScene() {
 	GameObject* tempGo = new GameObject("temp");
-	tempGo->renderer = make_unique<SpriteRenderer>(tempGo, "Sprites\\ball.png");
+	tempGo->renderer = make_unique<SpriteRenderer>(tempGo, "Sprites\\ball.dds");
 }
