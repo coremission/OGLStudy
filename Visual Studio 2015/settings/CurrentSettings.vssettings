@@ -640,7 +640,7 @@
 				</SearchFilterState>
 			</CurrentSearchFilter>
 		</Category>
-	</Category><Category name="Git Version Control_GitSccProvider" Category="{33a4cda9-b7a6-3f4f-9e1f-e4d71f0a9cfa}" Package="{7fe30a77-37f9-4cf2-83dd-96b207028e1b}" RegisteredName="Git Version Control_GitSccProvider" PackageName="SccProviderPackage"/><Category name="HTML Tag Specific" Category="{7583bb73-a453-40e8-8951-b6986ddb1d9b}" Package="{1B437D20-F8FE-11D2-A6AE-00104BCC7269}" RegisteredName="HTML Tag Specific" PackageName="Visual Studio HTM Editor Package"/><Category name="HTMLX_Advanced" Category="{3d9c2439-5c0a-4592-b9e8-42e26dfe636b}" Package="{cf49ec7d-92b1-4bbd-9254-9cc13978e82e}" RegisteredName="HTMLX_Advanced" PackageName="HtmlPackage"/><Category name="JSON_Advanced" Category="{78c48687-be97-424b-a3fa-378de0dac07c}" Package="{0123483c-cced-4712-acd3-c527b71b6145}" RegisteredName="JSON_Advanced" PackageName="JSONPackage"/><Category name="JSON_Schema" Category="{A274BD6E-74E6-4698-B631-1690B1E514BB}" Package="{a6efef5f-be9b-432a-adfe-74a119ab4478}" RegisteredName="JSON_Schema" PackageName="JSONPackage"/><Category name="LESS_Advanced" Category="{1b200b66-f69e-452e-9c6f-d38f9cb0628b}" Package="{f4b61ec8-36d8-4155-b2a0-199587d8ddcc}" RegisteredName="LESS_Advanced" PackageName="LessPackage"/><Category name="Performance" Category="{7A697B67-8D8F-43c2-A11C-57568FE3F513}" Package="{f4a63b2a-49ab-4b2d-aa59-a10f01026c89}" RegisteredName="Performance" PackageName="PerformancePackage">
+	</Category><Category name="Git Version Control_GitSccProvider" Category="{33a4cda9-b7a6-3f4f-9e1f-e4d71f0a9cfa}" Package="{7fe30a77-37f9-4cf2-83dd-96b207028e1b}" RegisteredName="Git Version Control_GitSccProvider" PackageName="SccProviderPackage"/><Category name="HTML Tag Specific" Category="{7583bb73-a453-40e8-8951-b6986ddb1d9b}" Package="{1B437D20-F8FE-11D2-A6AE-00104BCC7269}" RegisteredName="HTML Tag Specific" PackageName="Visual Studio HTM Editor Package"/><Category name="HTMLX_Advanced" Category="{3d9c2439-5c0a-4592-b9e8-42e26dfe636b}" Package="{cf49ec7d-92b1-4bbd-9254-9cc13978e82e}" RegisteredName="HTMLX_Advanced" PackageName="HtmlPackage"/><Category name="JSON_Advanced" Category="{78c48687-be97-424b-a3fa-378de0dac07c}" Package="{a6efef5f-be9b-432a-adfe-74a119ab4478}" RegisteredName="JSON_Advanced" PackageName="JSONPackage"/><Category name="JSON_Schema" Category="{A274BD6E-74E6-4698-B631-1690B1E514BB}" Package="{a6efef5f-be9b-432a-adfe-74a119ab4478}" RegisteredName="JSON_Schema" PackageName="JSONPackage"/><Category name="LESS_Advanced" Category="{1b200b66-f69e-452e-9c6f-d38f9cb0628b}" Package="{f4b61ec8-36d8-4155-b2a0-199587d8ddcc}" RegisteredName="LESS_Advanced" PackageName="LessPackage"/><Category name="Performance" Category="{7A697B67-8D8F-43c2-A11C-57568FE3F513}" Package="{f4a63b2a-49ab-4b2d-aa59-a10f01026c89}" RegisteredName="Performance" PackageName="PerformancePackage">
 		<PropertyValue name="performancereport.hotpathcandidateratio">3.0</PropertyValue>
 		<PropertyValue name="performancereport.noisereductionfold">0</PropertyValue>
 		<PropertyValue name="performancereport.noisereductionfoldthreshold">3.0</PropertyValue>
@@ -742,16 +742,4 @@
 		<PropertyValue name="AttributeFormat">Preserve</PropertyValue>
 		<PropertyValue name="BlankLineOption">Preserve</PropertyValue>
 		<PropertyValue name="KeepFirstAttributeOnSameLine">True</PropertyValue>
-	</Category><Category name="XmlEditor" Category="{4E1CDE49-B840-4826-8CC6-8FB80D7EF455}" Package="{87569308-4813-40a0-9cd0-d7a30838ca3f}" RegisteredName="XmlEditor" PackageName="Visual Studio XML Editor Package">
-		<PropertyValue name="AttributeFormatting">None</PropertyValue>
-		<PropertyValue name="AutoDownload">False</PropertyValue>
-		<PropertyValue name="AutoInsertAttributeQuotes">True</PropertyValue>
-		<PropertyValue name="AutoInsertEndTags">True</PropertyValue>
-		<PropertyValue name="AutoInsertNamespaceDeclarations">True</PropertyValue>
-		<PropertyValue name="AutoInsertOther">True</PropertyValue>
-		<PropertyValue name="AutoOutlining">True</PropertyValue>
-		<PropertyValue name="AutoReformatOnEndTag">True</PropertyValue>
-		<PropertyValue name="AutoReformatOnPaste">True</PropertyValue>
-		<PropertyValue name="FormatMixedContentByDefault">True</PropertyValue>
-		<PropertyValue name="SchemaCacheLocation">%VsInstallDir%\xml\Schemas</PropertyValue>
-	</Category></UserSettings>
+	</Category><Category name="XmlEditor" Category="{4E1CDE49-B840-4826-8CC6-8FB80D7EF455}" Package="{87569308-4813-40a0-9cd0-d7a30838ca3f}" RegisteredName="XmlEditor" PackageName="Visual Studio XML Editor Package"><PropertyValue name="AttributeFormatting">None</PropertyValue><PropertyValue name="AutoDownload">False</PropertyValue><PropertyValue name="AutoInsertAttributeQuotes">True</PropertyValue><PropertyValue name="AutoInsertEndTags">True</PropertyValue><PropertyValue name="AutoInsertNamespaceDeclarations">True</PropertyValue><PropertyValue name="AutoInsertOther">True</PropertyValue><PropertyValue name="AutoOutlining">True</PropertyValue><PropertyValue name="AutoReformatOnEndTag">True</PropertyValue><PropertyValue name="AutoReformatOnPaste">True</PropertyValue><PropertyValue name="FormatMixedContentByDefault">True</PropertyValue><PropertyValue name="SchemaCacheLocation">%VsInstallDir%\xml\Schemas</PropertyValue></Category></UserSettings>

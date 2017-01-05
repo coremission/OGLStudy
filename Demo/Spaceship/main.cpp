@@ -41,7 +41,7 @@ void setUpScene()
 	// load space station
 	auto spaceStation = ModelLoader::LoadModel("station", "Assets\\spacestation\\space_station_4.obj",
 		"Assets\\spacestation\\space_station_4_diffuse.png");
-	spaceStation->transform->setLocalPosition(glm::vec3(0, 0, -800));
+	spaceStation->transform->setLocalPosition(glm::vec3(0, 0, -1800));
 
 	GameObject * spaceShipRootGo = new GameObject("spaceshipRoot");
 	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj", "Assets\\space_cruiser_4_color.png");

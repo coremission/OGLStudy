@@ -40,7 +40,7 @@ glm::mat4 Camera::getOrientationMatrix() const {
 	recalculateMatrices();
 	// todo: while orientation isn't tuned for camera control
 	//return getViewProjectionMatrix();
-	return projectionMatrix * glm::mat4_cast(transform->getRotation());
+	return projectionMatrix * glm::mat4_cast(glm::inverse(transform->getRotation()));
 }
 
 glm::mat4 Camera::getViewMatrix() const {

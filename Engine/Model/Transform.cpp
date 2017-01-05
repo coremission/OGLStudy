@@ -60,7 +60,7 @@ void Transform::setLocalYawPitchRoll(glm::vec3 yawPitchRoll)
 
 void Transform::rotate(glm::vec3 yawPitchRoll)
 {
-	localRotation = quat(yawPitchRoll) * localRotation;
+	localRotation = localRotation * quat(yawPitchRoll);
 	recalculateMatrices();
 }
 

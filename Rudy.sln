@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D61F3BD9
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ConsoleTestFixture", "Tests\ConsoleTestFixture\ConsoleTestFixture.vcxproj", "{4348D52B-AFFA-4CAE-ABD6-629DFE74F707}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RnDProject", "RnDProject\RnDProject.vcxproj", "{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Spaceship", "Demo\Spaceship\Spaceship.vcxproj", "{60E45867-B09F-4F7D-982D-4A86C6466D46}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RenderingTestFixture", "Tests\RenderingTestFixture\RenderingTestFixture.vcxproj", "{EEAA03CB-5A42-4210-85B5-FDCE3D88BA70}"
@@ -56,14 +54,6 @@ Global
 		{4348D52B-AFFA-4CAE-ABD6-629DFE74F707}.Release|x64.Build.0 = Release|x64
 		{4348D52B-AFFA-4CAE-ABD6-629DFE74F707}.Release|x86.ActiveCfg = Release|Win32
 		{4348D52B-AFFA-4CAE-ABD6-629DFE74F707}.Release|x86.Build.0 = Release|Win32
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Debug|x64.ActiveCfg = Debug|x64
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Debug|x64.Build.0 = Debug|x64
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Debug|x86.ActiveCfg = Debug|Win32
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Debug|x86.Build.0 = Debug|Win32
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Release|x64.ActiveCfg = Release|x64
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Release|x64.Build.0 = Release|x64
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Release|x86.ActiveCfg = Release|Win32
-		{89D756B0-B7F8-42D0-BC96-3D1193AF87DD}.Release|x86.Build.0 = Release|Win32
 		{60E45867-B09F-4F7D-982D-4A86C6466D46}.Debug|x64.ActiveCfg = Debug|x64
 		{60E45867-B09F-4F7D-982D-4A86C6466D46}.Debug|x64.Build.0 = Debug|x64
 		{60E45867-B09F-4F7D-982D-4A86C6466D46}.Debug|x86.ActiveCfg = Debug|Win32

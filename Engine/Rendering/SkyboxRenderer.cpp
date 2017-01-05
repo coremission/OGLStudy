@@ -26,8 +26,8 @@ void SkyboxRenderer::render() const
 
 	// 3. bind uniforms
 	//// 3.1 cubemap
-	// TODO: SKIP CUBEMAP
-	//glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureId);
+	glActiveTexture(cubeMapTextureId);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, cubeMapTextureId);
 
 	//// 3.2 view projection matrix
 	GLuint vpLocation = glGetUniformLocation(shaderProgram->programId(), "OrientationMatrix");
@@ -55,7 +55,6 @@ GLuint SkyboxRenderer::createCubemap(std::vector<std::string> filenames)
 	// 1. generate skybox texture
 	glGenTextures(1, &id);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, id);
-
 	// 2. load 6 images
 	/*
 	GL_TEXTURE_CUBE_MAP_POSITIVE_X
