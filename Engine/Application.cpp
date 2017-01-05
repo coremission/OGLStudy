@@ -78,7 +78,9 @@ void Application::runMainLoop()
 void Application::renderScene() {
 	Time::updateClock();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	Camera::getMainCamera()->clearWithSkybox();
+	auto mainCamera = Camera::getMainCamera();
+	if(mainCamera != nullptr)
+		mainCamera->clearWithSkybox();
 
 	//
 	for(auto it = scene->begin(); it != scene->end(); ++it)

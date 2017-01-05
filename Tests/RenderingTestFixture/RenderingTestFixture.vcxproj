@@ -125,7 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,9 +142,6 @@
     <Image Include="Sprites\ball.png" />
     <Image Include="Sprites\brick.png" />
     <Image Include="Sprites\paddle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CameraController.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
