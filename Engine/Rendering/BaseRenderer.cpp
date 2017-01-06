@@ -34,11 +34,6 @@ void BaseRenderer::render() const
 	glm::mat4 mvpMatrix = viewProjectionMatrix * modelingMatrix;
 	glUniformMatrix4fv(mvpLocation, 1, GL_FALSE, &mvpMatrix[0][0]);
 	
-	/*
-	auto result = mvpMatrix * glm::vec4(0, 0, 0, 1.0f);
-	cout << result.x << " " << result.y << " " << result.z << " " << result.w << endl;
-	*/
-
 	if (mesh->isIndexed())
 		glDrawElements(GL_TRIANGLES, mesh->indicesCount(), GL_UNSIGNED_INT, reinterpret_cast<void *>(0));
 	else

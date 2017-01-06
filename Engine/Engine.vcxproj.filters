@@ -99,7 +99,7 @@
     <ClCompile Include="Rendering\WireframeRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\DDSLoader.cpp">
+    <ClCompile Include="Rendering\OverlayRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1103,7 +1103,7 @@
     <ClInclude Include="Rendering\WireframeRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\DDSLoader.h">
+    <ClInclude Include="Rendering\OverlayRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

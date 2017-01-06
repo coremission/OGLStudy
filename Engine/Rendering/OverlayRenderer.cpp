@@ -1,4 +1,4 @@
-﻿#include "SpriteRenderer.h"
+﻿#include "OverlayRenderer.h"
 #include "ShaderProgram.h"
 #include "MeshManager.h"
 #include "TextureManager.h"
@@ -6,18 +6,18 @@
 #include <memory>
 #include "Camera.h"
 
-SpriteRenderer::SpriteRenderer(GameObject* _gameObject, const std::string& spriteFileName):
+OverlayRenderer::OverlayRenderer(GameObject* _gameObject, const std::string& spriteFileName):
 	Renderer(MeshManager::getDefaultSpriteMesh()),
 	gameObject(_gameObject),
 	spriteTexture(TextureManager::getCompressedTexture(spriteFileName))
 {
 }
 
-SpriteRenderer::~SpriteRenderer()
+OverlayRenderer::~OverlayRenderer()
 {
 }
 
-void SpriteRenderer::render() const
+void OverlayRenderer::render() const
 {
 	// 1. bind vao
 	glBindVertexArray(mesh->vao);

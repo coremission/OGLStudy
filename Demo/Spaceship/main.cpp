@@ -4,6 +4,7 @@
 #include "RotationBehaviour.h"
 #include "CameraController.h"
 #include <System/system.hpp>
+#include <Rendering/SpriteRenderer.h>
 
 using namespace std;
 
@@ -43,14 +44,19 @@ void setUpScene()
 		"Assets\\spacestation\\space_station_4_diffuse.png");
 	spaceStation->transform->setLocalPosition(glm::vec3(0, 0, -1800));
 
-	GameObject * spaceShipRootGo = new GameObject("spaceshipRoot");
+	GameObject* spaceShipRootGo = new GameObject("spaceshipRoot");
 	auto spaceShipGo = ModelLoader::LoadModel("spaceCruiser", "Assets\\space_cruiser_4.obj", "Assets\\space_cruiser_4_color.png");
 	GameObject* cameraGo = new GameObject("camera");
 	float screenRatio = static_cast<float>(Screen::width) / static_cast<float>(Screen::height);
 
 	Camera* camera = new Camera(cameraGo, 60.0f, screenRatio, 0.1f, 10000.0f);
 	cameraGo->AddComponent(camera);
-	
+
+	GameObject* crosshair = new GameObject("crosshair");
+	constexpr float crosshairSize = 0.03f;
+	crosshair->transform->setLocalScale(glm::vec3(crosshairSize, crosshairSize * screenRatio, 1));
+	crosshair->renderer = std::make_unique<SpriteRenderer>(crosshair, "Assets\\crosshair.dds");
+
 	/*
 	GL_TEXTURE_CUBE_MAP_POSITIVE_X
 	GL_TEXTURE_CUBE_MAP_NEGATIVE_X

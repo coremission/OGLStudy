@@ -130,9 +130,9 @@
     <ClCompile Include="ParticleSystem\ParticleSystem.cpp" />
     <ClCompile Include="Rendering\BaseRenderer.cpp" />
     <ClCompile Include="Rendering\Camera.cpp" />
-    <ClCompile Include="Rendering\DDSLoader.cpp" />
     <ClCompile Include="Rendering\Mesh.cpp" />
     <ClCompile Include="Rendering\MeshManager.cpp" />
+    <ClCompile Include="Rendering\OverlayRenderer.cpp" />
     <ClCompile Include="Rendering\rendering.cpp" />
     <ClCompile Include="Rendering\ShaderLoader.cpp" />
     <ClCompile Include="Rendering\ShaderProgram.cpp" />
@@ -198,9 +198,9 @@
     <ClInclude Include="ParticleSystem\ParticleSystem.h" />
     <ClInclude Include="Rendering\BaseRenderer.h" />
     <ClInclude Include="Rendering\Camera.h" />
-    <ClInclude Include="Rendering\DDSLoader.h" />
     <ClInclude Include="Rendering\Mesh.h" />
     <ClInclude Include="Rendering\MeshManager.h" />
+    <ClInclude Include="Rendering\OverlayRenderer.h" />
     <ClInclude Include="Rendering\rendering.hpp" />
     <ClInclude Include="Rendering\ShaderLoader.h" />
     <ClInclude Include="Rendering\ShaderProgram.h" />
