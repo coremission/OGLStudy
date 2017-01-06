@@ -102,6 +102,9 @@
     <ClCompile Include="Rendering\OverlayRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="rudymath.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dependencies\glm\detail\_features.hpp">
@@ -1104,6 +1107,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Rendering\OverlayRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rudymath.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

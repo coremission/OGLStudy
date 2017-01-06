@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MarkerController.cpp" />
     <ClCompile Include="RotationBehaviour.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +132,8 @@
     <None Include="Shaders\Diffuse_Fragment.glsl" />
     <None Include="Shaders\Diffuse_Vertex.glsl" />
     <None Include="Shaders\Fragment.glsl" />
+    <None Include="Shaders\Overlay_Fragment.glsl" />
+    <None Include="Shaders\Overlay_Vertex.glsl" />
     <None Include="Shaders\ParticleBillboard_Fragment.glsl" />
     <None Include="Shaders\ParticleBIllboard_Vertex.glsl" />
     <None Include="Shaders\Skybox_Fragment.glsl" />
@@ -139,6 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="MarkerController.h" />
     <ClInclude Include="RotationBehaviour.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -122,6 +122,7 @@
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Dependencies\lodepng\picopng.cpp" />
+    <ClCompile Include="rudymath.cpp" />
     <ClCompile Include="Model\Component.cpp" />
     <ClCompile Include="Model\GameObject.cpp" />
     <ClCompile Include="Model\ModelLoader.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Dependencies\glfw\glfw3.h" />
     <ClInclude Include="Dependencies\glfw\glfw3native.h" />
     <ClInclude Include="Dependencies\lodepng\picopng.h" />
+    <ClInclude Include="rudymath.hpp" />
     <ClInclude Include="Model\Component.h" />
     <ClInclude Include="Model\GameObject.h" />
     <ClInclude Include="Model\ModelLoader.h" />

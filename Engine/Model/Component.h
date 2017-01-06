@@ -7,8 +7,8 @@ class Transform;
 class Component
 {
 public:
-	GameObject * const gameObject;
-	Transform * const transform;
+	GameObject* const gameObject;
+	Transform* const transform;
 public:
 	explicit Component(GameObject*);
 	virtual void Start();

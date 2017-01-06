@@ -17,7 +17,8 @@ void main(void)
 	gl_Position = Model2Projection * vec4(in_position, 1.0);
 	vec3 transformedNormal = vec3(Model2World * vec4(in_normal, 0.0));
 
-	color = in_color * dot(transformedNormal, vec3(1, 1, 1));
+	// half lambert
+	color = in_color * ( dot(transformedNormal, vec3(1, 1, 1)) * 0.5 + 0.75 );
 	uv = in_uv;
 	fragmentPosition = gl_Position.xyz;
 }

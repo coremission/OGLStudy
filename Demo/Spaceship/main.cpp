@@ -5,6 +5,8 @@
 #include "CameraController.h"
 #include <System/system.hpp>
 #include <Rendering/SpriteRenderer.h>
+#include <Rendering/OverlayRenderer.h>
+#include "MarkerController.h"
 
 using namespace std;
 
@@ -16,8 +18,9 @@ int main(int argc, char **argv)
 {
 	_do(argc, argv);
 
-	cout << endl << "Press any key to exit..." << endl;
-	cin.get();
+	// todo: temporary
+	//cout << endl << "Press any key to exit..." << endl;
+	//cin.get();
 
 	return 0;
 }
@@ -55,7 +58,15 @@ void setUpScene()
 	GameObject* crosshair = new GameObject("crosshair");
 	constexpr float crosshairSize = 0.03f;
 	crosshair->transform->setLocalScale(glm::vec3(crosshairSize, crosshairSize * screenRatio, 1));
-	crosshair->renderer = std::make_unique<SpriteRenderer>(crosshair, "Assets\\crosshair.dds");
+	crosshair->renderer = std::make_unique<OverlayRenderer>(crosshair, "Assets\\crosshair.dds");
+
+	GameObject* marker = new GameObject("stationMarker");
+	marker->renderer = std::make_unique<OverlayRenderer>(marker, "Assets\\marker.dds");
+	constexpr float markerSize = 0.04f;
+	MarkerController* markerController = new MarkerController(marker);
+	marker->AddComponent(markerController);
+	marker->transform->setLocalScale(glm::vec3(markerSize, markerSize * screenRatio, 1));
+	markerController->setTarget(spaceStation->transform.get());
 
 	/*
 	GL_TEXTURE_CUBE_MAP_POSITIVE_X
